@@ -1,5 +1,6 @@
 import React, { Text, View, Component, DrawerLayoutAndroid, ToolbarAndroid, StyleSheet } from 'react-native';
 import Entry from './../components/Entry.js';
+import Leaderboard from './../components/Leaderboard.js';
 import NavigationView from './../components/NavigationView.js';
 
 let DRAWER_WIDTH = 250;
@@ -23,7 +24,7 @@ export default class ReMoveIt extends Component {
     return React.createClass({
       render: function() {
         return (
-          <Entry />
+          <Leaderboard />
         );
       }
     });

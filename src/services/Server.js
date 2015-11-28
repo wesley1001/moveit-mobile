@@ -8,6 +8,7 @@ class Server {
     this.baseUrl = baseUrl || Settings.getBaseUrlFor('test');
   }
 
+
   post(endPoint, data, callBack) {
     request
       .post(this.baseUrl + endPoint)
@@ -19,14 +20,13 @@ class Server {
       });
     }
 
-  get(endPoint, callBack) {
+  get(endPoint, query, callBack) {
+    let url = this.baseUrl + endPoint;
     request
-    .get(endPoint)
-    .end(function(err, res){
-      return res;
-    });
+    .get(url)
+    .query(query)
+    .end(callBack);
   }
-
 }
 
 export default Server;

@@ -3,10 +3,10 @@ export default class User {
     this.email = params.email;
     this.name = params.name;
     this.gravatar = params.gravatar;
-    this.activity = {
+    this.status = params.activity_status;
+    this.activities = {
       duration: params.duration,
-      amount: params.amount,
-      status: params.activity_status
+      amount: params.amount
     };
   }
 }

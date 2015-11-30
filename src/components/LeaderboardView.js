@@ -3,7 +3,7 @@ import Server from '../services/Server'
 import UserView from './UserView';
 import User from '../models/User';
 import ActionButton from 'react-native-action-button';
-import React, { Component, ScrollView, ListView, View, ProgressBarAndroid, NativeModules, StyleSheet, Image,Text } from 'react-native';
+import React, { ToastAndroid, AsyncStorage, Component, ScrollView, ListView, View, ProgressBarAndroid, StyleSheet, Image,Text } from 'react-native';
 
 export default class LeaderboardView extends Component {
   constructor(props) {
@@ -13,16 +13,40 @@ export default class LeaderboardView extends Component {
     this.server = new Server('http://staging-move1t.herokuapp.com');
   }
 
+  delay(time) {
+    return new Promise(function (fulfill) {
+      setTimeout(fulfill, time);
+    });
+  }
+
+  getStoredLeaderboard() {
+    return AsyncStorage.getItem('LeaderboardData');
+  }
+
+  storeData(data) {
+    AsyncStorage.setItem('LeaderboardData', JSON.stringify(data));
+  }
+
   getData() {
     let data = {
       email: this.state.email,
       month: this.state.month
     };
 
-    this.server.get('/leaderboard.json', data, (err, res) => {
-      console.log(res, err);
-      if(res) {
+    this.getStoredLeaderboard().then((storeLeaderboardData) => {
+      let storedData = JSON.parse(storeLeaderboardData);
+      let users = storedData.leaderboard.with_entries.concat(storedData.leaderboard.without_entries);
+      let userList = users.map((userJSON)=> new User(userJSON));
+      this.setState({
+        users: userList,
+        monthly_total_amount: storedData.monthly_total_amount,
+        monthly_goal: storedData.monthly_goal
+      });
+    });
+
+    this.server.get('/leaderboard.json', data).then((res) => {
         let data = JSON.parse(res.text);
+        this.storeData(data);
         let users = data.leaderboard.with_entries.concat(data.leaderboard.without_entries);
         let userList = users.map((userJSON)=> new User(userJSON));
         this.setState({ isLoading: false,
@@ -30,14 +54,19 @@ export default class LeaderboardView extends Component {
                       monthly_total_amount: data.monthly_total_amount,
                       monthly_goal: data.monthly_goal
                     });
-      }
-    });
+        }).catch((err) => {
+          this.setState({ isLoading: false });
+          ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);
+        });
   }
 
-
-  componentDidMount() {
+  reloadLeaderboard() {
     this.setState({ isLoading: true });
     this.getData();
+  }
+
+  componentDidMount() {
+    this.reloadLeaderboard();
   }
 
   showRow(userData, sectionID, rowID) {
@@ -50,7 +79,6 @@ export default class LeaderboardView extends Component {
 
   userList() {
     ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    console.log(this.state);
     return ds.cloneWithRows(this.state.users);
   }
 

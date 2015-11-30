@@ -1,10 +1,11 @@
 import moment from 'moment';
 import Server from '../services/Server'
-import User from './User';
+import UserView from './UserView';
+import User from '../models/User';
 import ActionButton from 'react-native-action-button';
 import React, { Component, ScrollView, ListView, View, ProgressBarAndroid, NativeModules, StyleSheet, Image,Text } from 'react-native';
 
-export default class Leaderboard extends Component {
+export default class LeaderboardView extends Component {
   constructor(props) {
     super(props);
     let currentMonth = moment().endOf('month').format('MMMM YYYY');
@@ -23,8 +24,9 @@ export default class Leaderboard extends Component {
       if(res) {
         let data = JSON.parse(res.text);
         let users = data.leaderboard.with_entries.concat(data.leaderboard.without_entries);
+        let userList = users.map((userJSON)=> new User(userJSON));
         this.setState({ isLoading: false,
-                      users: users,
+                      users: userList,
                       monthly_total_amount: data.monthly_total_amount,
                       monthly_goal: data.monthly_goal
                     });
@@ -41,7 +43,7 @@ export default class Leaderboard extends Component {
   showRow(userData, sectionID, rowID) {
     return (
       <View style={styles.row}>
-        <User user={userData} rank={parseInt(rowID) + 1}/>
+        <UserView user={userData} rank={parseInt(rowID) + 1}/>
       </View>
     )
   }

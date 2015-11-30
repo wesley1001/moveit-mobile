@@ -10,17 +10,17 @@ export default class User extends Component {
     let user = this.props.user;
     return (
       <View style={styles.container}>
-        <Image  style={[styles.thumb, user.activity_status === 'active' ? {borderColor: 'green'} : {borderColor: 'yellow'}]} source={{ uri: user.gravatar + '&s=200' }} />
+        <Image  style={[styles.thumb, user.activity.status === 'active' ? {borderColor: 'green'} : {borderColor: 'yellow'}]} source={{ uri: user.gravatar + '&s=200' }} />
         <Text style={styles.rank}>#{this.props.rank}</Text>
         <Text style={styles.name}>
           {user.name}
         </Text>
         <View style={styles.amountSection}>
           <Text style={styles.amount}>
-            ₹{user.amount}
+            ₹{user.activity.amount}
           </Text>
           <Text style={styles.duration}>
-            {user.duration} mins
+            {user.activity.duration} mins
           </Text>
         </View>
       </View>

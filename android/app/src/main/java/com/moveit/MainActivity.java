@@ -1,4 +1,4 @@
-package com.removeit;
+package com.moveit;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -31,11 +31,12 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
                 .addPackage(new MainReactPackage())
                 .addPackage(new ReactDatePackage(this))
                 .addPackage(new ReactMaterialKitPackage())
+                .addPackage(new RNGeolocationPackage())
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
 
-        mReactRootView.startReactApplication(mReactInstanceManager, "ReMoveIt", null);
+        mReactRootView.startReactApplication(mReactInstanceManager, "MoveIt", null);
 
         setContentView(mReactRootView);
     }

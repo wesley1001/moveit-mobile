@@ -5,7 +5,7 @@ import NavigationView from './../components/NavigationView.js';
 
 let DRAWER_WIDTH = 250;
 
-export default class ReMoveIt extends Component {
+export default class MoveIt extends Component {
   constructor(props) {
     super(props);
     this.state = {

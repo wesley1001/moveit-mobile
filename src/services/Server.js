@@ -11,7 +11,8 @@ class Server {
   }
 
   post(endPoint, data) {
-    let promise = new Promise.race((resolve, reject) => {
+    let promise = new Promise((resolve, reject) => {
+      Timer.setTimeout(() => { reject("Timed out") }, 5000);
       request
         .post(this.baseUrl + endPoint)
         .send(data)
@@ -24,7 +25,6 @@ class Server {
           }
         });
       });
-    this.delay(7000).then(() => promise.reject)
     return promise;
   }
 

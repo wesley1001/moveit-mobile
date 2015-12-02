@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var Leaderboard = require('./leaderboard');
 
 var {
   StyleSheet,
@@ -24,7 +25,8 @@ var styles = StyleSheet.create({
   flowRight: {
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
+    marginBottom: 15
   },
   buttonText: {
     fontSize: 18,
@@ -155,6 +157,10 @@ class AddEntryPage extends Component {
       message: ''
     });
     console.log('Response: ' + JSON.stringify(response));
+    this.props.navigator.push({
+        title: 'Leaderboard',
+        component: Leaderboard
+    });
   }
 
 }

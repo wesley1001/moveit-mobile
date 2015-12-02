@@ -2,6 +2,7 @@ import React, { Text, View, Component, DrawerLayoutAndroid, ToolbarAndroid, Styl
 import EntryView from './../components/EntryView.js';
 import LeaderboardView from './../components/LeaderboardView.js';
 import NavigationView from './../components/NavigationView.js';
+import SplashScreen from '@remobile/react-native-splashscreen';
 
 let DRAWER_WIDTH = 250;
 
@@ -36,6 +37,9 @@ export default class MoveIt extends Component {
     );
   }
 
+  componentDidMount() {
+    SplashScreen.hide();
+  }
   render() {
     return (
       <DrawerLayoutAndroid

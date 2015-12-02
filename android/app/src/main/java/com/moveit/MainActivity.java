@@ -14,6 +14,7 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.tiagojdferreira.RNGeolocationPackage;
+import com.remobile.splashscreen.*;
 
 public class MainActivity extends FragmentActivity implements DefaultHardwareBackBtnHandler {
 
@@ -30,6 +31,7 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModuleName("index.android")
                 .addPackage(new MainReactPackage())
+                .addPackage(new RCTSplashScreenPackage(this))
                 .addPackage(new ReactDatePackage(this))
                 .addPackage(new ReactMaterialKitPackage())
                 .addPackage(new RNGeolocationPackage())

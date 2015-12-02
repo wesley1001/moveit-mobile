@@ -86,5 +86,6 @@ dependencies {
     compile "com.android.support:appcompat-v7:23.0.1"
     compile project(':reactdate')
     compile project(':RNMaterialKit')
+    compile project(':react-native-splashscreen')
     compile "com.facebook.react:react-native:0.14.+"
 }

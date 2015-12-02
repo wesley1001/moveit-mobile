@@ -62,14 +62,23 @@ task bundleReleaseJsAndAssets(type: Exec) {
     enabled config.bundleInRelease ?: true
 }
 
+
+task copySplashScreen(type: Exec) {
+    workingDir "$projectDir/../../"
+    commandLine "$projectDir/../../setup.sh"
+}
+
 gradle.projectsEvaluated {
     // hook bundleDebugJsAndAssets into the android build process
     bundleDebugJsAndAssets.dependsOn mergeDebugResources
     bundleDebugJsAndAssets.dependsOn mergeDebugAssets
+    bundleDebugJsAndAssets.dependsOn copySplashScreen
     processDebugResources.dependsOn bundleDebugJsAndAssets
 
     // hook bundleReleaseJsAndAssets into the android build process
     bundleReleaseJsAndAssets.dependsOn mergeReleaseResources
     bundleReleaseJsAndAssets.dependsOn mergeReleaseAssets
+    bundleReleaseJsAndAssets.dependsOn copySplashScreen
     processReleaseResources.dependsOn bundleReleaseJsAndAssets
+
 }

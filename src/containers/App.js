@@ -24,7 +24,7 @@ export default class MoveIt extends Component {
     return React.createClass({
       render: function() {
         return (
-          <LeaderboardView />
+          <EntryView />
         );
       }
     });

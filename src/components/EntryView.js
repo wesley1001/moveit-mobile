@@ -43,8 +43,6 @@ export default class Entry extends Component {
         this.setState({ isLoading: false });
         ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);
       });
-      }
-    );
   }
 
   componentDidMount() {

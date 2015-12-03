@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var AddEntryPage = require('./add_entry_page');
+var AddEntryPage = require('./app/components/addEntryPage/addEntryPage');
 
 var {
     StyleSheet,

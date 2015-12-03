@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var Leaderboard = require('./leaderboard');
+var Leaderboard = require('../leaderboard/leaderboard');
 
 var {
   StyleSheet,
@@ -118,7 +118,7 @@ class AddEntryPage extends Component {
 
   onAddPressed() {
     var data = {
-      email: 'SOME_USERNAME@multunus.com',
+      email: 'USERNAME@multunus.com',
       entry: {
         date: new Date(),
         duration: this.state.duration

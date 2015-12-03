@@ -1,13 +1,12 @@
 'use strict';
 
 var React = require('react-native');
+var LeaderboardEntry = require('./leaderboardEntry');
 var {
   StyleSheet,
   Image,
   View,
-  TouchableHighlight,
   ListView,
-  Text,
   Component,
   ActivityIndicatorIOS
 } = React;
@@ -17,33 +16,6 @@ var styles = StyleSheet.create({
     padding: 20,
     marginTop: 65,
     flex: 1
-  },
-  thumb: {
-    width: 80,
-    height: 80,
-    marginRight: 10
-  },
-  textContainer: {
-    flex: 1
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#dddddd'
-  },
-  amount: {
-    fontSize: 25,
-    fontWeight: 'bold'
-  },
-  duration: {
-    fontSize: 18
-  },
-  title: {
-    fontSize: 20,
-    color: '#656565'
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    padding: 10
   }
 });
 
@@ -64,16 +36,13 @@ class Leaderboard extends Component {
 
   renderItem(leaderboardItem) {
     return(
-      <View>
-        <View style={styles.rowContainer}>
-          <Image style={styles.thumb} source={{ uri: leaderboardItem.gravatar }} />
-          <View  style={styles.textContainer}>
-            <Text style={styles.amount}>₹{leaderboardItem.amount}</Text>
-            <Text style={styles.duration}>{leaderboardItem.duration} minutes</Text>
-          </View>
-        </View>
-        <View style={styles.separator} />
-      </View>
+      <LeaderboardEntry
+        gravatar={leaderboardItem.gravatar}
+        amount={leaderboardItem.amount}
+        duration={leaderboardItem.duration}
+        name={leaderboardItem.name}
+      >
+      </LeaderboardEntry>
     );
   }
 
@@ -116,7 +85,7 @@ class Leaderboard extends Component {
   _leaderboardUrl() {
     var data = {
       month: 'Dec',
-      email: 'akshay.s@multunus.com'
+      email: 'USERNAME@multunus.com'
     };
 
     var querystring = Object.keys(data)

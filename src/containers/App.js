@@ -2,6 +2,7 @@ import React, { Component, DrawerLayoutAndroid, ToolbarAndroid, StyleSheet, Navi
 import EntryView from './../components/EntryView.js';
 import LeaderboardView from './../components/LeaderboardView.js';
 import NavigationView from './../components/NavigationView.js';
+import SplashScreen from '@remobile/react-native-splashscreen';
 
 let DRAWER_WIDTH = 250;
 const ROUTES = {
@@ -10,6 +11,10 @@ const ROUTES = {
 };
 
 export default class MoveIt extends Component {
+  componentDidMount() {
+    SplashScreen.hide();
+  }
+
   renderScene(route, navigator) {
     let Component = ROUTES[route.name];
 

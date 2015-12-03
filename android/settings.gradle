@@ -8,3 +8,6 @@ project(':rn-geolocation').projectDir = new File(rootProject.projectDir, '../nod
 
 include ':RNMaterialKit'
 project(':RNMaterialKit').projectDir = file('../node_modules/react-native-material-kit/android')
+
+include ':react-native-splashscreen'
+project(':react-native-splashscreen').projectDir = new File(rootProject.projectDir, '../node_modules/@remobile/react-native-splashscreen/android')

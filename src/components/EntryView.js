@@ -63,7 +63,11 @@ export default class Entry extends Component {
 
   render() {
       if(this.state.isLoading) {
-        return (<ProgressBarAndroid styleAttr="Inverse"/>);
+        return (
+          <View style={styles.progressBar}>
+            <ProgressBarAndroid  styleAttr="Inverse"/>
+          </View>
+        );
       } else {
         return (
           <View>
@@ -119,5 +123,10 @@ let styles = StyleSheet.create({
   textfieldWithFloatingLabel: {
     height: 50,
     marginTop: 10,
+  },
+  progressBar: {
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center'
   },
 });

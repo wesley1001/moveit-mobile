@@ -1,6 +1,6 @@
 import moment from 'moment';
 import Server from '../services/Server'
-import React, { Component, Text, View, ProgressBarAndroid, NativeModules, StyleSheet } from 'react-native';
+import React, { Component, Text, View, ProgressBarAndroid, NativeModules, StyleSheet, ToastAndroid } from 'react-native';
 import MK, { MKButton, MKTextField } from 'react-native-material-kit';
 import rnGeolocation from 'rn-geolocation';
 
@@ -35,8 +35,14 @@ export default class Entry extends Component {
       }
     };
     console.log(data);
-    this.server.post('/entries.json', data, () => {
+    this.server.post('/entries.json', data)
+      .then(() => {
+         this.setState({ isLoading: false });
+      })
+      .catch((err) => {
         this.setState({ isLoading: false });
+        ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);
+      });
       }
     );
   }

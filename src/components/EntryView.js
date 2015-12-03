@@ -34,7 +34,6 @@ export default class Entry extends Component {
         latitude: this.state.location.latitude
       }
     };
-    console.log(data);
     this.server.post('/entries.json', data)
       .then(() => {
          this.setState({ isLoading: false });
@@ -43,8 +42,6 @@ export default class Entry extends Component {
         this.setState({ isLoading: false });
         ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);
       });
-      }
-    );
   }
 
   componentDidMount() {

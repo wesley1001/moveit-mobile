@@ -1,5 +1,5 @@
 import moment from 'moment';
-import Server from '../services/Server'
+import Server from '../services/Server';
 import UserView from './UserView';
 import User from '../models/User';
 import ActionButton from 'react-native-action-button';

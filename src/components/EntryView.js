@@ -1,5 +1,5 @@
 import moment from 'moment';
-import Server from '../services/Server'
+import Server from '../services/Server';
 import React, { Component, Text, View, ProgressBarAndroid, NativeModules, StyleSheet, ToastAndroid } from 'react-native';
 import MK, { MKButton, MKTextField } from 'react-native-material-kit';
 import rnGeolocation from 'rn-geolocation';
@@ -34,7 +34,6 @@ export default class Entry extends Component {
         latitude: this.state.location.latitude
       }
     };
-    console.log(data);
     this.server.post('/entries.json', data)
       .then(() => {
          this.setState({ isLoading: false });
@@ -75,12 +74,15 @@ export default class Entry extends Component {
       } else {
         return (
           <View>
-            <Text onPress={(event) => this.handleDateClick()}>
+            <Text
+              onPress={(event) => this.handleDateClick()}
+              style={styles.dateText}
+            >
               Date: {this.state.date}
             </Text>
             <MKTextField
               floatingLabelEnabled={true}
-              floatingLabelFont={{fontSize: 15, fontWeight:'100'}}
+              floatingLabelFont={styles.floatingLabel}
               keyboardType='email-address'
               onChangeText={(email) => this.setState({email})}
               placeholder='Email'
@@ -89,7 +91,7 @@ export default class Entry extends Component {
             />
             <MKTextField
               floatingLabelEnabled={true}
-              floatingLabelFont={{fontSize: 15, fontWeight:'100'}}
+              floatingLabelFont={styles.floatingLabel}
               keyboardType='numeric'
               onChangeText={(duration) => this.setState({duration})}
               placeholder='Duration of workout in minutes:'
@@ -98,7 +100,7 @@ export default class Entry extends Component {
             />
             <MKTextField
               floatingLabelEnabled={true}
-              floatingLabelFont={{fontSize: 10, fontWeight:'100'}}
+              floatingLabelFont={styles.floatingLabel}
               keyboardType='default'
               onChangeText={(description) => this.setState({description})}
               placeholder='Brief description:'
@@ -108,11 +110,11 @@ export default class Entry extends Component {
 
             <MKButton
               backgroundColor={'#43ca01'}
-              style={{height: 38, padding: 10, margin: 10}}
+              style={styles.saveButton}
               onPress={() => this.onSave()}
             >
               <Text pointerEvents="none"
-                style={{color: 'white', fontWeight: 'bold', textAlign: 'center'}}>
+                style={styles.saveButtonText}>
                 SAVE
               </Text>
             </MKButton>
@@ -133,4 +135,22 @@ let styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center'
   },
+  floatingLabel: {
+    fontSize: 15,
+    fontWeight:'100'
+  },
+  saveButton: {
+    height: 38,
+    padding: 10,
+    margin: 10
+  },
+  saveButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
+  dateText: {
+    fontSize: 15,
+    fontWeight:'500'
+  }
 });

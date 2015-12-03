@@ -26,9 +26,12 @@ var styles = StyleSheet.create({
   },
   name: {
     flex: 3,
+    fontSize: 20
+  },
+  rank: {
+    flex: 1,
     fontSize: 20,
-    justifyContent: 'center',
-    alignItems: 'center'
+    color: '#BDBDBD'
   },
   scoreContainer: {
     flex: 1,
@@ -51,6 +54,7 @@ class LeaderboardEntry extends Component {
         <View style={styles.avatarContainer}>
           <Image style={styles.avatar} source={{ uri: this.props.gravatar }} />
         </View>
+        <Text style={styles.rank}>#{this.props.rank}</Text>
         <Text style={styles.name}>{this.props.name}</Text>
         <View style={styles.scoreContainer}>
           <Text style={styles.amount}>₹{this.props.amount}</Text>

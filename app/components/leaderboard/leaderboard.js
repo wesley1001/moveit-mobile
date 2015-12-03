@@ -35,13 +35,14 @@ class Leaderboard extends Component {
     this.fetchData();
   }
 
-  renderItem(leaderboardItem) {
+  renderItem(leaderboardItem, sectionID, rowID) {
     return(
       <LeaderboardEntry
         gravatar={leaderboardItem.gravatar}
+        name={leaderboardItem.name}
+        rank={parseInt(rowID) + 1}
         amount={leaderboardItem.amount}
         duration={leaderboardItem.duration}
-        name={leaderboardItem.name}
       >
       </LeaderboardEntry>
     );

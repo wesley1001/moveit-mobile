@@ -37,7 +37,7 @@ export default class MoveIt extends Component {
       <Navigator
         style={styles.container}
         ref={(navigator) => { this.navigator = navigator; }}
-        initialRoute={{name: 'Add Entry'}}
+        initialRoute={{name: 'Leaderboard'}}
         renderScene={this.renderScene.bind(this)}
       />
     );

@@ -10,30 +10,37 @@ var {
 } = React;
 
 var styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    marginTop: 65,
-    flex: 1
-  },
-  thumb: {
-    width: 80,
-    height: 80,
-    marginRight: 10,
-    borderRadius: 40
-  },
-  textContainer: {
-    flex: 1
-  },
-  amount: {
-    fontSize: 25,
-    fontWeight: 'bold'
-  },
-  duration: {
-    fontSize: 18
-  },
   rowContainer: {
     flexDirection: 'row',
-    padding: 10
+    padding: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  avatarContainer: {
+    flex: 1,
+  },
+  avatar: {
+    width: 38,
+    height: 38,
+    borderRadius: 19
+  },
+  name: {
+    flex: 3,
+    fontSize: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  scoreContainer: {
+    flex: 1,
+    alignItems: 'flex-end'
+  },
+  amount: {
+    color: '#757575',
+    fontSize: 20
+  },
+  duration: {
+    fontSize: 12,
+    color: '#BDBDBD'
   }
 });
 
@@ -41,10 +48,13 @@ class LeaderboardEntry extends Component {
   render() {
     return(
       <View style={styles.rowContainer}>
-        <Image style={styles.thumb} source={{ uri: this.props.gravatar }} />
-        <View  style={styles.textContainer}>
+        <View style={styles.avatarContainer}>
+          <Image style={styles.avatar} source={{ uri: this.props.gravatar }} />
+        </View>
+        <Text style={styles.name}>{this.props.name}</Text>
+        <View style={styles.scoreContainer}>
           <Text style={styles.amount}>₹{this.props.amount}</Text>
-          <Text style={styles.duration}>{this.props.duration} minutes</Text>
+          <Text style={styles.duration}>{this.props.duration} mins</Text>
         </View>
       </View>
     );

@@ -13,8 +13,7 @@ var {
 
 var styles = StyleSheet.create({
   container: {
-    padding: 20,
-    marginTop: 65,
+    marginTop: 64,
     flex: 1
   }
 });
@@ -56,6 +55,7 @@ class Leaderboard extends Component {
         <ListView
           dataSource={this.state.itemsWithEntries}
           renderRow={this.renderItem.bind(this)}
+          automaticallyAdjustContentInsets={false}
         />
       </View>
     );

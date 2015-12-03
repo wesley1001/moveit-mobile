@@ -1,17 +1,17 @@
 import moment from 'moment';
-import Server from '../services/Server';
-import React, { Component, Text, View, ProgressBarAndroid, NativeModules, StyleSheet, ToastAndroid } from 'react-native';
-import MK, { MKButton, MKTextField } from 'react-native-material-kit';
+import Server from '../services/Server'
+import User from '../models/User'
+import React, { AsyncStorage, Component, Text, View, ProgressBarAndroid, NativeModules, StyleSheet, ToastAndroid } from 'react-native';
+import MK, {  MKButton, MKTextField } from 'react-native-material-kit';
 import rnGeolocation from 'rn-geolocation';
 
-export default class Entry extends Component {
+export default class EntryView extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: false,
-      email: '',
       duration: '',
-      date: moment().format('YYYY-MM-DD'),
+      date: moment(),
       description: '',
       location: {
         longitude: null,
@@ -21,12 +21,21 @@ export default class Entry extends Component {
     this.server = new Server('http://staging-move1t.herokuapp.com');
   }
 
+  componentWillMount() {
+    AsyncStorage.getItem('UserDetails').then((userData) => {
+      this.setState({ user: new User(JSON.parse(userData)) });
+    })
+    .catch(() => {
+      this.props.navigator.replace({ name: 'Login' });
+    });
+  }
+
   sendData() {
     let data = {
-      email: this.state.email,
+      email: this.state.user.email,
       entry: {
         duration: this.state.duration,
-        date: this.state.date,
+        date: this.state.date.format('YYYY-MM-DD'),
         description: this.state.description
       },
       location: {
@@ -50,17 +59,24 @@ export default class Entry extends Component {
     },() => {}, { timeout: 5000, enableHighAccuracy: true, maximumAge: 10000 });
   }
 
+  isFormValid() {
+    return this.state.date && this.state.user && this.state.duration;
+  }
+
   onSave() {
-    this.setState({ isLoading: true });
-    this.sendData();
+    if(this.isFormValid()){
+      this.setState({ isLoading: true });
+      this.sendData();
+    } else {
+      ToastAndroid.show('Please enter you workout details', ToastAndroid.SHORT, 2000);
+    }
   }
 
   handleDateClick() {
     var self = this;
     NativeModules.DateAndroid.showDatepicker(function() {}, function(year,month,day) {
-      month += 1;
-      let newdate = year + '-' + month + '-' +day;
-      self.setState({date: newdate});
+      let newdate = moment({ year: year, month: month, day: day});
+      self.setState({ date: newdate });
     });
   }
 
@@ -73,34 +89,19 @@ export default class Entry extends Component {
         );
       } else {
         return (
-          <View>
-            <Text
-              onPress={(event) => this.handleDateClick()}
-              style={styles.dateText}
-            >
-              Date: {this.state.date}
-            </Text>
+          <View style={styles.container}>
             <MKTextField
+              highlightColor="#fdc300"
               floatingLabelEnabled={true}
-              floatingLabelFont={styles.floatingLabel}
-              keyboardType='email-address'
-              onChangeText={(email) => this.setState({email})}
-              placeholder='Email'
-              value={this.state.email}
-              style={styles.textfieldWithFloatingLabel}
-            />
-            <MKTextField
-              floatingLabelEnabled={true}
-              floatingLabelFont={styles.floatingLabel}
               keyboardType='numeric'
               onChangeText={(duration) => this.setState({duration})}
-              placeholder='Duration of workout in minutes:'
+              placeholder='Duration of workout in minutes'
               value={this.state.duration}
               style={styles.textfieldWithFloatingLabel}
             />
             <MKTextField
+              highlightColor="#fdc300"
               floatingLabelEnabled={true}
-              floatingLabelFont={styles.floatingLabel}
               keyboardType='default'
               onChangeText={(description) => this.setState({description})}
               placeholder='Brief description:'
@@ -126,6 +127,10 @@ export default class Entry extends Component {
   }
 
 let styles = StyleSheet.create({
+  container: {
+    margin: 10,
+    marginTop: 15
+  },
   textfieldWithFloatingLabel: {
     height: 50,
     marginTop: 10,

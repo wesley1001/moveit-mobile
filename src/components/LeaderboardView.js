@@ -9,18 +9,19 @@ export default class LeaderboardView extends Component {
   constructor(props) {
     super(props);
     let currentMonth = moment().endOf('month').format('MMMM YYYY');
-    this.state = { isLoading: false, email: 'muraleekrishna.g@multunus.com', month: currentMonth, users: [] };
+    this.state = {
+      isLoading: false,
+      user: {
+        email: null
+      },
+      month: currentMonth,
+      users: []
+    };
     this.server = new Server('http://staging-move1t.herokuapp.com');
   }
 
   onPressNewEntry() {
     this.props.navigator.replace({name: "Add Entry"});
-  }
-
-  delay(time) {
-    return new Promise(function (fulfill) {
-      setTimeout(fulfill, time);
-    });
   }
 
   getStoredLeaderboard() {
@@ -33,7 +34,7 @@ export default class LeaderboardView extends Component {
 
   getData() {
     let data = {
-      email: this.state.email,
+      email: this.state.user.email,
       month: this.state.month
     };
 
@@ -48,8 +49,7 @@ export default class LeaderboardView extends Component {
       });
     });
 
-    this.server.get('/leaderboard.json', data).then((res) => {
-        let data = JSON.parse(res.text);
+    this.server.get('/leaderboard.json', data).then((data) => {
         this.storeData(data);
         let users = data.leaderboard.with_entries.concat(data.leaderboard.without_entries);
         let userList = users.map((userJSON)=> new User(userJSON));
@@ -70,7 +70,11 @@ export default class LeaderboardView extends Component {
   }
 
   componentDidMount() {
-    this.reloadLeaderboard();
+    AsyncStorage.getItem('UserDetails').then((userData) => {
+      let user = new User(JSON.parse(userData));
+      this.setState({ user: user });
+      this.reloadLeaderboard();
+    });
   }
 
   showRow(userData, sectionID, rowID) {

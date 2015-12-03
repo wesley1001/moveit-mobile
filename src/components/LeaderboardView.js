@@ -13,6 +13,10 @@ export default class LeaderboardView extends Component {
     this.server = new Server('http://staging-move1t.herokuapp.com');
   }
 
+  onPressNewEntry() {
+    this.props.navigator.replace({name: "Add Entry"});
+  }
+
   delay(time) {
     return new Promise(function (fulfill) {
       setTimeout(fulfill, time);
@@ -110,7 +114,7 @@ export default class LeaderboardView extends Component {
                 />
             </ScrollView>
             <ActionButton buttonColor="rgb(253, 195, 0)">
-              <ActionButton.Item buttonColor='#9b59b6' title="New Entry" onPress={() => {}}>
+              <ActionButton.Item buttonColor='#9b59b6' title="New Entry" onPress={() => this.onPressNewEntry()}>
                 <Text style={styles.actionButtonIcon} />
               </ActionButton.Item>
             </ActionButton>

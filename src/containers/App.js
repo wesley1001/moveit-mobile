@@ -1,66 +1,45 @@
-import React, { Text, View, Component, DrawerLayoutAndroid, ToolbarAndroid, StyleSheet } from 'react-native';
+import React, { Component, DrawerLayoutAndroid, ToolbarAndroid, StyleSheet, Navigator } from 'react-native';
 import EntryView from './../components/EntryView.js';
 import LeaderboardView from './../components/LeaderboardView.js';
 import NavigationView from './../components/NavigationView.js';
 
 let DRAWER_WIDTH = 250;
+const ROUTES = {
+  'Add Entry': EntryView,
+  'Leaderboard': LeaderboardView
+};
 
 export default class MoveIt extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      view: this.getMoveItHome(),
-    };
-  }
+  renderScene(route, navigator) {
+    let Component = ROUTES[route.name];
 
-  getMoveItHome() {
-    return {
-      title: 'Add Entry',
-      component: this.renderAddEntry(),
-    }
-  }
-
-  renderAddEntry() {
-    return React.createClass({
-      render: function() {
-        return (
-          <EntryView />
-        );
-      }
-    });
-  }
-
-  renderNavigationView() {
-      return (
-        <NavigationView/>
-    );
-  }
-
-  render() {
     return (
       <DrawerLayoutAndroid
         drawerPosition={DrawerLayoutAndroid.positions.Left}
         drawerWidth={DRAWER_WIDTH}
         keyboardDismissMode="on-drag"
         ref={(drawer) => { this.drawer = drawer; }}
-        renderNavigationView={this.renderNavigationView}>
-        {this.renderNavigation()}
-      </DrawerLayoutAndroid>
-    );
-  }
-
-  renderNavigation() {
-    var Component = this.state.view.component;
-    return (
-      <View style={styles.container}>
+        renderNavigationView={() => {return <NavigationView navigator={navigator} parent={this}/>;}}
+      >
         <ToolbarAndroid
           style={styles.toolbar}
           navIcon={require('./../img/ic_menu_black_24dp.png')}
           onIconClicked={() => this.drawer.openDrawer()}
-          title={this.state.view.title}
+          title={route.name}
         />
-        <Component />
-      </View>
+        <Component navigator={navigator}/>
+      </DrawerLayoutAndroid>
+    );
+  }
+
+  render() {
+    return (
+      <Navigator
+        style={styles.container}
+        ref={(navigator) => { this.navigator = navigator; }}
+        initialRoute={{name: 'Add Entry'}}
+        renderScene={this.renderScene.bind(this)}
+      />
     );
   }
 }

@@ -2,6 +2,8 @@
 
 var React = require('react-native');
 var LeaderboardEntry = require('./leaderboardEntry');
+var SummaryBar = require('./summaryBar');
+
 var {
   StyleSheet,
   Image,
@@ -51,6 +53,10 @@ class Leaderboard extends Component {
     (<View />);
     return (
       <View style={styles.container}>
+        <SummaryBar
+        totalAmount={this.state.totalAmount}
+        goalAmount={this.state.goalAmount}
+        />
         {spinner}
         <ListView
           dataSource={this.state.itemsWithEntries}
@@ -77,6 +83,8 @@ class Leaderboard extends Component {
   _handleResponse(response) {
     var itemsWithEntries = response.leaderboard.with_entries;
     this.setState({
+      totalAmount: response.monthly_total_amount,
+      goalAmount: response.monthly_goal,
       itemsWithEntries: this.state.itemsWithEntries.cloneWithRows(itemsWithEntries),
       isLoading: false
     });

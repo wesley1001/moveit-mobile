@@ -9,7 +9,7 @@
     "@remobile/react-native-splashscreen": "^1.0.1",
     "gravatar-api": "^1.2.5",
     "moment": "^2.10.6",
-    "react-native": "^0.14.2",
+    "react-native": "0.16.0-rc",
     "react-native-action-button": "^1.0.6",
     "react-native-date": "^1.0.2",
     "react-native-material-kit": "^0.2.2",

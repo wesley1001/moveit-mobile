@@ -64,16 +64,16 @@ android {
         }
     }
     signingConfigs {
-        release {
+      release {
             storeFile file(MOVEIT_APP_RELEASE_STORE_FILE)
             storePassword MOVEIT_APP_RELEASE_STORE_PASSWORD
             keyAlias MOVEIT_APP_RELEASE_KEY_ALIAS
             keyPassword MOVEIT_APP_RELEASE_KEY_PASSWORD
-        }
+      }
     }
     buildTypes {
         release {
-            minifyEnabled false  // Set this to true to enable Proguard
+            minifyEnabled true  // Set this to true to enable Proguard
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
 	          signingConfig signingConfigs.release
         }

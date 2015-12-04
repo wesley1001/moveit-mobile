@@ -24,6 +24,7 @@ project.xcworkspace
 
 # Android/IJ
 #
+*.apk
 .idea
 .gradle
 local.properties
@@ -35,4 +36,3 @@ npm-debug.log
 
 #keystores
 *.keystore
-

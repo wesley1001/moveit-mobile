@@ -70,11 +70,15 @@ export default class LeaderboardView extends Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('UserDetails').then((userData) => {
-      let user = new User(JSON.parse(userData));
-      this.setState({ user: user });
-      this.reloadLeaderboard();
-    });
+    AsyncStorage.getItem('UserDetails')
+      .then((userData) => {
+        let user = new User(JSON.parse(userData));
+        this.setState({ user: user });
+        this.reloadLeaderboard();
+      })
+      .catch(() => {
+        this.props.navigator.replace({ name: 'Login' });
+      });;
   }
 
   showRow(userData, sectionID, rowID) {

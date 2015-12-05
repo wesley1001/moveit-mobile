@@ -1,4 +1,5 @@
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services'
 
 /**
  * The react.gradle file registers two tasks: bundleDebugJsAndAssets and bundleReleaseJsAndAssets.
@@ -64,6 +65,12 @@ android {
         }
     }
     signingConfigs {
+      debug {
+            storeFile file(DEBUG_KEY_STORE_FILE)
+            storePassword DEBUG_KEY_STORE_PASSWORD
+            keyAlias DEBUG_KEY_ALIAS
+            keyPassword DEBUG_KEY_PASSWORD
+      }
       release {
             storeFile file(MOVEIT_APP_RELEASE_STORE_FILE)
             storePassword MOVEIT_APP_RELEASE_STORE_PASSWORD
@@ -72,6 +79,9 @@ android {
       }
     }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false  // Set this to true to enable Proguard
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
@@ -87,5 +97,6 @@ dependencies {
     compile project(':reactdate')
     compile project(':RNMaterialKit')
     compile project(':react-native-splashscreen')
+    compile project(":react-native-google-signin")
     compile "com.facebook.react:react-native:0.14.+"
 }

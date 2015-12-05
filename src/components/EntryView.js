@@ -148,7 +148,7 @@ let styles = StyleSheet.create({
   saveButton: {
     height: 38,
     padding: 10,
-    margin: 10
+    marginTop: 35
   },
   saveButtonText: {
     color: 'white',

@@ -78,7 +78,7 @@ export default class LeaderboardView extends Component {
       })
       .catch(() => {
         this.props.navigator.replace({ name: 'Login' });
-      });;
+      });
   }
 
   showRow(userData, sectionID, rowID) {

@@ -9,16 +9,13 @@
     "@remobile/react-native-splashscreen": "^1.0.1",
     "gravatar-api": "^1.2.5",
     "moment": "^2.10.6",
-    "react-native": "0.16.0-rc",
+    "react-native": "^0.14.2",
     "react-native-action-button": "^1.0.6",
     "react-native-date": "^1.0.2",
-    "react-native-material-kit": "^0.2.2",
-    "react-native-swiper": "^1.3.0",
+    "react-native-material-kit": "^0.2.3",
     "rn-geolocation": "0.0.5"
   },
   "devDependencies": {
-    "react-native-animatable": "^0.4.0",
-    "react-native-swipeout": "^2.1.0",
     "react-timer-mixin": "^0.13.3",
     "superagent": "^1.4.0",
     "superagent-jsonapify": "^1.4.0"

@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, { Component, View, StyleSheet, Image, Text } from 'react-native';
 
-export default class User extends Component {
+export default class UserView extends Component {
   constructor(props) {
     super(props);
   }

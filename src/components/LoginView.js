@@ -1,5 +1,5 @@
-import Server from '../services/Server'
-import User from '../models/User'
+import Server from '../services/Server';
+import User from '../models/User';
 import React, { DeviceEventEmitter, Component, View, ProgressBarAndroid, StyleSheet, ToastAndroid, Text, AsyncStorage } from 'react-native';
 import MK, { MKButton, MKTextField } from 'react-native-material-kit';
 import GoogleSignin from 'react-native-google-signin';
@@ -30,7 +30,7 @@ export default class LoginView extends Component {
     this.setState({ isLoading: true });
     this.server.post('/users/register.json', data)
       .then((res) => {
-          this.successFullyLoggedIn(res.user)
+          this.successFullyLoggedIn(res.user);
       })
       .catch((err) => {
         this.setState({ isLoading: false });
@@ -39,7 +39,7 @@ export default class LoginView extends Component {
   }
 
   saveData() {
-    return AsyncStorage.setItem('UserDetails', JSON.stringify(this.state.user))
+    return AsyncStorage.setItem('UserDetails', JSON.stringify(this.state.user));
   }
 
   isFormEmpty() {
@@ -47,12 +47,12 @@ export default class LoginView extends Component {
   }
 
   onRegister() {
-    let userData = { email: this.state.email, name: this.state.name }
-    this.setState({ user: new User(userData) })
+    let userData = { email: this.state.email, name: this.state.name };
+    this.setState({ user: new User(userData) });
     if(!this.isFormEmpty()) {
       this.sendData();
     } else {
-      ToastAndroid.show('Name and email id is required', ToastAndroid.SHORT, 2000)
+      ToastAndroid.show('Name and email id is required', ToastAndroid.SHORT, 2000);
     }
   }
 
@@ -63,10 +63,10 @@ export default class LoginView extends Component {
   onGoogleSignIn() {
     DeviceEventEmitter.addListener('googleSignIn', (user) => {
       this.setState({ user: user });
-      this.saveData(user);
+      this.sendData();
     });
     DeviceEventEmitter.addListener('googleSignInError', (error) => {
-      ToastAndroid.show('Login using google failed', ToastAndroid.SHORT, 2000)
+      ToastAndroid.show('Login using google failed', ToastAndroid.SHORT, 2000);
     });
     GoogleSignin.signIn();
   }

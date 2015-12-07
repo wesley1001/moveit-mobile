@@ -1,9 +1,12 @@
 import React, { Component, DrawerLayoutAndroid, ToolbarAndroid, StyleSheet, Navigator } from 'react-native';
+import Orientation from 'react-native-orientation-controller';
+
 import EntryView from './../components/EntryView.js';
 import LeaderboardView from './../components/LeaderboardView.js';
 import NavigationView from './../components/NavigationView.js';
 import LoginView from './../components/LoginView.js';
 import SplashScreen from '@remobile/react-native-splashscreen';
+
 
 let DRAWER_WIDTH = 250;
 const ROUTES = {
@@ -14,7 +17,17 @@ const ROUTES = {
 
 export default class MoveIt extends Component {
   componentDidMount() {
+    Orientation.rotate(0);
+    Orientation.addApplicationListener(this._setOrientation);
     SplashScreen.hide();
+  }
+
+  _setOrientation(orientation, device, size) {
+    Orientation.rotate(0);
+  }
+
+  componentDidUnMount() {
+     Orientation.removeDeviceListener(this._setOrientation);
   }
 
   renderScene(route, navigator) {

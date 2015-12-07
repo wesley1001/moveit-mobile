@@ -1,12 +1,11 @@
 import React, { Image, Component, Text, View, TouchableHighlight, StyleSheet, AsyncStorage } from 'react-native';
 import gravatar from 'gravatar-api';
 
-
 export default class NavigationView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gravatar: ''
+      gravatar: 'http://i.stack.imgur.com/iMel0.gif'
     }
   }
 
@@ -32,7 +31,7 @@ export default class NavigationView extends Component {
   render() {
     return (
       <View style={styles.nav}>
-        <Image source={{ uri: 'http://lorempixel.com/400/200/abstract/'}}>
+        <Image source={{ uri: 'http://lorempixel.com/400/200/abstract/' }}>
           <Image  style={styles.thumb} source={{ uri: this.state.gravatar }} />
         </Image>
         <View style={styles.container} >

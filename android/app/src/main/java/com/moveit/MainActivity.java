@@ -17,6 +17,7 @@ import com.tiagojdferreira.RNGeolocationPackage;
 import com.remobile.splashscreen.*;
 import co.apptailor.googlesignin.RNGoogleSigninModule;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
+import com.inprogress.ReactOrientationController.ReactOrientationController;
 
 public class MainActivity extends FragmentActivity implements DefaultHardwareBackBtnHandler {
 
@@ -37,6 +38,7 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
                 .addPackage(new ReactDatePackage(this))
                 .addPackage(new ReactMaterialKitPackage())
                 .addPackage(new RNGeolocationPackage())
+                .addPackage(new ReactOrientationController(this))
                 .addPackage(new RNGoogleSigninPackage(this))
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)

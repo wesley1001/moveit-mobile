@@ -10,7 +10,9 @@ export default class User extends Component {
     let user = this.props.user;
     return (
       <View style={styles.container}>
-        <Image  style={[styles.thumb, user.status === 'active' ? {borderColor: 'green'} : {borderColor: 'yellow'}]} source={{ uri: user.gravatar + '&s=200&d=mm'}} />
+        <View style={[styles.backgroundCircle, user.status === 'active' ? {backgroundColor: '#43ca01'} : {backgroundColor: '#fdc300'}]}>
+          <Image  style={styles.thumb} source={{ uri: user.gravatar + '&s=200&d=mm'}} />
+        </View>
         <Text style={styles.rank}>#{this.props.rank}</Text>
         <Text style={styles.name}>
           {user.name}
@@ -37,6 +39,8 @@ var styles = StyleSheet.create({
     alignSelf: 'center'
   },
   thumb: {
+    height: 50,
+    width: 50,
     flex: 0.2,
     resizeMode: 'contain',
     borderRadius: 1000
@@ -67,5 +71,12 @@ var styles = StyleSheet.create({
     color: '#BDBDBD',
     fontSize: 14,
     alignSelf: 'flex-end'
-  }
+  },
+  backgroundCircle: {
+    width: 56,
+    height: 56,
+    borderRadius: 56/2,
+    alignItems:'center',
+    justifyContent:'center'
+}
 });

@@ -6,7 +6,7 @@ export default class NavigationView extends Component {
     super(props);
     this.state = {
       gravatar: 'http://i.stack.imgur.com/iMel0.gif'
-    }
+    };
   }
 
   onSelect(item) {
@@ -18,8 +18,8 @@ export default class NavigationView extends Component {
     AsyncStorage.getItem('UserDetails').then((userData) => {
       let options = {
         email: 'test@gmail.com',
-        parameters: { "size": "250", "d": "mm" }
-      }
+        parameters: { 'size': '250', 'd': 'mm' }
+      };
       let email = JSON.parse(userData).email;
       options.email = email;
       let avatar = gravatar.imageUrl(options);
@@ -73,7 +73,7 @@ let styles = StyleSheet.create({
   },
   thumb: {
     resizeMode: 'contain',
-    borderRadius: 50,
+    borderRadius: 1000,
     height: 150,
     marginTop: 20,
     marginBottom: 15

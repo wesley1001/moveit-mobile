@@ -39,7 +39,7 @@ var styles = StyleSheet.create({
   thumb: {
     flex: 0.2,
     resizeMode: 'contain',
-    borderRadius: 50
+    borderRadius: 1000
   },
   rank: {
     flex: 0.2,

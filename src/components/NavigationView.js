@@ -46,6 +46,12 @@ export default class NavigationView extends Component {
               Leaderboard
             </Text>
           </TouchableHighlight>
+
+          <TouchableHighlight onPress={() => this.onSelect("Timeline")} style={styles.item} underlayColor="#DDD">
+            <Text style={styles.text}>
+              Timeline
+            </Text>
+          </TouchableHighlight>
         </View>
       </View>
     );

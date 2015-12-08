@@ -6,6 +6,7 @@ export default class User {
     this.gravatar = params.gravatar;
     this.status = params.activity_status;
     this.slackUserName = params.slack_user_name;
+    this.interactable = params.interactable;
     this.activities = {
       duration: params.duration,
       amount: params.amount

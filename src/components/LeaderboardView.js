@@ -3,7 +3,7 @@ import Server from '../services/Server';
 import UserView from './UserView';
 import User from '../models/User';
 import ActionButton from 'react-native-action-button';
-import React, { ToastAndroid, AsyncStorage, Component, ScrollView, ListView, View, ProgressBarAndroid, StyleSheet, Image,Text } from 'react-native';
+import React, { TouchableWithoutFeedback, ToastAndroid, AsyncStorage, Component, ScrollView, ListView, View, ProgressBarAndroid, StyleSheet, Image,Text } from 'react-native';
 
 export default class LeaderboardView extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ export default class LeaderboardView extends Component {
       users: []
     };
     this.server = new Server('http://staging-move1t.herokuapp.com');
+    this.lastPress = 0;
   }
 
   onPressNewEntry() {
@@ -81,11 +82,42 @@ export default class LeaderboardView extends Component {
       });
   }
 
+  processDoubleTap(userData) {
+    let now = new Date().getTime();
+    if (now - this.lastPress < 500) {
+      this.performInteraction(userData);
+    }
+    this.lastPress = now;
+  }
+
+  performInteraction(userData) {
+    if(this.state.user.email !== userData.email && userData.interactable !== 'none') {
+      let data = {
+        from_email_id: this.state.user.email,
+        to_email_id: userData.email,
+        interaction_type: userData.interactable,
+      };
+
+      this.server.post('/interaction.json', data)
+        .then((res) => {
+          let toast = (userData.status === 'active' ? 'Bumping ' : 'Nudging ') + userData.name;
+          ToastAndroid.show(toast, ToastAndroid.SHORT, 500);
+        })
+        .catch((err) => {
+          ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);
+        });
+    }
+  }
+
   showRow(userData, sectionID, rowID) {
     return (
-      <View style={styles.row}>
-        <UserView user={userData} rank={parseInt(rowID) + 1}/>
-      </View>
+      <TouchableWithoutFeedback
+        onPress={() => this.processDoubleTap(userData)}
+      >
+        <View style={[styles.row, userData.status === 'active' ? {borderLeftColor: '#43ca01'} : {borderLeftColor: '#fdc300'}]}>
+          <UserView user={userData} rank={parseInt(rowID) + 1}/>
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
 
@@ -118,7 +150,7 @@ export default class LeaderboardView extends Component {
             <ScrollView>
               <ListView
                 dataSource={this.userList()}
-                renderRow={this.showRow}
+                renderRow={this.showRow.bind(this)}
                 />
             </ScrollView>
             <ActionButton buttonColor="rgb(253, 195, 0)">
@@ -179,6 +211,7 @@ export default class LeaderboardView extends Component {
       marginBottom: 2
     },
     row: {
+      borderLeftWidth: 5,
       flexDirection: 'row',
       padding: 10,
       borderColor: '#F6F6F6',

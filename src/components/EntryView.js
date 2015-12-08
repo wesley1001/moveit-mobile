@@ -1,6 +1,6 @@
 import moment from 'moment';
-import Server from '../services/Server'
-import User from '../models/User'
+import Server from '../services/Server';
+import User from '../models/User';
 import React, { AsyncStorage, Component, Text, View, ProgressBarAndroid, NativeModules, StyleSheet, ToastAndroid } from 'react-native';
 import MK, {  MKButton, MKTextField } from 'react-native-material-kit';
 import rnGeolocation from 'rn-geolocation';

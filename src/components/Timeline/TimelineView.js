@@ -9,7 +9,7 @@ export default class TimelineView extends Component {
   constructor(props) {
     super(props);
     this.state = { isLoading: false, activities: [], email: '' };
-    this.server = new Server('http://move1t.herokuapp.com');
+    this.server = new Server('http://staging-move1t.herokuapp.com');
   }
 
   componentDidMount() {

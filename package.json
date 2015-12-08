@@ -10,7 +10,7 @@
     "gravatar-api": "^1.2.5",
     "moment": "^2.10.6",
     "react-native": "^0.14.2",
-    "react-native-action-button": "^1.0.6",
+    "react-native-action-button": "github:peterlazar1993/react-native-action-button",
     "react-native-date": "^1.0.2",
     "react-native-google-signin": "^0.2.3",
     "react-native-material-kit": "^0.2.3",

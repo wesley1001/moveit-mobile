@@ -84,6 +84,5 @@ var styles = StyleSheet.create({
     marginRight: 15,
     flexWrap: 'wrap',
     textAlign: 'auto',
-    resizeMode: 'stretch'
   }
 });

@@ -86,11 +86,10 @@ export default class TimelineView extends Component {
               renderRow={this.showRow}
               />
           </ScrollView>
-          <ActionButton buttonColor="rgb(253, 195, 0)">
-            <ActionButton.Item buttonColor='#9b59b6' title="New Entry" onPress={() => this.onPressNewEntry()}>
-              <Text style={styles.actionButtonIcon} />
-            </ActionButton.Item>
-          </ActionButton>
+          <ActionButton
+            buttonColor="rgb(253, 195, 0)"
+            onPress={() => this.onPressNewEntry()}
+          />
         </View>
       );
     }

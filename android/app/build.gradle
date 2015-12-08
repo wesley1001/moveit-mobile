@@ -99,5 +99,6 @@ dependencies {
     compile project(':react-native-splashscreen')
     compile project(":react-native-google-signin")
     compile project(':com.inprogress.ReactOrientationController')
+    compile project(':ReactNativeVibration')
     compile "com.facebook.react:react-native:0.14.+"
 }

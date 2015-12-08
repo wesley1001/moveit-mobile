@@ -3,6 +3,8 @@ import Server from '../services/Server';
 import UserView from './UserView';
 import User from '../models/User';
 import ActionButton from 'react-native-action-button';
+import Vibration from 'react-native-vibration';
+import { MKButton } from 'react-native-material-kit';
 import React, { TouchableWithoutFeedback, ToastAndroid, AsyncStorage, Component, ScrollView, ListView, View, ProgressBarAndroid, StyleSheet, Image,Text } from 'react-native';
 
 export default class LeaderboardView extends Component {
@@ -86,6 +88,7 @@ export default class LeaderboardView extends Component {
     let now = new Date().getTime();
     if (now - this.lastPress < 500) {
       this.performInteraction(userData);
+      userData.interactable = 'none';
     }
     this.lastPress = now;
   }
@@ -97,7 +100,7 @@ export default class LeaderboardView extends Component {
         to_email_id: userData.email,
         interaction_type: userData.interactable,
       };
-
+      Vibration.vibrate(300);
       this.server.post('/interaction.json', data)
         .then((res) => {
           let toast = (userData.status === 'active' ? 'Bumping ' : 'Nudging ') + userData.name;
@@ -109,12 +112,24 @@ export default class LeaderboardView extends Component {
     }
   }
 
+  borderStyle(interactable) {
+    if (interactable === 'bump') {
+      return {borderLeftColor: '#43ca01'};
+    }
+    else if (interactable === 'nudge') {
+      return {borderLeftColor: '#fdc300'}
+    }
+    else {
+      return {borderLeftColor: 'white'}
+    }
+  }
+
   showRow(userData, sectionID, rowID) {
     return (
       <TouchableWithoutFeedback
         onPress={() => this.processDoubleTap(userData)}
       >
-        <View style={[styles.row, userData.status === 'active' ? {borderLeftColor: '#43ca01'} : {borderLeftColor: '#fdc300'}]}>
+        <View style={[styles.row, userData.email !== this.state.user.email ? this.borderStyle(userData.interactable) : null ]}>
           <UserView user={userData} rank={parseInt(rowID) + 1}/>
         </View>
       </TouchableWithoutFeedback>

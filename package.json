@@ -16,6 +16,7 @@
     "react-native-material-kit": "^0.2.3",
     "react-native-modalbox": "^1.2.4",
     "react-native-orientation-controller": "^0.1.0",
+    "react-native-vibration": "^0.1.1",
     "rn-geolocation": "0.0.5"
   },
   "devDependencies": {

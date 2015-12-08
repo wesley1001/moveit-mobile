@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
+import com.eguma.vibration.Vibration;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import me.nucleartux.date.ReactDatePackage;
 import android.support.v4.app.FragmentActivity;
@@ -38,6 +39,7 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
                 .addPackage(new ReactDatePackage(this))
                 .addPackage(new ReactMaterialKitPackage())
                 .addPackage(new RNGeolocationPackage())
+                .addPackage(new Vibration())
                 .addPackage(new ReactOrientationController(this))
                 .addPackage(new RNGoogleSigninPackage(this))
                 .setUseDeveloperSupport(BuildConfig.DEBUG)

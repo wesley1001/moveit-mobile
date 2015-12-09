@@ -65,6 +65,7 @@ class AddEntryPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      date: new Date(),
       duration: '0',
       isLoading: false,
       message: ''
@@ -81,8 +82,9 @@ class AddEntryPage extends Component {
         <View style={styles.flowRight}>
           <Text>Date: </Text>
           <DatePickerIOS
-            date={new Date}
+            date={this.state.date}
             mode="date"
+            onDateChange={this.onDateChange.bind(this)}
             />
         </View>
 
@@ -93,7 +95,7 @@ class AddEntryPage extends Component {
             placeholder="Minutes"
             keyboardType="numeric"
             value={this.state.duration}
-            onChange={this.onDurationChanged.bind(this)}
+            onChange={this.onDurationChange.bind(this)}
             clearTextOnFocus={true}
             />
         </View>
@@ -111,17 +113,23 @@ class AddEntryPage extends Component {
     );
   }
 
-  onDurationChanged(event) {
-    console.log('onDurationChanged');
-    this.setState({ duration: event.nativeEvent.text });
-    console.log(this.state.duration);
+  onDateChange(date) {
+    this.setState({
+      date: date
+    });
+  }
+
+  onDurationChange(event) {
+    this.setState({
+      duration: event.nativeEvent.text
+    });
   }
 
   onAddPressed() {
     var data = {
       email: 'USERNAME@multunus.com',
       entry: {
-        date: new Date(),
+        date: this.state.date,
         duration: this.state.duration
       }
     };

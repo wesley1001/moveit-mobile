@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var moment = require('moment');
 var {
   StyleSheet,
   Image,
@@ -53,7 +54,7 @@ class SummaryBar extends Component {
           />
         </View>
         <View style={styles.summary}>
-          <Text>December 2015</Text>
+          <Text>{this._getMonthYear()}</Text>
           <View style={styles.amounts}>
             <Text style={styles.totalAmount}>₹{this.props.totalAmount}</Text>
             <Text style={styles.goalAmount}> / ₹{this.props.goalAmount}</Text>
@@ -61,6 +62,12 @@ class SummaryBar extends Component {
         </View>
       </View>
     );
+  }
+
+  _getMonthYear() {
+    var month = moment.months(this.props.month);
+    var year = this.props.year;
+    return month + ' ' + year;
   }
 }
 

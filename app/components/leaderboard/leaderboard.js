@@ -3,6 +3,7 @@
 var React = require('react-native');
 var LeaderboardEntry = require('./leaderboardEntry');
 var SummaryBar = require('./summaryBar');
+var moment = require('moment');
 
 var {
   StyleSheet,
@@ -22,8 +23,11 @@ var styles = StyleSheet.create({
 
 class Leaderboard extends Component {
   constructor(props) {
+    var date = new Date();
     super(props);
     this.state = {
+      month: date.getMonth(),
+      year: date.getFullYear(),
       isLoading: false,
       itemsWithEntries: new ListView.DataSource({
         rowHasChanged: ((r1, r2) => (r1.amount !== r2.amount) || (r1.duration !== r2.duration))
@@ -57,6 +61,8 @@ class Leaderboard extends Component {
         <SummaryBar
         totalAmount={this.state.totalAmount}
         goalAmount={this.state.goalAmount}
+        month={this.state.month}
+        year={this.state.year}
         />
         {spinner}
         <ListView
@@ -93,7 +99,7 @@ class Leaderboard extends Component {
 
   _leaderboardUrl() {
     var data = {
-      month: 'Dec',
+      month: moment.monthsShort(this.state.month),
       email: 'USERNAME@multunus.com'
     };
 

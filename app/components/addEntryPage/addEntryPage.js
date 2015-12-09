@@ -94,6 +94,7 @@ class AddEntryPage extends Component {
             keyboardType="numeric"
             value={this.state.duration}
             onChange={this.onDurationChanged.bind(this)}
+            clearTextOnFocus={true}
             />
         </View>
 

@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var Constants = require('./constants');
 var AddEntryPage = require('./app/components/addEntryPage/addEntryPage');
 var Leaderboard = require('./app/components/leaderboard/leaderboard');
 
@@ -8,7 +9,8 @@ var {
   StyleSheet,
   Component,
   AppRegistry,
-  NavigatorIOS
+  NavigatorIOS,
+  AsyncStorage
 } = React;
 
 var styles = StyleSheet.create({
@@ -18,6 +20,10 @@ var styles = StyleSheet.create({
 });
 
 class MoveItIOS extends Component {
+  componentDidMount() {
+    AsyncStorage.setItem(Constants.USER_EMAIL_STORAGE_KEY, 'SOME_EMAIL_ADDRESS');
+  }
+
   render() {
     return (
       <NavigatorIOS

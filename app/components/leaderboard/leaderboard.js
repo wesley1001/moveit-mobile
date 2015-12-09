@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var Constants = require('../../../constants');
 var LeaderboardEntry = require('./leaderboardEntry');
 var SummaryBar = require('./summaryBar');
 var moment = require('moment');
@@ -11,7 +12,8 @@ var {
   View,
   ListView,
   Component,
-  ActivityIndicatorIOS
+  ActivityIndicatorIOS,
+  AsyncStorage
 } = React;
 
 var styles = StyleSheet.create({
@@ -36,7 +38,14 @@ class Leaderboard extends Component {
   }
 
   componentDidMount() {
-    this.fetchData();
+    AsyncStorage.getItem(Constants.USER_EMAIL_STORAGE_KEY).then((value) => {
+      this.setState({
+        currentUser: {
+          email: value
+        }
+      });
+      this.fetchData();
+    }).done(); //FixIt - Add a catch method
   }
 
   renderItem(leaderboardItem, sectionID, rowID) {
@@ -100,9 +109,8 @@ class Leaderboard extends Component {
   _leaderboardUrl() {
     var data = {
       month: moment.monthsShort(this.state.month),
-      email: 'USERNAME@multunus.com'
+      email: this.state.currentUser.email
     };
-
     var querystring = Object.keys(data)
     .map(key => key + '=' + encodeURIComponent(data[key]))
     .join('&');

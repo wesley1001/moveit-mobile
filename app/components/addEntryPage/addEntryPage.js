@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var Constants = require('../../../constants');
 var Leaderboard = require('../leaderboard/leaderboard');
 
 var {
@@ -11,6 +12,7 @@ var {
   View,
   TouchableHighlight,
   ActivityIndicatorIOS,
+  AsyncStorage,
   Image,
   Component
 } = React;
@@ -72,6 +74,16 @@ class AddEntryPage extends Component {
     };
   }
 
+  componentDidMount() {
+    AsyncStorage.getItem(Constants.USER_EMAIL_STORAGE_KEY).then((value) => {
+      this.setState({
+        currentUser: {
+          email: value
+        }
+      });
+    }).done(); //FixIt - Add a catch method
+  }
+
   render() {
     console.log('AddEntryPage.render');
     var spinner = this.state.isLoading ?
@@ -127,7 +139,7 @@ class AddEntryPage extends Component {
 
   onAddPressed() {
     var data = {
-      email: 'USERNAME@multunus.com',
+      email: this.state.currentUser.email,
       entry: {
         date: this.state.date,
         duration: this.state.duration

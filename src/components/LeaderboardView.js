@@ -19,7 +19,6 @@ export default class LeaderboardView extends Component {
       month: currentMonth,
       users: []
     };
-    this.server = new Server('http://staging-move1t.herokuapp.com');
     this.lastPress = 0;
   }
 
@@ -52,7 +51,7 @@ export default class LeaderboardView extends Component {
       });
     });
 
-    this.server.get('/leaderboard.json', data).then((data) => {
+    Server.get('/leaderboard.json', data).then((data) => {
         this.storeData(data);
         let users = data.leaderboard.with_entries.concat(data.leaderboard.without_entries);
         let userList = users.map((userJSON)=> new User(userJSON));

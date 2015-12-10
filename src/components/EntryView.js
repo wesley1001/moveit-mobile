@@ -18,7 +18,6 @@ export default class EntryView extends Component {
         latitude: null
       }
     };
-    this.server = new Server('http://staging-move1t.herokuapp.com');
   }
 
   componentWillMount() {
@@ -43,7 +42,7 @@ export default class EntryView extends Component {
         latitude: this.state.location.latitude
       }
     };
-    this.server.post('/entries.json', data)
+    Server.post('/entries.json', data)
       .then(() => {
          this.setState({ isLoading: false });
          this.props.navigator.replace({name: 'Leaderboard'});

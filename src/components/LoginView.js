@@ -14,7 +14,6 @@ export default class LoginView extends Component {
         name: null
       }
     };
-    this.server = new Server('http://staging-move1t.herokuapp.com');
   }
 
   successFullyLoggedIn(user) {
@@ -28,7 +27,7 @@ export default class LoginView extends Component {
   sendData() {
     let data = { user: this.state.user };
     this.setState({ isLoading: true });
-    this.server.post('/users/register.json', data)
+    Server.post('/users/register.json', data)
       .then((res) => {
           this.successFullyLoggedIn(res.user);
       })

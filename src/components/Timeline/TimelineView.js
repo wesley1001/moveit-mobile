@@ -9,7 +9,6 @@ export default class TimelineView extends Component {
   constructor(props) {
     super(props);
     this.state = { isLoading: false, activities: [], email: '' };
-    this.server = new Server('http://staging-move1t.herokuapp.com');
   }
 
   componentDidMount() {
@@ -43,7 +42,7 @@ export default class TimelineView extends Component {
       this.setState({ activities: activities });
     });
     this.setState({ isLoading: true });
-    this.server.get('/timeline_feed.json', data)
+    Server.get('/timeline_feed.json', data)
       .then((data) => {
         let timelineActivities = data.timeline_activities;
         let activities = timelineActivities.map((activity) => new Activity(activity));

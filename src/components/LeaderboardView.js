@@ -142,6 +142,10 @@ export default class LeaderboardView extends Component {
 
 
   render() {
+
+    var christmasTime = moment().isBetween(moment("Dec 23 2015"), moment("Jan 2 2016"));
+    let logoimage = christmasTime ? require('../img/christmas.png') : require('../img/logo.png')
+
       if(this.state.isLoading) {
         return (
           <View style={styles.progressBar}>
@@ -152,7 +156,7 @@ export default class LeaderboardView extends Component {
         return (
           <View style={styles.container}>
             <View style={styles.header}>
-              <Image style={styles.logo} source={require('../img/logo.png')} />
+              <Image style={styles.logo} source={logoimage} />
               <View style={styles.headerText}>
                 <Text style={styles.month}>{this.state.month}</Text>
                 <View style={styles.amountSection}>
@@ -199,8 +203,8 @@ export default class LeaderboardView extends Component {
       flex: 0.7
     },
     logo: {
-      height: 50,
-      width: 50,
+      height: 55,
+      width: 55,
       resizeMode: 'contain',
       flex: 0.3
     },

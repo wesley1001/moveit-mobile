@@ -129,7 +129,7 @@ export default class LeaderboardView extends Component {
         onPress={() => this.processDoubleTap(userData)}
       >
         <View style={[styles.row, userData.email !== this.state.user.email ? this.borderStyle(userData.interactable) : null ]}>
-          <UserView user={userData} rank={parseInt(rowID) + 1}/>
+          <UserView user={userData} rank={parseInt(rowID) + 1} {...this.props}/>
         </View>
       </TouchableWithoutFeedback>
     )
@@ -152,7 +152,7 @@ export default class LeaderboardView extends Component {
         return (
           <View style={styles.container}>
             <View style={styles.header}>
-              <Image style={styles.logo} source={{ uri: 'http://move1t.herokuapp.com/img/logo.png'}} />
+              <Image style={styles.logo} source={require('../img/logo.png')} />
               <View style={styles.headerText}>
                 <Text style={styles.month}>{this.state.month}</Text>
                 <View style={styles.amountSection}>

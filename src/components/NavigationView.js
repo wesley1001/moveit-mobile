@@ -1,11 +1,12 @@
 import React, { Image, Component, Text, View, TouchableHighlight, StyleSheet, AsyncStorage } from 'react-native';
-import gravatar from 'gravatar-api';
+
+import User from '../models/User'
 
 export default class NavigationView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gravatar: 'http://i.stack.imgur.com/iMel0.gif'
+      user: { gravatar: '' }
     };
   }
 
@@ -16,15 +17,8 @@ export default class NavigationView extends Component {
 
   componentDidMount() {
     AsyncStorage.getItem('UserDetails').then((userData) => {
-      let options = {
-        email: 'test@gmail.com',
-        parameters: { 'size': '250', 'd': 'mm' }
-      };
-      let email = JSON.parse(userData).email;
-      options.email = email;
-      let avatar = gravatar.imageUrl(options);
-
-      this.setState({ gravatar: avatar });
+      let user = new User(JSON.parse(userData));
+      this.setState({ user: user });
     });
   }
 
@@ -32,7 +26,7 @@ export default class NavigationView extends Component {
     return (
       <View style={styles.nav}>
         <Image source={{ uri: 'http://lorempixel.com/400/200/abstract/' }}>
-          <Image  style={styles.thumb} source={{ uri: this.state.gravatar }} />
+          <Image  style={styles.thumb} source={{ uri: this.state.user.gravatar }} />
         </Image>
         <View style={styles.container} >
           <TouchableHighlight onPress={() => this.onSelect("Add Entry")} style={styles.item} underlayColor="#DDD">
@@ -50,6 +44,12 @@ export default class NavigationView extends Component {
           <TouchableHighlight onPress={() => this.onSelect("Timeline")} style={styles.item} underlayColor="#DDD">
             <Text style={styles.text}>
               Timeline
+            </Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight onPress={() => this.onSelect("Profile")} style={styles.item} underlayColor="#DDD">
+            <Text style={styles.text}>
+              Profile
             </Text>
           </TouchableHighlight>
         </View>

@@ -6,6 +6,7 @@ import LeaderboardView from './../components/LeaderboardView.js';
 import NavigationView from './../components/NavigationView.js';
 import LoginView from './../components/LoginView.js';
 import TimelineView from './../components/Timeline/TimelineView.js';
+import ProfileView from './../components/Profile/ProfileView.js';
 import SplashScreen from '@remobile/react-native-splashscreen';
 
 
@@ -14,7 +15,8 @@ const ROUTES = {
   'Add Entry': EntryView,
   'Leaderboard': LeaderboardView,
   'Login': LoginView,
-  'Timeline': TimelineView
+  'Timeline': TimelineView,
+  'Profile': ProfileView
 };
 
 export default class MoveIt extends Component {
@@ -30,6 +32,10 @@ export default class MoveIt extends Component {
 
   componentDidUnMount() {
      Orientation.removeDeviceListener(this._setOrientation);
+  }
+
+  setGlobalState(state) {
+    this.setState(state);
   }
 
   renderScene(route, navigator) {
@@ -49,7 +55,7 @@ export default class MoveIt extends Component {
           onIconClicked={() => this.drawer.openDrawer()}
           title={route.name}
         />
-        <Component navigator={navigator}/>
+      <Component navigator={navigator} globalState={this.state} setGlobalState={this.setGlobalState.bind(this)}/>
       </DrawerLayoutAndroid>
     );
   }

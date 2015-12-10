@@ -1,9 +1,14 @@
 import moment from 'moment';
-import React, { Component, View, StyleSheet, Image, Text } from 'react-native';
+import React, { Component, View, StyleSheet, Image, Text, TouchableWithoutFeedback } from 'react-native';
 
 export default class UserView extends Component {
   constructor(props) {
     super(props);
+  }
+
+  showProfile() {
+    this.props.setGlobalState({ userProfile: this.props.user })
+    this.props.navigator.replace({ name: 'Profile' });
   }
 
   render() {
@@ -11,7 +16,9 @@ export default class UserView extends Component {
     return (
       <View style={styles.container}>
         <View style={[styles.backgroundCircle, user.status === 'active' ? {backgroundColor: '#43ca01'} : {backgroundColor: '#fdc300'}]}>
-          <Image  style={styles.thumb} source={{ uri: user.gravatar + '&s=200&d=mm'}} />
+          <TouchableWithoutFeedback onPress={this.showProfile.bind(this)}>
+            <Image  style={styles.thumb} source={{ uri: user.gravatar + '&s=200&d=mm'}} />
+          </TouchableWithoutFeedback>
         </View>
         <Text style={styles.rank}>#{this.props.rank}</Text>
         <Text style={styles.name}>

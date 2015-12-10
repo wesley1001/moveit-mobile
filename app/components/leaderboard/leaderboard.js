@@ -115,7 +115,7 @@ class Leaderboard extends Component {
     .map(key => key + '=' + encodeURIComponent(data[key]))
     .join('&');
 
-    return 'http://staging-move1t.herokuapp.com/leaderboard.json?' + querystring;
+    return Constants.APP_SERVER_HOST + '/leaderboard.json?' + querystring;
   }
 }
 

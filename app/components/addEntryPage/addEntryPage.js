@@ -145,7 +145,7 @@ class AddEntryPage extends Component {
         duration: this.state.duration
       }
     };
-    var url = 'http://staging-move1t.herokuapp.com/entries.json';
+    var url = Constants.APP_SERVER_HOST + '/entries.json';
     this._postToUrl(url, data);
   }
 

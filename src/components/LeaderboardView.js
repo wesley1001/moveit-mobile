@@ -100,7 +100,7 @@ export default class LeaderboardView extends Component {
         interaction_type: userData.interactable,
       };
       Vibration.vibrate(300);
-      this.server.post('/interaction.json', data)
+      Server.post('/interaction.json', data)
         .then((res) => {
           let toast = (userData.status === 'active' ? 'Bumping ' : 'Nudging ') + userData.name;
           ToastAndroid.show(toast, ToastAndroid.SHORT, 500);

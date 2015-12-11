@@ -20,7 +20,9 @@ export default class ProfileView extends Component {
     };
   }
 
-
+  onPressNewEntry() {
+    this.props.navigator.replace({name: "Add Entry"});
+  }
 
   getData() {
     let data = {

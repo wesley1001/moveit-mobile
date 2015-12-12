@@ -109,7 +109,7 @@ export default class LeaderboardView extends Component {
         .then((res) => {
           this.forceUpdate();
           userData.interactable = null;
-          let toast = (userData.status === 'active' ? 'You Bump\'d' : 'You Nudg\'d ') + userData.name;
+          let toast = (userData.status === 'active' ? 'You Bump\'d ' : 'You Nudg\'d ') + userData.name;
           ToastAndroid.show(toast, ToastAndroid.SHORT, 500);
         })
         .catch((err) => {

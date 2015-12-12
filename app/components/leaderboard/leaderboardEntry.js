@@ -14,7 +14,9 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 15,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderColor: '#F6F6F6',
+    borderBottomWidth: 1,
   },
   avatarContainer: {
     flex: 1,

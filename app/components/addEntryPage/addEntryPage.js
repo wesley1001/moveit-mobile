@@ -3,6 +3,7 @@
 var React = require('react-native');
 var Constants = require('../../../constants');
 var Leaderboard = require('../leaderboard/leaderboard');
+var NavBar = require('../navBar');
 
 var {
   StyleSheet,
@@ -58,7 +59,6 @@ var styles = StyleSheet.create({
   },
   container: {
     padding: 30,
-    marginTop: 65,
     alignItems: 'center'
   }
 });
@@ -68,7 +68,7 @@ class AddEntryPage extends Component {
     super(props);
     this.state = {
       date: new Date(),
-      duration: '0',
+      duration: '',
       isLoading: false,
       message: ''
     };
@@ -90,37 +90,45 @@ class AddEntryPage extends Component {
     (<ActivityIndicatorIOS hidden="true" size="large"/>) :
     (<View />);
     return (
-      <View style={styles.container}>
-        <View style={styles.flowRight}>
-          <Text>Date: </Text>
-          <DatePickerIOS
-            date={this.state.date}
-            mode="date"
-            onDateChange={this.onDateChange.bind(this)}
-            />
-        </View>
+      <View>
+        <NavBar
+          navigator={this.props.navigator}
+          title="Add Entry"
+          rightButtonText="Cancel"
+          rightButtonLink={{name: 'Leaderboard', component: Leaderboard}}
+          />
+        <View style={styles.container}>
+          <View style={styles.flowRight}>
+            <Text>Date: </Text>
+            <DatePickerIOS
+              date={this.state.date}
+              mode="date"
+              onDateChange={this.onDateChange.bind(this)}
+              />
+          </View>
 
-        <View style={styles.flowRight}>
-          <Text>Duration: </Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Minutes"
-            keyboardType="numeric"
-            value={this.state.duration}
-            onChange={this.onDurationChange.bind(this)}
-            clearTextOnFocus={true}
-            />
-        </View>
+          <View style={styles.flowRight}>
+            <Text>Duration: </Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Minutes"
+              keyboardType="numeric"
+              autoFocus={true}
+              value={this.state.duration}
+              onChange={this.onDurationChange.bind(this)}
+              />
+          </View>
 
-        <TouchableHighlight
-          style={styles.button}
-          underlayColor='#99d9f4'
-          onPress={this.onAddPressed.bind(this)}
-          >
-          <Text style={styles.buttonText}>Add</Text>
-        </TouchableHighlight>
-        {spinner}
-        <Text style={styles.description}>{this.state.message}</Text>
+          <TouchableHighlight
+            style={styles.button}
+            underlayColor='#99d9f4'
+            onPress={this.onAddPress.bind(this)}
+            >
+            <Text style={styles.buttonText}>Add</Text>
+          </TouchableHighlight>
+          {spinner}
+          <Text style={styles.description}>{this.state.message}</Text>
+        </View>
       </View>
     );
   }
@@ -137,7 +145,7 @@ class AddEntryPage extends Component {
     });
   }
 
-  onAddPressed() {
+  onAddPress() {
     var data = {
       email: this.state.currentUser.email,
       entry: {
@@ -145,7 +153,7 @@ class AddEntryPage extends Component {
         duration: this.state.duration
       }
     };
-    var url = Constants.APP_SERVER_HOST + '/entries.json';
+    var url = Constants.APP_SERVER_HOST + '/entries';
     this._postToUrl(url, data);
   }
 
@@ -179,7 +187,7 @@ class AddEntryPage extends Component {
     });
     console.log('Response: ' + JSON.stringify(response));
     this.props.navigator.push({
-        title: 'Leaderboard',
+        name: 'Leaderboard',
         component: Leaderboard
     });
   }

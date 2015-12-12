@@ -5,11 +5,16 @@ var Constants = require('./constants');
 var AddEntryPage = require('./app/components/addEntryPage/addEntryPage');
 var Leaderboard = require('./app/components/leaderboard/leaderboard');
 
+const ROUTES = {
+  'Add Entry': AddEntryPage,
+  'Leaderboard': Leaderboard
+}
+
 var {
   StyleSheet,
   Component,
   AppRegistry,
-  NavigatorIOS,
+  Navigator,
   AsyncStorage
 } = React;
 
@@ -24,24 +29,17 @@ class MoveItIOS extends Component {
     AsyncStorage.setItem(Constants.USER_EMAIL_STORAGE_KEY, 'SOME_EMAIL_ADDRESS');
   }
 
+  renderScene(route, navigator) {
+    var Component = ROUTES[route.name];
+    return(<Component navigator={navigator} />);
+  }
+
   render() {
     return (
-      <NavigatorIOS
-        ref="nav"
-        barTintColor="#FDC300"
-        style={styles.container}
-        initialRoute={{
-          title: 'Add Entry',
-          component: AddEntryPage,
-          rightButtonTitle: 'Cancel',
-          onRightButtonPress: () => {
-            this.refs.nav.navigator.push({
-              title: 'Leaderboard',
-              component: Leaderboard
-            })
-          }
-        }}
-        />
+      <Navigator
+          initialRoute={{name: 'Add Entry', component: AddEntryPage}}
+          renderScene={this.renderScene.bind(this)}
+      />
     );
   }
 }

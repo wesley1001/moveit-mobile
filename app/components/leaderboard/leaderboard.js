@@ -4,10 +4,11 @@ var React = require('react-native');
 var Constants = require('../../../constants');
 var LeaderboardEntry = require('./leaderboardEntry');
 var SummaryBar = require('./summaryBar');
+var NavBar = require('../navBar');
+var AddEntryPage = require('../addEntryPage/addEntryPage');
 var moment = require('moment');
 
 var {
-  StyleSheet,
   Image,
   View,
   ListView,
@@ -15,13 +16,6 @@ var {
   ActivityIndicatorIOS,
   AsyncStorage
 } = React;
-
-var styles = StyleSheet.create({
-  container: {
-    marginTop: 64,
-    flex: 1
-  }
-});
 
 class Leaderboard extends Component {
   constructor(props) {
@@ -66,7 +60,13 @@ class Leaderboard extends Component {
     (<ActivityIndicatorIOS hidden="true" size="large"/>) :
     (<View />);
     return (
-      <View style={styles.container}>
+      <View>
+        <NavBar
+          navigator={this.props.navigator}
+          title="Leaderboard"
+          rightButtonText="Add Entry"
+          rightButtonLink={{name: 'Add Entry', component: AddEntryPage}}
+          />
         <SummaryBar
         totalAmount={this.state.totalAmount}
         goalAmount={this.state.goalAmount}

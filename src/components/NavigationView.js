@@ -1,6 +1,8 @@
 import React, { Image, Component, Text, View, TouchableHighlight, StyleSheet, AsyncStorage } from 'react-native';
+import Video from 'react-native-video';
+import moment from 'moment';
 
-import User from '../models/User'
+import User from '../models/User';
 
 export default class NavigationView extends Component {
   constructor(props) {
@@ -23,9 +25,10 @@ export default class NavigationView extends Component {
   }
 
   render() {
+    let christmasTime = moment().isBetween(moment("Dec 23 2015"), moment("Dec 26 2015"));
     return (
       <View style={styles.nav}>
-        <Image source={{ uri: 'http://lorempixel.com/400/200/abstract/' }}>
+        <Image style={styles.background} source={ christmasTime ? require('../img/snowfall.png') : { uri: 'http://lorempixel.com/400/200/abstract/' }}>
           <Image  style={styles.thumb} source={{ uri: this.state.user.gravatar }} />
         </Image>
         <View style={styles.container} >
@@ -60,13 +63,14 @@ export default class NavigationView extends Component {
 
 let styles = StyleSheet.create({
   nav: {
-    flex: 0.8,
+    flex: 1,
     backgroundColor: '#fff',
     flexDirection: 'column'
   },
   container: {
   },
   item: {
+    flex: 0.2,
     height: 64,
     justifyContent: 'center'
   },
@@ -82,6 +86,11 @@ let styles = StyleSheet.create({
     borderRadius: 1000,
     height: 150,
     marginTop: 20,
-    marginBottom: 15
+    marginBottom: 15,
   },
+  background: {
+    width: 250,
+    height: 210,
+    resizeMode: 'stretch',
+  }
 });

@@ -54,7 +54,12 @@ export default class LeaderboardView extends Component {
     Server.get('/leaderboard.json', data).then((data) => {
         this.storeData(data);
         let users = data.leaderboard.with_entries.concat(data.leaderboard.without_entries);
-        let userList = users.map((userJSON)=> new User(userJSON));
+        let userList = users.map((userJSON)=> {
+            if(this.state.user.email === userJSON.email) {
+              userJSON.interactable = null;
+            }
+          return new User(userJSON);
+        });
         this.setState({ isLoading: false,
                       users: userList,
                       monthly_total_amount: data.monthly_total_amount,
@@ -93,16 +98,18 @@ export default class LeaderboardView extends Component {
   }
 
   performInteraction(userData) {
-    if(this.state.user.email !== userData.email && userData.interactable !== 'none') {
+    if(userData.interactable === 'bump' || userData.interactable === 'nudge') {
       let data = {
         from_email_id: this.state.user.email,
         to_email_id: userData.email,
         interaction_type: userData.interactable,
       };
-      Vibration.vibrate(300);
+      Vibration.vibrate(200);
       Server.post('/interaction.json', data)
         .then((res) => {
-          let toast = (userData.status === 'active' ? 'Bumping ' : 'Nudging ') + userData.name;
+          this.forceUpdate();
+          userData.interactable = null;
+          let toast = (userData.status === 'active' ? 'You Bump\'d' : 'You Nudg\'d ') + userData.name;
           ToastAndroid.show(toast, ToastAndroid.SHORT, 500);
         })
         .catch((err) => {

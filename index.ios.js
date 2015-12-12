@@ -2,10 +2,12 @@
 
 var React = require('react-native');
 var Constants = require('./constants');
+var LoginPage = require('./app/components/loginPage/loginPage');
 var AddEntryPage = require('./app/components/addEntryPage/addEntryPage');
 var Leaderboard = require('./app/components/leaderboard/leaderboard');
 
 const ROUTES = {
+  'Login Page': LoginPage,
   'Add Entry': AddEntryPage,
   'Leaderboard': Leaderboard
 }
@@ -14,8 +16,7 @@ var {
   StyleSheet,
   Component,
   AppRegistry,
-  Navigator,
-  AsyncStorage
+  Navigator
 } = React;
 
 var styles = StyleSheet.create({
@@ -25,10 +26,6 @@ var styles = StyleSheet.create({
 });
 
 class MoveItIOS extends Component {
-  componentDidMount() {
-    AsyncStorage.setItem(Constants.USER_EMAIL_STORAGE_KEY, 'SOME_EMAIL_ADDRESS');
-  }
-
   renderScene(route, navigator) {
     var Component = ROUTES[route.name];
     return(<Component navigator={navigator} />);

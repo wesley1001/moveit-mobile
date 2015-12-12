@@ -2,24 +2,21 @@
 
 var React = require('react-native');
 var Constants = require('../../../constants');
-var Leaderboard = require('../leaderboard/leaderboard');
-var LoginPage = require('../loginPage/loginPage');
+var AddEntryPage = require('../addEntryPage/addEntryPage');
 var NavBar = require('../navBar');
 
 var {
   StyleSheet,
   Text,
   TextInput,
-  DatePickerIOS,
   View,
   TouchableHighlight,
   ActivityIndicatorIOS,
   AsyncStorage,
-  Image,
   Component
 } = React;
 
-//FixIt - Duplicated in LoginPage
+//FixIt - Duplicated in AddEntryPage
 var styles = StyleSheet.create({
   description: {
     marginBottom: 20,
@@ -65,97 +62,82 @@ var styles = StyleSheet.create({
   }
 });
 
-class AddEntryPage extends Component {
+class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date(),
-      duration: '',
       isLoading: false,
       message: ''
     };
   }
 
-  componentDidMount() {
-    AsyncStorage.getItem(Constants.USER_EMAIL_STORAGE_KEY).then((value) => {
-      if(value != null) {
-        this.setState({currentUser: {email: value}});
-      } else {
-        this.props.navigator.replace({name: 'Login Page', component: LoginPage});
-      }
-    }).done(); //FixIt - Add a catch method
-  }
-
   render() {
-    console.log('AddEntryPage.render');
     var spinner = this.state.isLoading ?
     (<ActivityIndicatorIOS hidden="true" size="large"/>) :
     (<View />);
     return (
       <View>
-        <NavBar
-          navigator={this.props.navigator}
-          title="Add Entry"
-          rightButtonText="Cancel"
-          rightButtonLink={{name: 'Leaderboard', component: Leaderboard}}
-          />
+        <NavBar title="Login" />
         <View style={styles.container}>
           <View style={styles.flowRight}>
-            <Text>Date: </Text>
-            <DatePickerIOS
-              date={this.state.date}
-              mode="date"
-              onDateChange={this.onDateChange.bind(this)}
+            <Text>Name: </Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Your name here"
+              autoFocus={true }
+              autoCorrect={false}
+              value={this.state.name}
+              onChange={this.onNameChange.bind(this)}
               />
           </View>
 
           <View style={styles.flowRight}>
-            <Text>Duration: </Text>
+            <Text>Email: </Text>
             <TextInput
               style={styles.textInput}
-              placeholder="Minutes"
-              keyboardType="numeric"
-              autoFocus={true}
-              value={this.state.duration}
-              onChange={this.onDurationChange.bind(this)}
+              placeholder="username@multunus.com"
+              autoCapitalize="none"
+              autoCorrect={false}
+              keyboardType="email-address"
+              value={this.state.email}
+              onChange={this.onEmailChange.bind(this)}
               />
           </View>
 
           <TouchableHighlight
             style={styles.button}
             underlayColor='#99d9f4'
-            onPress={this.onAddPress.bind(this)}
+            onPress={this.onLoginPress.bind(this)}
             >
-            <Text style={styles.buttonText}>Add</Text>
+            <Text style={styles.buttonText}>Login</Text>
           </TouchableHighlight>
           {spinner}
           <Text style={styles.description}>{this.state.message}</Text>
         </View>
+
       </View>
     );
   }
 
-  onDateChange(date) {
+  onNameChange(event) {
     this.setState({
-      date: date
+      name: event.nativeEvent.text
     });
   }
 
-  onDurationChange(event) {
+  onEmailChange(event) {
     this.setState({
-      duration: event.nativeEvent.text
+      email: event.nativeEvent.text
     });
   }
-
-  onAddPress() {
+  onLoginPress() {
     var data = {
-      email: this.state.currentUser.email,
-      entry: {
-        date: this.state.date,
-        duration: this.state.duration
+      user: {
+        name: this.state.name,
+        email: this.state.email
       }
     };
-    var url = Constants.APP_SERVER_HOST + '/entries';
+    var url = Constants.APP_SERVER_HOST + '/users/register';
     this._postToUrl(url, data);
   }
 
@@ -175,7 +157,9 @@ class AddEntryPage extends Component {
         throw new Error(JSON.parse(response._bodyText).error); //FixIt - Shoudn't be using the quasi private method
       }
     })
-    .then(response => this._handleResponse(response))
+    .then(response => {
+      this._handleResponse(response);
+    })
     .catch(error => this.setState({
       isLoading: false,
       message: error.message
@@ -188,12 +172,21 @@ class AddEntryPage extends Component {
       message: ''
     });
     console.log('Response: ' + JSON.stringify(response));
+    this._setCurrentUser(response.user.email);
+    this._goToAddEntryPage();
+  }
+
+  _setCurrentUser(email) {
+    AsyncStorage.setItem(Constants.USER_EMAIL_STORAGE_KEY, email);
+  }
+
+  _goToAddEntryPage() {
     this.props.navigator.push({
-        name: 'Leaderboard',
-        component: Leaderboard
+      name: 'Add Entry',
+      component: AddEntryPage
     });
   }
 
 }
 
-module.exports = AddEntryPage;
+module.exports = LoginPage;

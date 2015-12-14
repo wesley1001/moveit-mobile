@@ -4,63 +4,17 @@ var React = require('react-native');
 var Constants = require('../../../constants');
 var AddEntryPage = require('../addEntryPage/addEntryPage');
 var NavBar = require('../navBar');
+var Spinner = require('../spinner');
+var formStyles = require('../../styles/formStyles');
 
 var {
-  StyleSheet,
   Text,
   TextInput,
   View,
   TouchableHighlight,
-  ActivityIndicatorIOS,
   AsyncStorage,
   Component
 } = React;
-
-//FixIt - Duplicated in AddEntryPage
-var styles = StyleSheet.create({
-  description: {
-    marginBottom: 20,
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#656565'
-  },
-  flowRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    marginBottom: 15
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  textInput: {
-    height: 36,
-    padding: 4,
-    marginRight: 5,
-    flex: 4,
-    fontSize: 18,
-    borderWidth: 1,
-    borderRadius: 8
-  },
-  button: {
-    height: 36,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '43CA01',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
-  container: {
-    padding: 30,
-    alignItems: 'center'
-  }
-});
 
 class LoginPage extends Component {
   constructor(props) {
@@ -72,47 +26,54 @@ class LoginPage extends Component {
   }
 
   render() {
-    var spinner = this.state.isLoading ?
-    (<ActivityIndicatorIOS hidden="true" size="large"/>) :
-    (<View />);
     return (
       <View>
         <NavBar title="Login" />
-        <View style={styles.container}>
-          <View style={styles.flowRight}>
-            <Text>Name: </Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Your name here"
-              autoFocus={true }
-              autoCorrect={false}
-              value={this.state.name}
-              onChange={this.onNameChange.bind(this)}
-              />
+        <View style={formStyles.container}>
+          <View style={formStyles.flowRight}>
+            <View style={formStyles.labelWrapper}>
+              <Text style={formStyles.label}>Name: </Text>
+            </View>
+            <View style={formStyles.textInputWrapper}>
+              <TextInput
+                style={formStyles.textInput}
+                placeholder="Your name here"
+                autoFocus={true }
+                autoCorrect={false}
+                value={this.state.name}
+                onChange={this.onNameChange.bind(this)}
+                />
+            </View>
           </View>
 
-          <View style={styles.flowRight}>
-            <Text>Email: </Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="username@multunus.com"
-              autoCapitalize="none"
-              autoCorrect={false}
-              keyboardType="email-address"
-              value={this.state.email}
-              onChange={this.onEmailChange.bind(this)}
-              />
+          <View style={formStyles.flowRight}>
+            <View style={formStyles.labelWrapper}>
+              <Text style={formStyles.label}>Email: </Text>
+            </View>
+            <View style={formStyles.textInputWrapper}>
+              <TextInput
+                style={formStyles.textInput}
+                placeholder="username@multunus.com"
+                autoCapitalize="none"
+                autoCorrect={false}
+                keyboardType="email-address"
+                value={this.state.email}
+                onChange={this.onEmailChange.bind(this)}
+                />
+            </View>
           </View>
 
           <TouchableHighlight
-            style={styles.button}
+            style={formStyles.button}
             underlayColor='#99d9f4'
             onPress={this.onLoginPress.bind(this)}
             >
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={formStyles.buttonText}>Login</Text>
           </TouchableHighlight>
-          {spinner}
-          <Text style={styles.description}>{this.state.message}</Text>
+
+          {this.state.isLoading ? <Spinner /> : <View />}
+
+          <Text style={formStyles.description}>{this.state.message}</Text>
         </View>
 
       </View>

@@ -5,6 +5,7 @@ var Constants = require('../../../constants');
 var LeaderboardEntry = require('./leaderboardEntry');
 var SummaryBar = require('./summaryBar');
 var NavBar = require('../navBar');
+var Spinner = require('../spinner');
 var AddEntryPage = require('../addEntryPage/addEntryPage');
 var moment = require('moment');
 
@@ -13,7 +14,6 @@ var {
   View,
   ListView,
   Component,
-  ActivityIndicatorIOS,
   AsyncStorage
 } = React;
 
@@ -56,9 +56,6 @@ class Leaderboard extends Component {
   }
 
   render() {
-    var spinner = this.state.isLoading ?
-    (<ActivityIndicatorIOS hidden="true" size="large"/>) :
-    (<View />);
     return (
       <View>
         <NavBar
@@ -73,7 +70,7 @@ class Leaderboard extends Component {
         month={this.state.month}
         year={this.state.year}
         />
-        {spinner}
+        {this.state.isLoading ? <Spinner /> : <View />}
         <ListView
           dataSource={this.state.itemsWithEntries}
           renderRow={this.renderItem.bind(this)}

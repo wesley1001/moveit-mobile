@@ -1,67 +1,35 @@
 'use strict';
 
 var React = require('react-native');
+var moment = require('moment');
 var Constants = require('../../../constants');
 var Leaderboard = require('../leaderboard/leaderboard');
 var LoginPage = require('../loginPage/loginPage');
 var NavBar = require('../navBar');
+var Spinner = require('../spinner');
+var formStyles = require('../../styles/formStyles');
 
 var {
   StyleSheet,
   Text,
   TextInput,
-  DatePickerIOS,
   View,
   TouchableHighlight,
-  ActivityIndicatorIOS,
+  DatePickerIOS,
   AsyncStorage,
-  Image,
-  Component
+  Component,
+  Dimensions
 } = React;
 
-//FixIt - Duplicated in LoginPage
+const DATE_PICKER_HEIGHT = 504;
+
 var styles = StyleSheet.create({
-  description: {
-    marginBottom: 20,
-    fontSize: 18,
-    textAlign: 'center',
-    color: '#656565'
-  },
-  flowRight: {
-    flexDirection: 'row',
+  datePickerContainer: {
+    backgroundColor: '#F7F7F7',
+    bottom: DATE_PICKER_HEIGHT - Dimensions.get('window').height,
+    borderTopWidth: 1,
+    borderColor: '#EEE',
     alignItems: 'center',
-    alignSelf: 'stretch',
-    marginBottom: 15
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  textInput: {
-    height: 36,
-    padding: 4,
-    marginRight: 5,
-    flex: 4,
-    fontSize: 18,
-    borderWidth: 1,
-    borderRadius: 8
-  },
-  button: {
-    height: 36,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '43CA01',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
-  container: {
-    padding: 30,
-    alignItems: 'center'
   }
 });
 
@@ -72,7 +40,8 @@ class AddEntryPage extends Component {
       date: new Date(),
       duration: '',
       isLoading: false,
-      message: ''
+      message: '',
+      showDatePicker: false
     };
   }
 
@@ -88,9 +57,16 @@ class AddEntryPage extends Component {
 
   render() {
     console.log('AddEntryPage.render');
-    var spinner = this.state.isLoading ?
-    (<ActivityIndicatorIOS hidden="true" size="large"/>) :
-    (<View />);
+    var datePicker =
+      <View
+        style={styles.datePickerContainer}>
+        <DatePickerIOS
+          date={this.state.date}
+          maximumDate={new Date()}
+          onDateChange={this.onDateChange.bind(this)}
+          mode="date"
+        />
+      </View>;
     return (
       <View>
         <NavBar
@@ -99,46 +75,68 @@ class AddEntryPage extends Component {
           rightButtonText="Cancel"
           rightButtonLink={{name: 'Leaderboard', component: Leaderboard}}
           />
-        <View style={styles.container}>
-          <View style={styles.flowRight}>
-            <Text>Date: </Text>
-            <DatePickerIOS
-              date={this.state.date}
-              mode="date"
-              onDateChange={this.onDateChange.bind(this)}
-              />
+        <View style={formStyles.container}>
+          <View style={formStyles.flowRight}>
+            <View style={formStyles.labelWrapper}>
+              <Text>Date: </Text>
+            </View>
+            <View style={formStyles.textInputWrapper}>
+              <Text
+                style={formStyles.textInput}
+                onPress={this.onDateFocus.bind(this)}
+                >
+                {moment(this.state.date).format('D MMMM, YYYY')}
+              </Text>
+            </View>
           </View>
 
-          <View style={styles.flowRight}>
-            <Text>Duration: </Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Minutes"
-              keyboardType="numeric"
-              autoFocus={true}
-              value={this.state.duration}
-              onChange={this.onDurationChange.bind(this)}
-              />
+          <View style={formStyles.flowRight}>
+            <View style={formStyles.labelWrapper}>
+              <Text>Duration: </Text>
+            </View>
+            <View style={formStyles.textInputWrapper}>
+              <TextInput
+                ref="durationTextInput"
+                style={formStyles.textInput}
+                placeholder="Minutes"
+                keyboardType="numeric"
+                autoFocus={true}
+                value={this.state.duration}
+                onChange={this.onDurationChange.bind(this)}
+                onFocus={this.onDurationFocus.bind(this)}
+                />
+            </View>
           </View>
 
           <TouchableHighlight
-            style={styles.button}
+            style={formStyles.button}
             underlayColor='#99d9f4'
             onPress={this.onAddPress.bind(this)}
             >
-            <Text style={styles.buttonText}>Add</Text>
+            <Text style={formStyles.buttonText}>Add</Text>
           </TouchableHighlight>
-          {spinner}
-          <Text style={styles.description}>{this.state.message}</Text>
+
+          {this.state.isLoading ? <Spinner /> : <View />}
+
+          <Text style={formStyles.description}>{this.state.message}</Text>
         </View>
+
+        {this.state.showDatePicker ? datePicker : <View />}
       </View>
     );
   }
 
+  onDateFocus() {
+    this.refs.durationTextInput.blur();
+    this.setState({showDatePicker: true});
+  }
+
   onDateChange(date) {
-    this.setState({
-      date: date
-    });
+    this.setState({date: date});
+  }
+
+  onDurationFocus() {
+    this.setState({showDatePicker: false});
   }
 
   onDurationChange(event) {

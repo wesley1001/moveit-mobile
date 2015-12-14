@@ -25,13 +25,20 @@ var styles = StyleSheet.create({
     textAlign: 'center'
   },
 
-  rightButton: {
+  button: {
     position: 'absolute',
-    top: 28,
+    top: 28
+  },
+
+  rightButton: {
     right: 8
   },
 
-  rightButtonText: {
+  leftButton: {
+    left: 8
+  },
+
+  linkText: {
     color: '#007AFF',
     fontSize: 16,
     fontWeight: '400'
@@ -43,15 +50,33 @@ class NavBar extends Component {
     return(
       <View style={styles.navBar}>
         <Text style={styles.title}>{this.props.title}</Text>
-        <View style={styles.rightButton}>
+        {this.props.showBackButton ? this._backButton() : <View />}
+        <View style={[styles.button, styles.rightButton]}>
           <TouchableOpacity onPress={this.onRightButtonPress.bind(this)}>
-            <Text style={styles.rightButtonText}>
+            <Text style={styles.linkText}>
               {this.props.rightButtonText}
             </Text>
           </TouchableOpacity>
         </View>
       </View>
     );
+  }
+
+  _backButton() {
+    return(
+      <View style={[styles.button, styles.leftButton]}>
+        <TouchableOpacity onPress={this.onLeftButtonPress.bind(this)}>
+          <Text style={styles.linkText}>
+            {'\u2039'} Back
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  onLeftButtonPress() {
+    var route = this.props.rightButtonLink;
+    this.props.navigator.pop();
   }
 
   onRightButtonPress() {

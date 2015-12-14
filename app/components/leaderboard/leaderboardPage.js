@@ -45,14 +45,9 @@ class LeaderboardPage extends Component {
   renderItem(leaderboardItem, sectionID, rowID) {
     return(
       <LeaderboardEntry
-        gravatar={leaderboardItem.gravatar}
-        name={leaderboardItem.name}
+        user={leaderboardItem}
         rank={parseInt(rowID) + 1}
-        amount={leaderboardItem.amount}
-        duration={leaderboardItem.duration}
-        interaction={leaderboardItem.interactable}
-      >
-      </LeaderboardEntry>
+        />
     );
   }
 

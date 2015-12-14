@@ -24,7 +24,14 @@ var styles = StyleSheet.create({
   avatar: {
     width: 38,
     height: 38,
-    borderRadius: 19
+    borderRadius: 19,
+    borderWidth: 2
+  },
+  nudge: {
+    borderColor: '#FDC300'
+  },
+  bump: {
+    borderColor: '#43CA01'
   },
   name: {
     flex: 3,
@@ -51,16 +58,17 @@ var styles = StyleSheet.create({
 
 class LeaderboardEntry extends Component {
   render() {
+    var user = this.props.user;
     return(
       <View style={styles.rowContainer}>
         <View style={styles.avatarContainer}>
-          <Image style={styles.avatar} source={{ uri: this.props.gravatar }} />
+          <Image style={[styles.avatar, styles[user.interactable]]} source={{ uri: user.gravatar }} />
         </View>
         <Text style={styles.rank}>#{this.props.rank}</Text>
-        <Text style={styles.name}>{this.props.name}</Text>
+        <Text style={styles.name}>{user.name}</Text>
         <View style={styles.scoreContainer}>
-          <Text style={styles.amount}>₹{this.props.amount}</Text>
-          <Text style={styles.duration}>{this.props.duration} mins</Text>
+          <Text style={styles.amount}>₹{user.amount}</Text>
+          <Text style={styles.duration}>{user.duration} mins</Text>
         </View>
       </View>
     );

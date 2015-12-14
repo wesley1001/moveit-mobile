@@ -6,7 +6,7 @@ var LeaderboardEntry = require('./leaderboardEntry');
 var SummaryBar = require('./summaryBar');
 var NavBar = require('../navBar');
 var Spinner = require('../spinner');
-var AddEntryPage = require('../addEntryPage/addEntryPage');
+var AddEntryPage = require('../addEntry/addEntryPage');
 var moment = require('moment');
 
 var {
@@ -17,7 +17,7 @@ var {
   AsyncStorage
 } = React;
 
-class Leaderboard extends Component {
+class LeaderboardPage extends Component {
   constructor(props) {
     var date = new Date();
     super(props);
@@ -50,6 +50,7 @@ class Leaderboard extends Component {
         rank={parseInt(rowID) + 1}
         amount={leaderboardItem.amount}
         duration={leaderboardItem.duration}
+        interaction={leaderboardItem.interactable}
       >
       </LeaderboardEntry>
     );
@@ -116,4 +117,4 @@ class Leaderboard extends Component {
   }
 }
 
-module.exports = Leaderboard;
+module.exports = LeaderboardPage;

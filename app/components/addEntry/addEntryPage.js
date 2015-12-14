@@ -3,8 +3,8 @@
 var React = require('react-native');
 var moment = require('moment');
 var Constants = require('../../../constants');
-var Leaderboard = require('../leaderboard/leaderboard');
-var LoginPage = require('../loginPage/loginPage');
+var LeaderboardPage = require('../leaderboard/leaderboardPage');
+var LoginPage = require('../login/loginPage');
 var NavBar = require('../navBar');
 var Spinner = require('../spinner');
 var formStyles = require('../../styles/formStyles');
@@ -25,7 +25,7 @@ const DATE_PICKER_HEIGHT = 504;
 
 var styles = StyleSheet.create({
   datePickerContainer: {
-    backgroundColor: '#F7F7F7',
+    backgroundColor: '#E2E4E6',
     bottom: DATE_PICKER_HEIGHT - Dimensions.get('window').height,
     borderTopWidth: 1,
     borderColor: '#EEE',
@@ -50,7 +50,7 @@ class AddEntryPage extends Component {
       if(value != null) {
         this.setState({currentUser: {email: value}});
       } else {
-        this.props.navigator.replace({name: 'Login Page', component: LoginPage});
+        this.props.navigator.replace({name: 'Login', component: LoginPage});
       }
     }).done(); //FixIt - Add a catch method
   }
@@ -73,7 +73,7 @@ class AddEntryPage extends Component {
           navigator={this.props.navigator}
           title="Add Entry"
           rightButtonText="Cancel"
-          rightButtonLink={{name: 'Leaderboard', component: Leaderboard}}
+          rightButtonLink={{name: 'Leaderboard', component: LeaderboardPage}}
           />
         <View style={formStyles.container}>
           <View style={formStyles.flowRight}>
@@ -188,7 +188,7 @@ class AddEntryPage extends Component {
     console.log('Response: ' + JSON.stringify(response));
     this.props.navigator.push({
         name: 'Leaderboard',
-        component: Leaderboard
+        component: LeaderboardPage
     });
   }
 

@@ -2,7 +2,7 @@
 
 var React = require('react-native');
 var Constants = require('../../../constants');
-var AddEntryPage = require('../addEntryPage/addEntryPage');
+var AddEntryPage = require('../addEntry/addEntryPage');
 var NavBar = require('../navBar');
 var Spinner = require('../spinner');
 var formStyles = require('../../styles/formStyles');

@@ -1,11 +1,14 @@
 'use strict';
 
 var React = require('react-native');
+var MonthlySummaryPage = require('../monthlySummary/monthlySummaryPage');
+
 var {
   StyleSheet,
   Image,
   View,
   Text,
+  TouchableOpacity,
   Component
 } = React;
 
@@ -60,7 +63,10 @@ class LeaderboardEntry extends Component {
   render() {
     var user = this.props.user;
     return(
-      <View style={styles.rowContainer}>
+      <TouchableOpacity
+        style={styles.rowContainer}
+        onPress={this.onPress.bind(this)}
+        >
         <View style={styles.avatarContainer}>
           <Image style={[styles.avatar, styles[user.interactable]]} source={{ uri: user.gravatar }} />
         </View>
@@ -70,8 +76,15 @@ class LeaderboardEntry extends Component {
           <Text style={styles.amount}>₹{user.amount}</Text>
           <Text style={styles.duration}>{user.duration} mins</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
+  }
+
+  onPress() {
+    this.props.navigator.push({
+      name: 'Monthly Summary',
+      component: MonthlySummaryPage
+    });
   }
 }
 

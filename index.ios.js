@@ -5,11 +5,13 @@ var Constants = require('./constants');
 var LoginPage = require('./app/components/login/loginPage');
 var AddEntryPage = require('./app/components/addEntry/addEntryPage');
 var LeaderboardPage = require('./app/components/leaderboard/leaderboardPage');
+var MonthlySummaryPage = require('./app/components/monthlySummary/monthlySummaryPage');
 
 const ROUTES = {
   'Login': LoginPage,
   'Add Entry': AddEntryPage,
-  'Leaderboard': LeaderboardPage
+  'Leaderboard': LeaderboardPage,
+  'Monthly Summary': MonthlySummaryPage
 }
 
 var {

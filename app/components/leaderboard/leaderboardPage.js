@@ -47,6 +47,7 @@ class LeaderboardPage extends Component {
       <LeaderboardEntry
         user={leaderboardItem}
         rank={parseInt(rowID) + 1}
+        navigator={this.props.navigator}
         />
     );
   }

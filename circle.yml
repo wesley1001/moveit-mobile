@@ -1,0 +1,28 @@
+machine:
+  node:
+    version: 5.2.0
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+dependencies:
+  post:
+    - ./setup.sh
+    - npm install -g react-native-cli
+test:
+  override:
+    - echo "no tests"
+    - openssl enc -in debug-key.keystore.enc -out debug-key.keystore -d -aes256 -k $D_KEY:
+        pwd:
+          android/app
+    - openssl enc -in google-services.json.enc -out google-services.json -d -aes256 -k $D_KEY:
+        pwd:
+          android/app
+    - openssl enc -in moveit-key.keystore.enc -out moveit-key.keystore -d -aes256 -k $D_KEY:
+        pwd:
+          android/app
+    - ./gradlew assembleRelease:
+        pwd:
+          android
+general:
+  artifacts:
+    - "android/app/build/outputs/apk/app-release.apk"

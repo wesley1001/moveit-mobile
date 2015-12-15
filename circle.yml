@@ -5,6 +5,8 @@ machine:
     ANDROID_HOME: /usr/local/android-sdk-linux
     GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
 dependencies:
+  pre:
+    - echo y | android update sdk --no-ui --all --filter extra-google-google_play_services
   post:
     - ./setup.sh
     - npm install -g react-native-cli

@@ -1,5 +1,4 @@
 import React, { Image, Component, Text, View, TouchableHighlight, StyleSheet, AsyncStorage } from 'react-native';
-import Video from 'react-native-video';
 import moment from 'moment';
 
 import User from '../models/User';

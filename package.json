@@ -11,6 +11,7 @@
     "moment": "^2.10.6",
     "react-native": "^0.14.2",
     "react-native-action-button": "github:peterlazar1993/react-native-action-button",
+    "react-native-code-push": "^1.5.0-beta",
     "react-native-date": "^1.0.2",
     "react-native-google-signin": "^0.2.3",
     "react-native-material-kit": "^0.2.3",

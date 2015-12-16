@@ -20,3 +20,6 @@ project(':com.inprogress.ReactOrientationController').projectDir = new File(root
 
 include ':ReactNativeVibration', ':app'
 project(':ReactNativeVibration').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vibration/android')
+
+include ':app', ':react-native-code-push'
+project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')

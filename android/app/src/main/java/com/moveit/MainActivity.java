@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
+import com.microsoft.codepush.react.CodePush;
 import com.eguma.vibration.Vibration;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import me.nucleartux.date.ReactDatePackage;
@@ -29,10 +30,11 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mReactRootView = new ReactRootView(this);
+        CodePush codePush = new CodePush("0YwAyM6WFlDZ9xMO-_Is4MqOW9FMEJ2MkzFBg", this);
 
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
-                .setBundleAssetName("index.android.bundle")
+                .setJSBundleFile(codePush.getBundleUrl("index.android.bundle"))
                 .setJSMainModuleName("index.android")
                 .addPackage(new MainReactPackage())
                 .addPackage(new RCTSplashScreenPackage(this))
@@ -41,6 +43,7 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
                 .addPackage(new RNGeolocationPackage())
                 .addPackage(new Vibration())
                 .addPackage(new ReactOrientationController(this))
+                .addPackage(codePush.getReactPackage())
                 .addPackage(new RNGoogleSigninPackage(this))
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
@@ -96,7 +99,7 @@ public class MainActivity extends FragmentActivity implements DefaultHardwareBac
         super.onResume();
 
         if (mReactInstanceManager != null) {
-            mReactInstanceManager.onResume(this);
+            mReactInstanceManager.onResume(this, this);
         }
     }
 }

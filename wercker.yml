@@ -1,0 +1,33 @@
+box: peterlazar1993/android-react-native
+
+# Build definition
+build:
+  # The steps that will be executed on build
+  steps:
+    - script:
+        name: Update Android SDK
+        code: |
+          echo $ANDROID_HOME
+          echo $ANDROID_SDK_VERSION
+          echo $ANDROID_BUILD_TOOLS
+          echo $ANDROID_UPDATE_FILTER
+          echo y |android update sdk --no-ui --all --filter "android-19,build-tools-23.0.1,android-23"
+    - script: install react
+        name: install react native
+        code: npm install -g react-native-cli
+    - script: npm install
+        name: install npm packages
+        code: npm install
+    # A step that executes `gradle build` command
+    - script:
+        name: copy google services.json
+        code: openssl enc -in android/app/google-services.json.enc -out android/app/google-services.json -d -aes256 -k $D_KEY
+    - script:
+        name: copy debug key
+        code: openssl enc -in android/app/debug-key.keystore.enc -out android/app/debug-key.keystore -d -aes256 -k $D_KEY
+    - script:
+        name: copy production key
+        code: openssl enc -in android/app/moveit-key.keystore.enc -out android/app/moveit-key.keystore -d -aes256 -k $D_KEY
+    - script:
+        name: run gradle
+        code: cd android && ./gradlew assembleRelease --info

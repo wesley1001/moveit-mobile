@@ -1,4 +1,4 @@
-box: peterlazar1993/android-react-native
+box: peterlazar1993/react-native-android
 
 # Build definition
 build:
@@ -6,16 +6,8 @@ build:
   steps:
     - script:
         name: Update Android SDK
-        code: |
-          echo $ANDROID_HOME
-          echo $ANDROID_SDK_VERSION
-          echo $ANDROID_BUILD_TOOLS
-          echo $ANDROID_UPDATE_FILTER
-          echo y |android update sdk --no-ui --all --filter "android-19,build-tools-23.0.1,android-23"
-    - script: install react
-        name: install react native
-        code: npm install -g react-native-cli
-    - script: npm install
+        code: echo y | android update sdk --no-ui --all --filter "build-tools-23.0.1,extra-android-m2repository,extra-google-m2repository"
+    - script:
         name: install npm packages
         code: npm install
     # A step that executes `gradle build` command
@@ -29,5 +21,13 @@ build:
         name: copy production key
         code: openssl enc -in android/app/moveit-key.keystore.enc -out android/app/moveit-key.keystore -d -aes256 -k $D_KEY
     - script:
+        name: setup splash screen
+        code: ./setup.sh
+    - script:
         name: run gradle
-        code: cd android && ./gradlew assembleRelease --info
+        code: cd android && ./gradlew assembleRelease --stacktrace
+  after-steps:
+        - wantedly/pretty-slack-notify:
+            webhook_url: $SLACK_WEBHOOK_URL
+            channel: moveit-react
+            branches: ^master$

@@ -25,9 +25,9 @@ var styles = StyleSheet.create({
     flex: 1,
   },
   avatar: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     borderWidth: 2
   },
   nudge: {

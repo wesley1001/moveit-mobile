@@ -28,6 +28,9 @@ var styles = StyleSheet.create({
   summary: {
     flex: 4
   },
+  monthYear: {
+    fontSize: 16
+  },
   amounts: {
     flexDirection: 'row',
     fontWeight: 'bold',
@@ -38,7 +41,7 @@ var styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   goalAmount: {
-    fontSize: 12,
+    fontSize: 14,
     alignSelf: 'center'
   }
 });
@@ -54,7 +57,7 @@ class SummaryBar extends Component {
           />
         </View>
         <View style={styles.summary}>
-          <Text>{this._getMonthYear()}</Text>
+          <Text style={styles.monthYear}>{this._getMonthYear()}</Text>
           <View style={styles.amounts}>
             <Text style={styles.totalAmount}>₹{this.props.totalAmount}</Text>
             <Text style={styles.goalAmount}> / ₹{this.props.goalAmount}</Text>

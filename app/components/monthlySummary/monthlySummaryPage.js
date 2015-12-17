@@ -7,6 +7,7 @@ var Spinner = require('../spinner');
 var LeaderboardPage = require('../leaderboard/leaderboardPage');
 var TopSection = require('./topSection');
 var ContributionSection = require('./contributionSection');
+var MonthlySummaryList = require('./monthlySummaryList');
 var moment = require('moment');
 
 var {
@@ -30,7 +31,8 @@ class MonthlySummaryPage extends Component {
       isLoading: false,
       message: '',
       month: date.getMonth(),
-      year: date.getFullYear()
+      year: date.getFullYear(),
+      listItems: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     };
   }
 
@@ -41,7 +43,7 @@ class MonthlySummaryPage extends Component {
   render() {
     var user = this.props.user;
     return (
-      <View>
+      <View style={{flex: 1}}>
         <NavBar
           navigator={this.props.navigator}
           title="Monthly Summary"
@@ -59,6 +61,7 @@ class MonthlySummaryPage extends Component {
           totalDuration={this.state.totalDuration}
           />
         {this.state.isLoading ? <Spinner /> : <View />}
+        <MonthlySummaryList listItems={this.state.listItems}/>
       </View>
     );
   }
@@ -82,9 +85,10 @@ class MonthlySummaryPage extends Component {
     var totalDuration = monthlySummary.map((entry) => entry.duration)
     .reduce( (prev, curr) => prev + curr )
     this.setState({
+      isLoading: false,
       totalContribution: totalContribution,
       totalDuration: totalDuration,
-      isLoading: false
+      listItems: this.state.listItems.cloneWithRows(monthlySummary)
     });
   }
 

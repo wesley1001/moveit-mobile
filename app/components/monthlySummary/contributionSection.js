@@ -13,33 +13,27 @@ var {
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
-    color: '#575757',
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: 65,
+    color: '#575757',
     borderColor: '#BDBDBD',
+    borderTopWidth: 1,
     borderBottomWidth: 1
   },
   section: {
     flex: 1,
-    height: 55,
+    height: 65,
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 10,
-    borderColor: '#BDBDBD'
-  },
-  borderRight: {
-    borderRightWidth: 1
+    justifyContent: 'center'
   },
   value: {
-    fontSize: 15,
+    fontSize: 20,
     color: '#575757',
     fontWeight: '500'
   },
   label: {
     padding: 4,
-    fontSize: 11,
+    fontSize: 14,
     color: '#575757'
   }
 });
@@ -49,10 +43,10 @@ class ContributionSection extends Component {
     var monthYear = moment.monthsShort(this.props.month) + ' ' + this.props.year;
     return (
       <View style={styles.container}>
-        <View style={[styles.section, styles.borderRight]}>
+        <View style={styles.section}>
           <Text style={styles.value}>{monthYear}</Text>
         </View>
-        <View style={[styles.section, styles.borderRight]}>
+        <View style={styles.section}>
           <Text style={styles.value}>₹{this.props.totalContribution}</Text>
           <Text style={styles.label}>CONTRIBUTED</Text>
         </View>

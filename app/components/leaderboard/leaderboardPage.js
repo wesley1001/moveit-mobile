@@ -54,7 +54,7 @@ class LeaderboardPage extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <NavBar
           navigator={this.props.navigator}
           title="Leaderboard"

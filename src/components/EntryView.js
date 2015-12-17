@@ -11,7 +11,7 @@ export default class EntryView extends Component {
     this.state = {
       isLoading: false,
       duration: '',
-      date: moment(),
+      date: moment().format('YYYY-MM-DD'),
       description: '',
       location: {
         longitude: null,
@@ -34,7 +34,7 @@ export default class EntryView extends Component {
       email: this.state.user.email,
       entry: {
         duration: this.state.duration,
-        date: this.state.date.format('YYYY-MM-DD'),
+        date: this.state.date,
         description: this.state.description
       },
       location: {
@@ -75,7 +75,8 @@ export default class EntryView extends Component {
   handleDateClick() {
     var self = this;
     NativeModules.DateAndroid.showDatepicker(function() {}, function(year,month,day) {
-      let newdate = moment({ year: year, month: month, day: day});
+      month += 1;
+      let newdate = year + '-' + month + '-' +day;
       self.setState({ date: newdate });
     });
   }
@@ -90,6 +91,9 @@ export default class EntryView extends Component {
       } else {
         return (
           <View style={styles.container}>
+              <Text onPress={(event) => this.handleDateClick()}>
+                Date: {this.state.date}
+              </Text>
             <MKTextField
               highlightColor="#fdc300"
               floatingLabelEnabled={true}

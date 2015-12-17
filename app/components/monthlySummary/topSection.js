@@ -15,25 +15,25 @@ var deviceWidth = Dimensions.get('window').width;
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 200,
+    height: 160,
+    overflow: 'hidden'
   },
   profileBackground: {
     width: deviceWidth,
     position: 'absolute',
-    height: 200,
-    left: 0
+    top: 0,
+    left: 0,
+    right: 0
   },
   avatarContainer: {
     alignItems: 'center'
   },
   avatar: {
-    height: 80,
-    width: 80,
-    borderRadius: 40,
+    height: 100,
+    width: 100,
+    borderRadius: 50,
     borderWidth: 2,
     borderColor: 'white'
   },
@@ -41,11 +41,11 @@ var styles = StyleSheet.create({
     padding: 2
   },
   name: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: '500'
   },
   email: {
-    fontSize: 12
+    fontSize: 14
   }
 });
 

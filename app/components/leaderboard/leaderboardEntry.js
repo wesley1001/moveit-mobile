@@ -83,7 +83,10 @@ class LeaderboardEntry extends Component {
   onPress() {
     this.props.navigator.push({
       name: 'Monthly Summary',
-      component: MonthlySummaryPage
+      component: MonthlySummaryPage,
+      passProps: {
+        user: this.props.user
+      }
     });
   }
 }

@@ -30,15 +30,15 @@ var styles = StyleSheet.create({
 class MoveItIOS extends Component {
   renderScene(route, navigator) {
     var Component = ROUTES[route.name];
-    return(<Component navigator={navigator} />);
+    return <Component navigator={navigator} {...route.passProps} />;
   }
 
   render() {
     return (
       <Navigator
-          initialRoute={{name: 'Add Entry', component: AddEntryPage}}
-          renderScene={this.renderScene.bind(this)}
-      />
+        initialRoute={{name: 'Add Entry', component: AddEntryPage}}
+        renderScene={this.renderScene.bind(this)}
+        />
     );
   }
 }

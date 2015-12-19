@@ -15,7 +15,6 @@ var styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: 65,
-    color: '#575757',
     borderColor: '#BDBDBD',
     borderTopWidth: 1,
     borderBottomWidth: 1

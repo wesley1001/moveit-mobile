@@ -27,7 +27,7 @@ var styles = StyleSheet.create({
   }
 });
 
-class MoveItIOS extends Component {
+class MoveIt extends Component {
   renderScene(route, navigator) {
     var Component = ROUTES[route.name];
     return <Component navigator={navigator} {...route.passProps} />;
@@ -43,4 +43,4 @@ class MoveItIOS extends Component {
   }
 }
 
-AppRegistry.registerComponent('MoveItIOS', () => MoveItIOS);
+AppRegistry.registerComponent('MoveIt', () => MoveIt);

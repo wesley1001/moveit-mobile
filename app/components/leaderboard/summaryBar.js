@@ -33,7 +33,6 @@ var styles = StyleSheet.create({
   },
   amounts: {
     flexDirection: 'row',
-    fontWeight: 'bold',
     alignItems: 'flex-end'
   },
   totalAmount: {

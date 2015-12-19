@@ -1,6 +1,6 @@
 import request from 'superagent';
 import superagentJsonapify from 'superagent-jsonapify';
-import Settings from '../config/Settings'
+import Settings from '../config/Settings';
 import Timer from 'react-timer-mixin';
 
 

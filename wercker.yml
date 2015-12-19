@@ -24,7 +24,20 @@ build:
         code: ./setup.sh
     - script:
         name: run gradle
-        code: cd android && ./gradlew assembleRelease --stacktrace
+        code: cd android && ./gradlew assembleRelease --stacktrace --project-cache-dir=$WERCKER_CACHE_DIR
+  after-steps:
+        - wantedly/pretty-slack-notify:
+            webhook_url: $SLACK_WEBHOOK_URL
+            channel: moveit-react
+            branches: ^master$
+deploy:
+  steps:
+    - script:
+        name: setup awscli
+        code: pip install awscli
+    - script:
+        name: Upload to S3
+        code: ./publish.sh
   after-steps:
         - wantedly/pretty-slack-notify:
             webhook_url: $SLACK_WEBHOOK_URL

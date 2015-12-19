@@ -58,7 +58,7 @@ android {
         applicationId "com.multunus.moveit"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
+        versionCode 10219
         versionName "2.0.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"

@@ -1,4 +1,4 @@
-package com.moveit;
+package com.multunus.moveit;
 
 import android.app.Activity;
 import android.os.Bundle;

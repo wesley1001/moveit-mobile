@@ -55,11 +55,11 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.moveit"
+        applicationId "com.multunus.moveit"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
-        versionName "1.9.9"
+        versionName "2.0.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -72,7 +72,7 @@ android {
             keyPassword System.getenv("DEBUG_KEY_PASSWORD")
       }
       release {
-            storeFile file("moveit-key.keystore")
+            storeFile file("moveit.jks")
             storePassword System.getenv("MOVEIT_APP_RELEASE_STORE_PASSWORD")
             keyAlias System.getenv("MOVEIT_APP_RELEASE_KEY_ALIAS")
             keyPassword System.getenv("MOVEIT_APP_RELEASE_KEY_PASSWORD")

@@ -106,11 +106,12 @@ export default class EntryView extends Component {
             <MKTextField
               highlightColor="#fdc300"
               floatingLabelEnabled={true}
+              multiline={true}
               keyboardType='default'
               onChangeText={(description) => this.setState({description})}
               placeholder='Brief description:'
               value={this.state.description}
-              style={styles.textfieldWithFloatingLabel}
+              style={[styles.textfieldWithFloatingLabel, {height: 70}]}
             />
 
             <MKButton

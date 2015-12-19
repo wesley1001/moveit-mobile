@@ -5,6 +5,18 @@
   "scripts": {
     "start": "react-native start"
   },
+  "bugs": "https://github.com/multunus/moveit-react-native/issues",
+  "contributors":
+    [
+      {
+        "name": "Muraleekrishna Gopinthan",
+        "email": "muraleekrishnagc@gmail.com"
+      },
+      {
+        "name": "Peter Lazar",
+        "email": "peterlazar1993@gmail.com"
+      }
+   ],
   "dependencies": {
     "@remobile/react-native-splashscreen": "^1.0.1",
     "gravatar-api": "^1.2.5",

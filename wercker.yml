@@ -19,7 +19,7 @@ build:
         code: openssl enc -in android/app/debug-key.keystore.enc -out android/app/debug-key.keystore -d -aes256 -k $D_KEY
     - script:
         name: copy production key
-        code: openssl enc -in android/app/moveit-key.keystore.enc -out android/app/moveit-key.keystore -d -aes256 -k $D_KEY
+        code: openssl enc -in android/app/moveit.jks.enc -out android/app/moveit.jks -d -aes256 -k $D_KEY
     - script:
         name: setup splash screen
         code: ./setup.sh

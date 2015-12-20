@@ -30,10 +30,10 @@ var styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 2
   },
-  nudge: {
+  inactive: {
     borderColor: '#FDC300'
   },
-  bump: {
+  active: {
     borderColor: '#43CA01'
   },
   name: {
@@ -68,7 +68,7 @@ class LeaderboardEntry extends Component {
         onPress={this.onPress.bind(this)}
         >
         <View style={styles.avatarContainer}>
-          <Image style={[styles.avatar, styles[user.interactable]]} source={{ uri: user.gravatar }} />
+          <Image style={[styles.avatar, styles[user.activity_status]]} source={{ uri: user.gravatar }} />
         </View>
         <Text style={styles.rank}>#{this.props.rank}</Text>
         <Text style={styles.name}>{user.name}</Text>

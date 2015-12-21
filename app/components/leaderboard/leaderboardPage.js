@@ -2,7 +2,7 @@
 
 var React = require('react-native');
 var Constants = require('../../../constants');
-var LeaderboardEntry = require('./leaderboardEntry');
+var LeaderboardList = require('./leaderboardList');
 var SummaryBar = require('./summaryBar');
 var NavBar = require('../navBar');
 var Spinner = require('../spinner');
@@ -10,7 +10,6 @@ var AddEntryPage = require('../addEntry/addEntryPage');
 var moment = require('moment');
 
 var {
-  Image,
   View,
   ListView,
   Component,
@@ -26,7 +25,7 @@ class LeaderboardPage extends Component {
       year: date.getFullYear(),
       isLoading: false,
       itemsWithEntries: new ListView.DataSource({
-        rowHasChanged: ((r1, r2) => (r1.amount !== r2.amount) || (r1.duration !== r2.duration))
+        rowHasChanged: ((r1, r2) => (r1 !== r2))
       })
     };
   }
@@ -40,16 +39,6 @@ class LeaderboardPage extends Component {
       });
       this.fetchData();
     }).done(); //FixIt - Add a catch method
-  }
-
-  renderItem(leaderboardItem, sectionID, rowID) {
-    return(
-      <LeaderboardEntry
-        user={leaderboardItem}
-        rank={parseInt(rowID) + 1}
-        navigator={this.props.navigator}
-        />
-    );
   }
 
   render() {
@@ -68,11 +57,10 @@ class LeaderboardPage extends Component {
         year={this.state.year}
         />
         {this.state.isLoading ? <Spinner /> : <View />}
-        <ListView
-          dataSource={this.state.itemsWithEntries}
-          renderRow={this.renderItem.bind(this)}
-          automaticallyAdjustContentInsets={false}
-        />
+        <LeaderboardList
+          listItems={this.state.itemsWithEntries}
+          navigator={this.props.navigator}
+          />
       </View>
     );
   }

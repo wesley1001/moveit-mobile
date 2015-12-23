@@ -21,15 +21,27 @@ class LeaderboardList extends Component {
   }
 
   renderItem(leaderboardItem, sectionID, rowID) {
+    var user = {
+      name: leaderboardItem.name,
+      email: leaderboardItem.email,
+      avatar: leaderboardItem.gravatar,
+      activityStatus: leaderboardItem.activity_status
+    };
+    var contribution = {
+      duration: leaderboardItem.duration,
+      amount: leaderboardItem.amount
+    };
     return(
       <LeaderboardEntry
-        user={leaderboardItem}
+        currentUser={this.props.currentUser}
+        user={user}
+        contribution={contribution}
         rank={parseInt(rowID) + 1}
         navigator={this.props.navigator}
+        interaction={leaderboardItem.interactable}
         />
     );
   }
-
 }
 
 module.exports = LeaderboardList;

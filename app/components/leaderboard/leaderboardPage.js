@@ -58,6 +58,7 @@ class LeaderboardPage extends Component {
         />
         {this.state.isLoading ? <Spinner /> : <View />}
         <LeaderboardList
+          currentUser={this.state.currentUser}
           listItems={this.state.itemsWithEntries}
           navigator={this.props.navigator}
           />

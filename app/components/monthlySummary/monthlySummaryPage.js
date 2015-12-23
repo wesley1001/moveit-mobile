@@ -52,7 +52,7 @@ class MonthlySummaryPage extends Component {
         <TopSection
           name={user.name}
           email={user.email}
-          avatar={user.gravatar}
+          avatar={user.avatar}
           />
         <ContributionSection
           month={this.state.month}

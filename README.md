@@ -11,9 +11,9 @@ npm install
 2.Change the app server url to a local server in `constants.js` if required
 
 ## Package the app
-1.Bundle the JS code to a local file
+1.Run script to bundle the JS code to a local file
 ``` bash
-react-native bundle --entry-file index.ios.js --bundle-output main.jsbundle
+./bundle_js.sh
 ```
 2.Comment this line in `AppDelegate.m` -
 ```

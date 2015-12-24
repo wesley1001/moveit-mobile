@@ -32,6 +32,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#F6F6F6',
     borderBottomWidth: 1,
+    borderLeftWidth: 5
   },
   avatarContainer: {
     flex: 1,
@@ -82,25 +83,28 @@ class LeaderboardEntry extends Component {
   }
 
   render() {
-    var user = this.props.user;
-    var contribution = this.props.contribution;
-    var interaction = this.props.interaction;
-    var swipeoutBtns = [];
-    if(this.state.isInteractable) {
-      swipeoutBtns.push({
-        text: SWIPE_ACTIONS[interaction],
-        backgroundColor: INTERACTION_COLORS[interaction]
-      });
-    }
+    var {
+      user,
+      contribution,
+      interaction
+    } = this.props;
+    var swipeoutBtns = [{
+      text: SWIPE_ACTIONS[interaction],
+      backgroundColor: INTERACTION_COLORS[interaction]
+    }];
     return(
       <Swipeout
         close={this.state.closeSwipe}
-        left={swipeoutBtns}
+        left={this.state.isInteractable && swipeoutBtns}
         backgroundColor="white"
         onOpen={this.onSwipeRight.bind(this)}
         >
         <TouchableOpacity
-          style={styles.rowContainer}
+          style={[
+            styles.rowContainer,
+            this.state.isInteractable && {
+              borderLeftColor: INTERACTION_COLORS[interaction]
+            }]}
           onPress={this.onPress.bind(this)}
           >
           <View style={styles.avatarContainer}>

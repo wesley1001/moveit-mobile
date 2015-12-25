@@ -1,13 +1,14 @@
 import React, { Component, DrawerLayoutAndroid, ToolbarAndroid, StyleSheet, Navigator } from 'react-native';
 import Orientation from 'react-native-orientation-controller';
 
-import CodePush from 'react-native-code-push';
+import codePush from 'react-native-code-push';
 import EntryView from './../components/EntryView.js';
 import LeaderboardView from './../components/LeaderboardView.js';
 import NavigationView from './../components/NavigationView.js';
 import LoginView from './../components/LoginView.js';
 import TimelineView from './../components/Timeline/TimelineView.js';
 import ProfileView from './../components/Profile/ProfileView.js';
+import SettingsView from './../components/Settings/SettingsView.js';
 import SplashScreen from '@remobile/react-native-splashscreen';
 
 
@@ -17,15 +18,19 @@ const ROUTES = {
   'Leaderboard': LeaderboardView,
   'Login': LoginView,
   'Timeline': TimelineView,
-  'Profile': ProfileView
+  'Profile': ProfileView,
+  'Settings': SettingsView
 };
 
 export default class MoveIt extends Component {
   componentDidMount() {
     Orientation.rotate(0);
     Orientation.addApplicationListener(this._setOrientation);
-    CodePush.sync();
     SplashScreen.hide();
+  }
+
+  componentWillMount() {
+    codePush.sync({updateDialog: true});
   }
 
   _setOrientation(orientation, device, size) {

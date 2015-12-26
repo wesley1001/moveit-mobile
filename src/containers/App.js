@@ -30,7 +30,10 @@ export default class MoveIt extends Component {
   }
 
   componentWillMount() {
-    codePush.sync({updateDialog: true});
+    codePush.sync( {
+      updateDialog: {appendReleaseDescription: true, title: 'An update is available!', optionalIgnoreButtonLabel: 'Not Now', descriptionPrefix: '\nChangelog: \n'},
+      installMode: codePush.InstallMode.IMMEDIATE
+    });
   }
 
   _setOrientation(orientation, device, size) {

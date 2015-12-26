@@ -5,18 +5,21 @@ import codePush from 'react-native-code-push';
 export default class SettingsView extends Component {
 
   handlePress() {
-    codePush.sync({ updateDialog: true, installMode: codePush.InstallMode.IMMEDIATE }, (status) => {
-      let toast;
-      switch (status) {
-        case codePush.SyncStatus.UP_TO_DATE:
-          toast = 'App is already up to date';
-          ToastAndroid.show(toast, ToastAndroid.SHORT, 500);
-        break;
-        case codePush.SyncStatus.UNKNOWN_ERROR:
-          toast = 'Could not connect to server';
-          ToastAndroid.show(toast, ToastAndroid.SHORT, 500);
-        break;
-      }
+    codePush.sync({
+      updateDialog: {appendReleaseDescription: true, title: 'An update is available!', optionalIgnoreButtonLabel: 'Not Now', descriptionPrefix: '\nChangelog: \n'},
+      installMode: codePush.InstallMode.IMMEDIATE},
+      (status) => {
+        let toast;
+        switch (status) {
+          case codePush.SyncStatus.UP_TO_DATE:
+            toast = 'App is already up to date';
+            ToastAndroid.show(toast, ToastAndroid.SHORT, 500);
+          break;
+          case codePush.SyncStatus.UNKNOWN_ERROR:
+            toast = 'Could not connect to server';
+            ToastAndroid.show(toast, ToastAndroid.SHORT, 500);
+          break;
+        }
     });
   }
 

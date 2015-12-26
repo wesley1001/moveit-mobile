@@ -3,7 +3,7 @@ import User from '../../models/User';
 
 import moment from 'moment';
 import ActionButton from 'react-native-action-button';
-import { MKButton } from 'react-native-material-kit';
+import ProfileEntryView from './ProfileEntryView.js';
 import React, {  ToastAndroid, AsyncStorage, Component, ScrollView, ListView, View, ProgressBarAndroid, StyleSheet, Image, Text } from 'react-native';
 
 export default class ProfileView extends Component {
@@ -65,13 +65,7 @@ export default class ProfileView extends Component {
   }
 
   showRow(entry, sectionID, rowID) {
-    return (
-        <View style={styles.row}>
-          <Text style={styles.entryColumn}>{moment(entry.date).format('MMMM D')}</Text>
-          <Text style={styles.entryColumn}>{entry.duration} mins</Text>
-          <Text style={styles.entryColumn}>₹{entry.amount_contributed}</Text>
-        </View>
-    )
+    return ( <ProfileEntryView entry={entry}/> );
   }
 
   entryList() {

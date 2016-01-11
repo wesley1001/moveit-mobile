@@ -76,10 +76,8 @@ class AddEntryPage extends Component {
           rightButtonLink={{name: 'Leaderboard', component: LeaderboardPage}}
           />
         <View style={formStyles.container}>
-          <View style={formStyles.flowRight}>
-            <View style={formStyles.labelWrapper}>
-              <Text>Date: </Text>
-            </View>
+          <View style={formStyles.fieldContainer}>
+            <Text style={formStyles.label}>Date</Text>
             <View style={formStyles.textInputWrapper}>
               <Text
                 style={formStyles.textInput}
@@ -90,10 +88,8 @@ class AddEntryPage extends Component {
             </View>
           </View>
 
-          <View style={formStyles.flowRight}>
-            <View style={formStyles.labelWrapper}>
-              <Text>Duration: </Text>
-            </View>
+          <View style={formStyles.fieldContainer}>
+            <Text style={formStyles.label}>Duration</Text>
             <View style={formStyles.textInputWrapper}>
               <TextInput
                 ref="durationTextInput"
@@ -103,7 +99,7 @@ class AddEntryPage extends Component {
                 autoFocus={true}
                 value={this.state.duration}
                 onChange={this.onDurationChange.bind(this)}
-                onFocus={this.onDurationFocus.bind(this)}
+                onFocus={this.hideDatePicker.bind(this)}
                 />
             </View>
           </View>
@@ -116,6 +112,15 @@ class AddEntryPage extends Component {
             <Text style={formStyles.buttonText}>Add</Text>
           </TouchableHighlight>
 
+          <View style={[formStyles.fieldContainer, {borderBottomWidth: 0}]}>
+            <TouchableHighlight
+              style={formStyles.button}
+              underlayColor='#99d9f4'
+              onPress={this.onAddPress.bind(this)}
+              >
+              <Text style={formStyles.buttonText}>Add</Text>
+            </TouchableHighlight>
+          </View>
           {this.state.isLoading ? <Spinner /> : <View />}
 
           <Text style={formStyles.description}>{this.state.message}</Text>
@@ -135,7 +140,7 @@ class AddEntryPage extends Component {
     this.setState({date: date});
   }
 
-  onDurationFocus() {
+  hideDatePicker() {
     this.setState({showDatePicker: false});
   }
 

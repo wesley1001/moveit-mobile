@@ -30,10 +30,8 @@ class LoginPage extends Component {
       <View>
         <NavBar title="Login" />
         <View style={formStyles.container}>
-          <View style={formStyles.flowRight}>
-            <View style={formStyles.labelWrapper}>
-              <Text style={formStyles.label}>Name: </Text>
-            </View>
+          <View style={formStyles.fieldContainer}>
+            <Text style={formStyles.label}>Name: </Text>
             <View style={formStyles.textInputWrapper}>
               <TextInput
                 style={formStyles.textInput}
@@ -46,10 +44,8 @@ class LoginPage extends Component {
             </View>
           </View>
 
-          <View style={formStyles.flowRight}>
-            <View style={formStyles.labelWrapper}>
-              <Text style={formStyles.label}>Email: </Text>
-            </View>
+          <View style={formStyles.fieldContainer}>
+            <Text style={formStyles.label}>Email: </Text>
             <View style={formStyles.textInputWrapper}>
               <TextInput
                 style={formStyles.textInput}
@@ -63,14 +59,15 @@ class LoginPage extends Component {
             </View>
           </View>
 
-          <TouchableHighlight
-            style={formStyles.button}
-            underlayColor='#99d9f4'
-            onPress={this.onLoginPress.bind(this)}
-            >
-            <Text style={formStyles.buttonText}>Login</Text>
-          </TouchableHighlight>
-
+          <View style={[formStyles.fieldContainer, {borderBottomWidth: 0}]}>
+            <TouchableHighlight
+              style={formStyles.button}
+              underlayColor='#99d9f4'
+              onPress={this.onLoginPress.bind(this)}
+              >
+              <Text style={formStyles.buttonText}>Login</Text>
+            </TouchableHighlight>
+          </View>
           {this.state.isLoading ? <Spinner /> : <View />}
 
           <Text style={formStyles.description}>{this.state.message}</Text>

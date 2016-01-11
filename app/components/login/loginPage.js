@@ -121,7 +121,8 @@ class LoginPage extends Component {
     .catch(error => this.setState({
       isLoading: false,
       message: error.message
-    }));
+    }))
+    .done();
   }
 
   _handleResponse(response) {

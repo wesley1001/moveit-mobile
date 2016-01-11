@@ -39,6 +39,7 @@ class AddEntryPage extends Component {
     this.state = {
       date: new Date(),
       duration: '',
+      description: '',
       isLoading: false,
       message: '',
       showDatePicker: false
@@ -104,13 +105,20 @@ class AddEntryPage extends Component {
             </View>
           </View>
 
-          <TouchableHighlight
-            style={formStyles.button}
-            underlayColor='#99d9f4'
-            onPress={this.onAddPress.bind(this)}
-            >
-            <Text style={formStyles.buttonText}>Add</Text>
-          </TouchableHighlight>
+          <View style={formStyles.fieldContainer}>
+            <View style={formStyles.textInputWrapper}>
+              <TextInput
+                ref="durationTextInput"
+                style={formStyles.multilineTextInput}
+                placeholder="Brief description of workout"
+                multiline={true}
+                autoCorrect={true}
+                value={this.state.description}
+                onChange={this.onDescriptionChange.bind(this)}
+                onFocus={this.hideDatePicker.bind(this)}
+                />
+            </View>
+          </View>
 
           <View style={[formStyles.fieldContainer, {borderBottomWidth: 0}]}>
             <TouchableHighlight
@@ -150,12 +158,19 @@ class AddEntryPage extends Component {
     });
   }
 
+  onDescriptionChange(event) {
+    this.setState({
+      description: event.nativeEvent.text
+    });
+  }
+
   onAddPress() {
     var data = {
       email: this.state.currentUser.email,
       entry: {
         date: this.state.date,
-        duration: this.state.duration
+        duration: this.state.duration,
+        description: this.state.description
       }
     };
     var url = Constants.APP_SERVER_HOST + '/entries';
@@ -182,7 +197,8 @@ class AddEntryPage extends Component {
     .catch(error => this.setState({
       isLoading: false,
       message: error.message
-    }));
+    }))
+    .done();
   }
 
   _handleResponse(response) {

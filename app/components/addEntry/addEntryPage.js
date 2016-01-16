@@ -3,7 +3,7 @@
 var React = require('react-native');
 var moment = require('moment');
 var Constants = require('../../../constants');
-var LeaderboardPage = require('../leaderboard/leaderboardPage');
+var MainPage = require('../mainPage');
 var LoginPage = require('../login/loginPage');
 var NavBar = require('../navBar');
 var Spinner = require('../spinner');
@@ -74,7 +74,7 @@ class AddEntryPage extends Component {
           navigator={this.props.navigator}
           title="Add Entry"
           rightButtonText="Cancel"
-          rightButtonLink={{name: 'Leaderboard', component: LeaderboardPage}}
+          rightButtonLink={{name: 'Main Page', component: MainPage}}
           />
         <View style={formStyles.container}>
           <View style={formStyles.fieldContainer}>
@@ -208,8 +208,8 @@ class AddEntryPage extends Component {
     });
     console.log('Response: ' + JSON.stringify(response));
     this.props.navigator.push({
-        name: 'Leaderboard',
-        component: LeaderboardPage
+        name: 'Main Page',
+        component: MainPage
     });
   }
 

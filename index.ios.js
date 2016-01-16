@@ -4,14 +4,14 @@ var React = require('react-native');
 var Constants = require('./constants');
 var LoginPage = require('./app/components/login/loginPage');
 var AddEntryPage = require('./app/components/addEntry/addEntryPage');
-var LeaderboardPage = require('./app/components/leaderboard/leaderboardPage');
 var MonthlySummaryPage = require('./app/components/monthlySummary/monthlySummaryPage');
+var MainPage = require('./app/components/mainPage');
 
 const ROUTES = {
   'Login': LoginPage,
   'Add Entry': AddEntryPage,
-  'Leaderboard': LeaderboardPage,
-  'Monthly Summary': MonthlySummaryPage
+  'Monthly Summary': MonthlySummaryPage,
+  'Main Page': MainPage
 }
 
 var {

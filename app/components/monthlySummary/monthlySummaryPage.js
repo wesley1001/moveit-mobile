@@ -4,7 +4,6 @@ var React = require('react-native');
 var Constants = require('../../../constants');
 var NavBar = require('../navBar');
 var Spinner = require('../spinner');
-var LeaderboardPage = require('../leaderboard/leaderboardPage');
 var TopSection = require('./topSection');
 var ContributionSection = require('./contributionSection');
 var MonthlySummaryList = require('./monthlySummaryList');

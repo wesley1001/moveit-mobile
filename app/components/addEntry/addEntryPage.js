@@ -2,7 +2,7 @@
 
 var React = require('react-native');
 var moment = require('moment');
-var Constants = require('../../../constants');
+var Constants = require('../../constants');
 var MainPage = require('../mainPage');
 var LoginPage = require('../login/loginPage');
 var NavBar = require('../navBar');

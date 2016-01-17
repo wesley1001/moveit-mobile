@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var Constants = require('../../../constants');
+var Constants = require('../../constants');
 var LeaderboardList = require('./leaderboardList');
 var SummaryBar = require('./summaryBar');
 var NavBar = require('../navBar');

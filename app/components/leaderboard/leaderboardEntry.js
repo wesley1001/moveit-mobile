@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var Constants = require('../../../constants');
+var Constants = require('../../constants');
 var MonthlySummaryPage = require('../monthlySummary/monthlySummaryPage');
 var Swipeout = require('react-native-swipeout');
 

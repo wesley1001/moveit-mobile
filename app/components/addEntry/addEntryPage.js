@@ -4,7 +4,7 @@ var React = require('react-native');
 var moment = require('moment');
 var Constants = require('../../constants');
 var MainPage = require('../mainPage');
-var LoginPage = require('../login/loginPage');
+var UserAuthenticatedPage = require('../userAuthenticatedPage');
 var NavBar = require('../navBar');
 var Spinner = require('../spinner');
 var formStyles = require('../../styles/formStyles');
@@ -16,8 +16,6 @@ var {
   View,
   TouchableHighlight,
   DatePickerIOS,
-  AsyncStorage,
-  Component,
   Dimensions
 } = React;
 
@@ -33,7 +31,7 @@ var styles = StyleSheet.create({
   }
 });
 
-class AddEntryPage extends Component {
+class AddEntryPage extends UserAuthenticatedPage {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,16 +42,6 @@ class AddEntryPage extends Component {
       message: '',
       showDatePicker: false
     };
-  }
-
-  componentDidMount() {
-    AsyncStorage.getItem(Constants.USER_EMAIL_STORAGE_KEY).then((value) => {
-      if(value != null) {
-        this.setState({currentUser: {email: value}});
-      } else {
-        this.props.navigator.replace({name: 'Login', component: LoginPage});
-      }
-    }).done(); //FixIt - Add a catch method
   }
 
   render() {

@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var Constants = require('../../constants');
+var UserAuthenticatedPage = require('../userAuthenticatedPage');
 var LeaderboardList = require('./leaderboardList');
 var SummaryBar = require('./summaryBar');
 var NavBar = require('../navBar');
@@ -12,11 +13,10 @@ var moment = require('moment');
 var {
   View,
   ListView,
-  Component,
-  AsyncStorage
+  Component
 } = React;
 
-class LeaderboardPage extends Component {
+class LeaderboardPage extends UserAuthenticatedPage {
   constructor(props) {
     var date = new Date();
     super(props);
@@ -30,15 +30,8 @@ class LeaderboardPage extends Component {
     };
   }
 
-  componentDidMount() {
-    AsyncStorage.getItem(Constants.USER_EMAIL_STORAGE_KEY).then((value) => {
-      this.setState({
-        currentUser: {
-          email: value
-        }
-      });
-      this.fetchData();
-    }).done(); //FixIt - Add a catch method
+  _afterCurrentUserAvailable() {
+    this.fetchData();
   }
 
   render() {

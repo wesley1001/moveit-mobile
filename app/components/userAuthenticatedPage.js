@@ -5,7 +5,7 @@ var LoginPage = require('./login/loginPage');
 var SessionManager = require('../sessionManager');
 
 class UserAuthenticatedPage extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     SessionManager.getCurrentUser()
     .then(currentUser => {
       this.setState({currentUser: currentUser});

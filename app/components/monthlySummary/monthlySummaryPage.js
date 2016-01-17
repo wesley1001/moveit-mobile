@@ -18,10 +18,6 @@ var {
   Component
 } = React;
 
-var styles = StyleSheet.create({
-
-});
-
 class MonthlySummaryPage extends Component {
   constructor(props) {
     var date = new Date();
@@ -35,7 +31,7 @@ class MonthlySummaryPage extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.fetchData();
   }
 
@@ -46,7 +42,7 @@ class MonthlySummaryPage extends Component {
         <NavBar
           navigator={this.props.navigator}
           title="Monthly Summary"
-          showBackButton={true}
+          showBackButton={this.props.showBackButton}
           />
         <TopSection
           name={user.name}

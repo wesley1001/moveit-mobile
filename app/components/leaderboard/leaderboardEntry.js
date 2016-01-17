@@ -131,7 +131,8 @@ class LeaderboardEntry extends Component {
       name: 'Monthly Summary',
       component: MonthlySummaryPage,
       passProps: {
-        user: this.props.user
+        user: this.props.user,
+        showBackButton: true
       }
     });
   }

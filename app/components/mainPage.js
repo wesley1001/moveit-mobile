@@ -1,17 +1,18 @@
 'use strict';
 
 var React = require('react-native');
+var UserAuthenticatedPage = require('./userAuthenticatedPage');
 var LeaderboardPage = require('./leaderboard/leaderboardPage');
+var MonthlySummaryPage = require('./monthlySummary/monthlySummaryPage');
 
 var {
-  Component,
   View,
   TabBarIOS,
   Text,
   Image
 } = React;
 
-class MainPage extends Component {
+class MainPage extends UserAuthenticatedPage {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,6 +35,17 @@ class MainPage extends Component {
           >
           <LeaderboardPage
             navigator={this.props.navigator}
+            />
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
+          title="Me"
+          icon={ require('image!me') }
+          selected={this.state.selectedTab === 'me'}
+          onPress={() => this.setTab('me')}
+          >
+          <MonthlySummaryPage
+            user={this.state.currentUser}
+            showBackButton={false}
             />
         </TabBarIOS.Item>
       </TabBarIOS>

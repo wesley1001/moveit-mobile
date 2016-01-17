@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var Constants = require('../../constants');
+var SessionManager = require('../../sessionManager');
 var AddEntryPage = require('../addEntry/addEntryPage');
 var NavBar = require('../navBar');
 var Spinner = require('../spinner');
@@ -12,7 +12,6 @@ var {
   TextInput,
   View,
   TouchableHighlight,
-  AsyncStorage,
   Component
 } = React;
 
@@ -88,55 +87,18 @@ class LoginPage extends Component {
       email: event.nativeEvent.text
     });
   }
-  onLoginPress() {
-    var data = {
-      user: {
-        name: this.state.name,
-        email: this.state.email
-      }
-    };
-    var url = Constants.APP_SERVER_HOST + '/users/register';
-    this._postToUrl(url, data);
-  }
 
-  _postToUrl(url, data) {
+  onLoginPress() {
     this.setState({isLoading: true});
-    fetch(url, {
-      method: 'post',
-      body: JSON.stringify(data),
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      })
+    SessionManager.login({
+      name: this.state.name,
+      email: this.state.email
     })
-    .then(function(response) {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error(JSON.parse(response._bodyText).error); //FixIt - Shoudn't be using the quasi private method
-      }
-    })
-    .then(response => {
-      this._handleResponse(response);
-    })
+    .then(() => this._goToAddEntryPage())
     .catch(error => this.setState({
       isLoading: false,
       message: error.message
-    }))
-    .done();
-  }
-
-  _handleResponse(response) {
-    this.setState({
-      isLoading: false,
-      message: ''
-    });
-    console.log('Response: ' + JSON.stringify(response));
-    this._setCurrentUser(response.user.email);
-    this._goToAddEntryPage();
-  }
-
-  _setCurrentUser(email) {
-    AsyncStorage.setItem(Constants.USER_EMAIL_STORAGE_KEY, email);
+    }));
   }
 
   _goToAddEntryPage() {

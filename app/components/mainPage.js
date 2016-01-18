@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var UserAuthenticatedPage = require('./userAuthenticatedPage');
+var TimelinePage = require('./timeline/timelinePage');
 var LeaderboardPage = require('./leaderboard/leaderboardPage');
 var MonthlySummaryPage = require('./monthlySummary/monthlySummaryPage');
 
@@ -20,18 +21,22 @@ class MainPage extends UserAuthenticatedPage {
     };
   }
 
-  setTab(tabId) {
-    this.setState({selectedTab: tabId});
-  }
-
   render() {
     return (
       <TabBarIOS>
         <TabBarIOS.Item
+          title="Timeline"
+          icon={ require('image!timeline') }
+          selected={this.state.selectedTab === 'timeline'}
+          onPress={() => this.setState({selectedTab: 'timeline'})}
+          >
+          <TimelinePage />
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
           title="Leaderboard"
           icon={ require('image!leaderboard') }
           selected={this.state.selectedTab === 'leaderboard'}
-          onPress={() => this.setTab('leaderboard')}
+          onPress={() => this.setState({selectedTab: 'leaderboard'})}
           >
           <LeaderboardPage
             navigator={this.props.navigator}
@@ -41,7 +46,7 @@ class MainPage extends UserAuthenticatedPage {
           title="Me"
           icon={ require('image!me') }
           selected={this.state.selectedTab === 'me'}
-          onPress={() => this.setTab('me')}
+          onPress={() => this.setState({selectedTab: 'me'})}
           >
           <MonthlySummaryPage
             user={this.state.currentUser}

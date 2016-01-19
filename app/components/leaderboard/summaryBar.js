@@ -19,7 +19,8 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   logoContainer: {
-    flex: 1
+    flex: 1,
+    paddingLeft: 4
   },
   logo: {
     height: 40,

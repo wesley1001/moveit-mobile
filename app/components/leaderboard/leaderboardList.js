@@ -16,6 +16,7 @@ class LeaderboardList extends Component {
         dataSource={this.props.listItems}
         renderRow={this.renderItem.bind(this)}
         automaticallyAdjustContentInsets={false}
+        style={{marginBottom: 50}}
       />
     );
   }

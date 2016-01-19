@@ -31,26 +31,11 @@ var styles = StyleSheet.create({
   },
 
   rightButton: {
-    right: 8
+    right: 20
   },
 
   leftButton: {
-    left: 8,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  backIcon: {
-    width: 9,
-    height: 15,
-    marginRight: 3
-  },
-
-  linkText: {
-    color: '#007AFF',
-    fontSize: 18,
-    fontWeight: '400'
+    left: 20
   }
 });
 
@@ -64,9 +49,7 @@ class NavBar extends Component {
             style={[styles.button, styles.rightButton]}
             onPress={this.onRightButtonPress.bind(this)}
             >
-            <Text style={styles.linkText}>
-              {this.props.rightButtonText}
-            </Text>
+            <Image source={this.props.rightButton} />
           </TouchableOpacity>
       </View>
     );
@@ -78,11 +61,7 @@ class NavBar extends Component {
         style={[styles.button, styles.leftButton]}
         onPress={this.onLeftButtonPress.bind(this)}
         >
-        <Image
-          style={styles.backIcon}
-          source={require('../img/back_icon.png')}
-          />
-        <Text style={styles.linkText}>Back</Text>
+        <Image source={require('image!back')} />
       </TouchableOpacity>
     );
   }

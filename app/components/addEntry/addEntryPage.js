@@ -96,7 +96,7 @@ class AddEntryPage extends UserAuthenticatedPage {
           <View style={formStyles.fieldContainer}>
             <View style={formStyles.textInputWrapper}>
               <TextInput
-                ref="durationTextInput"
+                ref="descriptionTextInput"
                 style={formStyles.multilineTextInput}
                 placeholder="Brief description of workout"
                 multiline={true}
@@ -129,6 +129,7 @@ class AddEntryPage extends UserAuthenticatedPage {
 
   onDateFocus() {
     this.refs.durationTextInput.blur();
+    this.refs.descriptionTextInput.blur();
     this.setState({showDatePicker: true});
   }
 

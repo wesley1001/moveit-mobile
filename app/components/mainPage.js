@@ -23,7 +23,7 @@ class MainPage extends UserAuthenticatedPage {
 
   render() {
     return (
-      <TabBarIOS>
+      <TabBarIOS tintColor="black">
         <TabBarIOS.Item
           title="Timeline"
           icon={ require('image!timeline') }

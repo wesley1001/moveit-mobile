@@ -7,29 +7,15 @@ var MainPage = require('../mainPage');
 var UserAuthenticatedPage = require('../userAuthenticatedPage');
 var NavBar = require('../navBar');
 var Spinner = require('../spinner');
+var DatePicker = require('./datePicker');
 var formStyles = require('../../styles/formStyles');
 
 var {
-  StyleSheet,
   Text,
   TextInput,
   View,
-  TouchableHighlight,
-  DatePickerIOS,
-  Dimensions
+  TouchableHighlight
 } = React;
-
-const DATE_PICKER_HEIGHT = 504;
-
-var styles = StyleSheet.create({
-  datePickerContainer: {
-    backgroundColor: '#E2E4E6',
-    bottom: DATE_PICKER_HEIGHT - Dimensions.get('window').height,
-    borderTopWidth: 1,
-    borderColor: '#EEE',
-    alignItems: 'center',
-  }
-});
 
 class AddEntryPage extends UserAuthenticatedPage {
   constructor(props) {
@@ -47,17 +33,13 @@ class AddEntryPage extends UserAuthenticatedPage {
   render() {
     console.log('AddEntryPage.render');
     var datePicker =
-      <View
-        style={styles.datePickerContainer}>
-        <DatePickerIOS
-          date={this.state.date}
-          maximumDate={new Date()}
-          onDateChange={this.onDateChange.bind(this)}
-          mode="date"
-        />
-      </View>;
+      <DatePicker
+        date={this.state.date}
+        onDateChange={this.onDateChange.bind(this)}
+        onDone={this.focusDurationField.bind(this)}
+        />;
     return (
-      <View>
+      <View style={{flex: 1}}>
         <NavBar
           navigator={this.props.navigator}
           title="Add Entry"
@@ -112,7 +94,7 @@ class AddEntryPage extends UserAuthenticatedPage {
             <TouchableHighlight
               style={formStyles.button}
               underlayColor='#99d9f4'
-              onPress={this.onAddPress.bind(this)}
+              onPress={this.submitForm.bind(this)}
               >
               <Text style={formStyles.buttonText}>Add</Text>
             </TouchableHighlight>
@@ -131,6 +113,10 @@ class AddEntryPage extends UserAuthenticatedPage {
     this.refs.durationTextInput.blur();
     this.refs.descriptionTextInput.blur();
     this.setState({showDatePicker: true});
+  }
+
+  focusDurationField() {
+    this.refs.durationTextInput.focus();
   }
 
   onDateChange(date) {
@@ -153,7 +139,7 @@ class AddEntryPage extends UserAuthenticatedPage {
     });
   }
 
-  onAddPress() {
+  submitForm() {
     var data = {
       email: this.state.currentUser.email,
       entry: {

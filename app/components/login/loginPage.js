@@ -39,6 +39,9 @@ class LoginPage extends Component {
                 autoCorrect={false}
                 value={this.state.name}
                 onChange={this.onNameChange.bind(this)}
+                returnKeyType="next"
+                enablesReturnKeyAutomatically={true}
+                onSubmitEditing={this.focusEmailField.bind(this)}
                 />
             </View>
           </View>
@@ -47,6 +50,7 @@ class LoginPage extends Component {
             <Text style={formStyles.label}>Email: </Text>
             <View style={formStyles.textInputWrapper}>
               <TextInput
+                ref="emailTextInput"
                 style={formStyles.textInput}
                 placeholder="username@multunus.com"
                 autoCapitalize="none"
@@ -54,6 +58,9 @@ class LoginPage extends Component {
                 keyboardType="email-address"
                 value={this.state.email}
                 onChange={this.onEmailChange.bind(this)}
+                returnKeyType="go"
+                enablesReturnKeyAutomatically={true}
+                onSubmitEditing={this.submitForm.bind(this)}
                 />
             </View>
           </View>
@@ -62,7 +69,7 @@ class LoginPage extends Component {
             <TouchableHighlight
               style={formStyles.button}
               underlayColor='#99d9f4'
-              onPress={this.onLoginPress.bind(this)}
+              onPress={this.submitForm.bind(this)}
               >
               <Text style={formStyles.buttonText}>Login</Text>
             </TouchableHighlight>
@@ -74,6 +81,10 @@ class LoginPage extends Component {
 
       </View>
     );
+  }
+
+  focusEmailField() {
+    this.refs.emailTextInput.focus();
   }
 
   onNameChange(event) {
@@ -88,7 +99,7 @@ class LoginPage extends Component {
     });
   }
 
-  onLoginPress() {
+  submitForm() {
     this.setState({isLoading: true});
     SessionManager.login({
       name: this.state.name,

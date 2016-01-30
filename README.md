@@ -10,10 +10,10 @@ npm install
 ```
 2.Change the app server url to a local server in `constants.js` if required
 
-## Package the app
+## Create and use a local JS bundle
 1.Run script to bundle the JS code to a local file
 ``` bash
-./bundle_js.sh
+.install/bundle_js.sh
 ```
 2.Comment this line in `AppDelegate.m` -
 ```
@@ -23,4 +23,25 @@ jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?p
 ```
 jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 ```
-4.Now run the app from XCode on a connected device / simulator
+
+## Use CodePush
+1.Set the environment variable CODE_PUSH_PROD_KEY (and add it to your .bashrc)
+``` bash
+export CODE_PUSH_PROD_KEY=your_key_here
+```
+2.Comment these lines in `AppDelegate.m` -
+```
+jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
+```
+```
+jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+```
+3.Uncomment this line in `AppDelegate.m` -
+```
+jsCodeLocation = [CodePush bundleURL];
+```
+4.Update `Info.plist` with the CodePush key
+``` bash
+./set_code_push_key.sh
+```
+Note: Remember to not add the above changes to `Info.plist` while checking in the code.

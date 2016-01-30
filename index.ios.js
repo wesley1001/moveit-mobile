@@ -1,11 +1,12 @@
 'use strict';
 
-var React = require('react-native');
-var Constants = require('./app/constants');
-var LoginPage = require('./app/components/login/loginPage');
-var AddEntryPage = require('./app/components/addEntry/addEntryPage');
-var MonthlySummaryPage = require('./app/components/monthlySummary/monthlySummaryPage');
-var MainPage = require('./app/components/mainPage');
+import React from 'react-native';
+import Constants from './app/constants';
+import LoginPage from './app/components/login/loginPage';
+import AddEntryPage from './app/components/addEntry/addEntryPage';
+import MonthlySummaryPage from './app/components/monthlySummary/monthlySummaryPage';
+import MainPage from './app/components/mainPage';
+import CodePush from 'react-native-code-push';
 
 const ROUTES = {
   'Login': LoginPage,
@@ -28,6 +29,10 @@ var styles = StyleSheet.create({
 });
 
 class MoveIt extends Component {
+  componentDidMount() {
+    CodePush.sync();
+  }
+
   renderScene(route, navigator) {
     var Component = ROUTES[route.name];
     return <Component navigator={navigator} {...route.passProps} />;

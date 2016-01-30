@@ -8,6 +8,7 @@
   "dependencies": {
     "moment": "^2.10.6",
     "react-native": "^0.18.1",
+    "react-native-code-push": "^1.6.0-beta",
     "react-native-swipeout": "^2.0.9"
   }
 }

@@ -26,7 +26,7 @@ class MainPage extends UserAuthenticatedPage {
       <TabBarIOS tintColor="black">
         <TabBarIOS.Item
           title="Timeline"
-          icon={ require('image!timeline') }
+          icon={ require('../img/timeline.png') }
           selected={this.state.selectedTab === 'timeline'}
           onPress={() => this.setState({selectedTab: 'timeline'})}
           >
@@ -34,7 +34,7 @@ class MainPage extends UserAuthenticatedPage {
         </TabBarIOS.Item>
         <TabBarIOS.Item
           title="Leaderboard"
-          icon={ require('image!leaderboard') }
+          icon={ require('../img/leaderboard.png') }
           selected={this.state.selectedTab === 'leaderboard'}
           onPress={() => this.setState({selectedTab: 'leaderboard'})}
           >
@@ -44,7 +44,7 @@ class MainPage extends UserAuthenticatedPage {
         </TabBarIOS.Item>
         <TabBarIOS.Item
           title="Me"
-          icon={ require('image!me') }
+          icon={ require('../img/me.png') }
           selected={this.state.selectedTab === 'me'}
           onPress={() => this.setState({selectedTab: 'me'})}
           >

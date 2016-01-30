@@ -43,7 +43,7 @@ class AddEntryPage extends UserAuthenticatedPage {
         <NavBar
           navigator={this.props.navigator}
           title="Add Entry"
-          rightButton={require('image!cancel')}
+          rightButton={require('../../img/cancel.png')}
           rightButtonLink={{name: 'Main Page', component: MainPage}}
           />
         <View style={formStyles.container}>

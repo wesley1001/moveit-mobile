@@ -40,7 +40,7 @@ class LeaderboardPage extends UserAuthenticatedPage {
         <NavBar
           navigator={this.props.navigator}
           title="Leaderboard"
-          rightButton={require('image!add')}
+          rightButton={require('../../img/add.png')}
           rightButtonLink={{name: 'Add Entry', component: AddEntryPage}}
           />
         <SummaryBar

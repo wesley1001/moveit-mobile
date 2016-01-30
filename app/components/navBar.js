@@ -61,7 +61,7 @@ class NavBar extends Component {
         style={[styles.button, styles.leftButton]}
         onPress={this.onLeftButtonPress.bind(this)}
         >
-        <Image source={require('image!back')} />
+        <Image source={require('../img/back.png')} />
       </TouchableOpacity>
     );
   }

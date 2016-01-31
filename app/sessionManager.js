@@ -5,6 +5,8 @@ var Constants = require('./constants');
 
 var { AsyncStorage } = React;
 
+const CURRENT_USER_STORAGE_KEY = 'currentUser';
+
 var SessionManager = {
   login: function(user) {
     return new Promise(function(resolve, reject) {
@@ -31,7 +33,7 @@ var SessionManager = {
         }
         console.log(user);
         AsyncStorage
-        .setItem(Constants.CURRENT_USER_STORAGE_KEY, JSON.stringify(user))
+        .setItem(CURRENT_USER_STORAGE_KEY, JSON.stringify(user))
         .then((value) => resolve(value));
       })
       .catch(error => reject(error));
@@ -40,7 +42,7 @@ var SessionManager = {
 
   getCurrentUser: function() {
     return new Promise(function(resolve, reject) {
-      AsyncStorage.getItem(Constants.CURRENT_USER_STORAGE_KEY)
+      AsyncStorage.getItem(CURRENT_USER_STORAGE_KEY)
       .then((value) => {
         if(value === null) reject(Error('No user logged in!'));
         resolve(JSON.parse(value));

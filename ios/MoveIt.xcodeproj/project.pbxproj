@@ -124,7 +124,7 @@
 		00E356F21AD99517003FC87E /* MoveItTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoveItTests.m; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* MoveIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoveIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* MoveIt Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MoveIt Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MoveIt/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MoveIt/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MoveIt/Images.xcassets; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* MoveIt.app */,
+				13B07F961A680F5B00A75B9A /* MoveIt Dev.app */,
 				00E356EE1AD99517003FC87E /* MoveItTests.xctest */,
 			);
 			name = Products;
@@ -361,7 +361,7 @@
 			);
 			name = MoveIt;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* MoveIt.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* MoveIt Dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -644,7 +644,7 @@
 				INFOPLIST_FILE = MoveIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = MoveIt;
+				PRODUCT_NAME = "MoveIt Dev";
 			};
 			name = Debug;
 		};
@@ -710,6 +710,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "MoveIt Dev";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -749,6 +750,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = MoveIt;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

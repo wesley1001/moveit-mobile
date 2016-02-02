@@ -1,18 +1,16 @@
 'use strict';
 
-var React = require('react-native');
-var Constants = require('../../constants');
-var NavBar = require('../navBar');
-var Spinner = require('../spinner');
-var UserAuthenticatedPage = require('../userAuthenticatedPage');
-var TimelineList = require('./timelineList');
-var moment = require('moment');
-
-var {
+import React, {
   View,
   ListView,
   Component
-} = React;
+} from 'react-native';
+import NavBar from '../navBar';
+import Spinner from '../spinner';
+import UserAuthenticatedPage from '../userAuthenticatedPage';
+import TimelineList from './timelineList';
+import moment from 'moment';
+import URLBuilder from '../../urlBuilder';
 
 class TimelinePage extends UserAuthenticatedPage {
   constructor(props) {
@@ -49,7 +47,9 @@ class TimelinePage extends UserAuthenticatedPage {
     this.setState({
       isLoading: true
     });
-    var url = this._timelineUrl();
+    let url = URLBuilder.timelineURL({
+      email: this.state.currentUser.email
+    });
     fetch(url)
     .then(response => response.json())
     .then(response => this._handleResponse(response))
@@ -66,17 +66,6 @@ class TimelinePage extends UserAuthenticatedPage {
       listItems: this.state.listItems.cloneWithRows(listItems),
       isLoading: false
     });
-  }
-
-  _timelineUrl() {
-    var data = {
-      email: this.state.currentUser.email
-    };
-    var querystring = Object.keys(data)
-    .map(key => key + '=' + encodeURIComponent(data[key]))
-    .join('&');
-
-    return Constants.APP_SERVER_HOST + '/timeline_feed.json?' + querystring;
   }
 }
 

@@ -1,20 +1,14 @@
 'use strict';
 
-var React = require('react-native');
-var Constants = require('../../constants');
-var UserAuthenticatedPage = require('../userAuthenticatedPage');
-var LeaderboardList = require('./leaderboardList');
-var SummaryBar = require('./summaryBar');
-var NavBar = require('../navBar');
-var Spinner = require('../spinner');
-var AddEntryPage = require('../addEntry/addEntryPage');
-var moment = require('moment');
-
-var {
-  View,
-  ListView,
-  Component
-} = React;
+import React, {View, ListView, Component} from 'react-native';
+import UserAuthenticatedPage from '../userAuthenticatedPage';
+import LeaderboardList from './leaderboardList';
+import SummaryBar from './summaryBar';
+import NavBar from '../navBar';
+import Spinner from '../spinner';
+import AddEntryPage from '../addEntry/addEntryPage';
+import moment from 'moment';
+import URLBuilder from '../../urlBuilder';
 
 class LeaderboardPage extends UserAuthenticatedPage {
   constructor(props) {
@@ -63,7 +57,10 @@ class LeaderboardPage extends UserAuthenticatedPage {
     this.setState({
       isLoading: true
     });
-    var url = this._leaderboardUrl();
+    let url = URLBuilder.leaderboardURL({
+      month: moment.monthsShort(this.state.month),
+      email: this.state.currentUser.email
+    });
     fetch(url)
     .then(response => response.json())
     .then(response => this._handleResponse(response))
@@ -80,18 +77,6 @@ class LeaderboardPage extends UserAuthenticatedPage {
       itemsWithEntries: this.state.itemsWithEntries.cloneWithRows(itemsWithEntries),
       isLoading: false
     });
-  }
-
-  _leaderboardUrl() {
-    var data = {
-      month: moment.monthsShort(this.state.month),
-      email: this.state.currentUser.email
-    };
-    var querystring = Object.keys(data)
-    .map(key => key + '=' + encodeURIComponent(data[key]))
-    .join('&');
-
-    return Constants.APP_SERVER_HOST + '/leaderboard.json?' + querystring;
   }
 }
 

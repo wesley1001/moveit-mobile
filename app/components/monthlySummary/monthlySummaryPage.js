@@ -1,22 +1,20 @@
 'use strict';
 
-var React = require('react-native');
-var Constants = require('../../constants');
-var NavBar = require('../navBar');
-var Spinner = require('../spinner');
-var TopSection = require('./topSection');
-var ContributionSection = require('./contributionSection');
-var MonthlySummaryList = require('./monthlySummaryList');
-var moment = require('moment');
-
-var {
+import React, {
   StyleSheet,
   Image,
   View,
   ListView,
   Text,
   Component
-} = React;
+} from 'react-native';
+import NavBar from '../navBar';
+import Spinner from '../spinner';
+import TopSection from './topSection';
+import ContributionSection from './contributionSection';
+import MonthlySummaryList from './monthlySummaryList';
+import moment from 'moment';
+import URLBuilder from '../../urlBuilder';
 
 class MonthlySummaryPage extends Component {
   constructor(props) {
@@ -65,7 +63,11 @@ class MonthlySummaryPage extends Component {
     this.setState({
       isLoading: true
     });
-    fetch(this._monthlySummaryUrl())
+    let url = URLBuilder.monthlySummaryURL({
+      month: moment.monthsShort(this.state.month),
+      email: this.props.user.email
+    });
+    fetch(url)
     .then(response => response.json())
     .then(response => this._handleResponse(response))
     .catch(error => this.setState({
@@ -85,18 +87,6 @@ class MonthlySummaryPage extends Component {
       totalDuration: totalDuration,
       listItems: this.state.listItems.cloneWithRows(monthlySummary)
     });
-  }
-
-  _monthlySummaryUrl() {
-    var data = {
-      month: moment.monthsShort(this.state.month),
-      email: this.props.user.email
-    };
-    var querystring = Object.keys(data)
-    .map(key => key + '=' + encodeURIComponent(data[key]))
-    .join('&');
-
-    return Constants.APP_SERVER_HOST + '/monthly_summary.json?' + querystring;
   }
 }
 

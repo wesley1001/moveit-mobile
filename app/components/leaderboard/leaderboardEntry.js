@@ -1,18 +1,16 @@
 'use strict';
 
-var React = require('react-native');
-var Constants = require('../../constants');
-var MonthlySummaryPage = require('../monthlySummary/monthlySummaryPage');
-var Swipeout = require('react-native-swipeout');
-
-var {
+import React, {
   StyleSheet,
   Image,
   View,
   Text,
   TouchableOpacity,
   Component
-} = React;
+} from 'react-native';
+import MonthlySummaryPage from '../monthlySummary/monthlySummaryPage';
+import Swipeout from 'react-native-swipeout';
+import URLBuilder from '../../urlBuilder';
 
 const INTERACTION_COLORS = {
   bump: '#43CA01',
@@ -144,8 +142,7 @@ class LeaderboardEntry extends Component {
         to_email_id: this.props.user.email,
         interaction_type: this.props.interaction
       }
-      var url = Constants.APP_SERVER_HOST + '/interaction';
-      this._postToUrl(url, data);
+      this._postToUrl(URLBuilder.interactionURL(), data);
     }
   }
 

@@ -1,7 +1,11 @@
 'use strict';
 
-import React from 'react-native';
-import Constants from './app/constants';
+import React, {
+  StyleSheet,
+  Component,
+  AppRegistry,
+  Navigator
+} from 'react-native';
 import LoginPage from './app/components/login/loginPage';
 import AddEntryPage from './app/components/addEntry/addEntryPage';
 import MonthlySummaryPage from './app/components/monthlySummary/monthlySummaryPage';
@@ -14,13 +18,6 @@ const ROUTES = {
   'Monthly Summary': MonthlySummaryPage,
   'Main Page': MainPage
 }
-
-var {
-  StyleSheet,
-  Component,
-  AppRegistry,
-  Navigator
-} = React;
 
 var styles = StyleSheet.create({
   container: {

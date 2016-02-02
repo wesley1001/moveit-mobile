@@ -2,13 +2,13 @@
 
 var React = require('react-native');
 var moment = require('moment');
-var Constants = require('../../constants');
 var MainPage = require('../mainPage');
 var UserAuthenticatedPage = require('../userAuthenticatedPage');
 var NavBar = require('../navBar');
 var Spinner = require('../spinner');
 var DatePicker = require('./datePicker');
 var formStyles = require('../../styles/formStyles');
+import URLBuilder from '../../urlBuilder';
 
 var {
   Text,
@@ -148,8 +148,7 @@ class AddEntryPage extends UserAuthenticatedPage {
         description: this.state.description
       }
     };
-    var url = Constants.APP_SERVER_HOST + '/entries';
-    this._postToUrl(url, data);
+    this._postToUrl(URLBuilder.entriesURL(), data);
   }
 
   _postToUrl(url, data) {

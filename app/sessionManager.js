@@ -1,17 +1,14 @@
 'use strict';
 
-var React = require('react-native');
-var Constants = require('./constants');
-
-var { AsyncStorage } = React;
+import React, { AsyncStorage } from 'react-native';
+import URLBuilder from './urlBuilder';
 
 const CURRENT_USER_STORAGE_KEY = 'currentUser';
 
 var SessionManager = {
   login: function(user) {
     return new Promise(function(resolve, reject) {
-      var url = Constants.APP_SERVER_HOST + '/users/register';
-      fetch(url, {
+      fetch(URLBuilder.loginURL(), {
         method: 'post',
         body: JSON.stringify({user: user}),
         headers: new Headers({

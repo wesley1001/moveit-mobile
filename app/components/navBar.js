@@ -1,15 +1,13 @@
 'use strict';
 
-var React = require('react-native');
-
-var {
+import React, {
   StyleSheet,
   View,
   Text,
   TouchableOpacity,
   Image,
   Component
-} = React;
+} from 'react-native';
 
 var styles = StyleSheet.create({
   navBar: {

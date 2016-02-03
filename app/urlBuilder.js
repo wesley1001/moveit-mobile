@@ -1,19 +1,19 @@
 import AppConfig from '../appConfig.json';
 
 const Paths = {
-  leaderboard: '/leaderboard.json',
-  monthlySummary: '/monthly_summary.json',
-  timeline: '/timeline_feed.json',
-  entries: '/entries.json',
-  login: '/users/register.json',
-  interaction: '/interaction.json'
+  leaderboard: '/leaderboard',
+  monthlySummary: '/monthly_summary',
+  timeline: '/timeline_feed',
+  entries: '/entries',
+  login: '/users/register',
+  interaction: '/interaction'
 };
 
 let buildURL = function(path, data) {
   let querystring = Object.keys(data)
   .map(key => key + '=' + encodeURIComponent(data[key]))
   .join('&');
-  return `${AppConfig.appServerRootURL}${path}?${querystring}`;
+  return `${AppConfig.appServerRootURL}${path}.json?${querystring}`;
 };
 
 export default (function() {

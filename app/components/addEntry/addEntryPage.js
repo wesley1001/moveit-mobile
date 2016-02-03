@@ -1,21 +1,19 @@
 'use strict';
 
-var React = require('react-native');
-var moment = require('moment');
-var MainPage = require('../mainPage');
+import React, {
+  Text,
+  TextInput,
+  View,
+  TouchableHighlight
+} from 'react-native';
+import moment from 'moment';
+import MainPage from '../mainPage';
 var UserAuthenticatedPage = require('../userAuthenticatedPage');
 var NavBar = require('../navBar');
 var Spinner = require('../spinner');
 var DatePicker = require('./datePicker');
 var formStyles = require('../../styles/formStyles');
 import URLBuilder from '../../urlBuilder';
-
-var {
-  Text,
-  TextInput,
-  View,
-  TouchableHighlight
-} = React;
 
 class AddEntryPage extends UserAuthenticatedPage {
   constructor(props) {
@@ -44,8 +42,11 @@ class AddEntryPage extends UserAuthenticatedPage {
           navigator={this.props.navigator}
           title="Add Entry"
           rightButton={require('../../img/cancel.png')}
-          rightButtonLink={{name: 'Main Page', component: MainPage}}
-          />
+          rightButtonLink={{
+            name: 'Main Page',
+            component: MainPage,
+            passProps: {currentUser: this.state.currentUser}
+          }}/>
         <View style={formStyles.container}>
           <View style={formStyles.fieldContainer}>
             <Text style={formStyles.label}>Date</Text>
@@ -183,7 +184,10 @@ class AddEntryPage extends UserAuthenticatedPage {
     console.log('Response: ' + JSON.stringify(response));
     this.props.navigator.push({
         name: 'Main Page',
-        component: MainPage
+        component: MainPage,
+        passProps: {
+          currentUser: this.state.currentUser
+        }
     });
   }
 

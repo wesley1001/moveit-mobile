@@ -1,5 +1,4 @@
 {
-  "jsScheme": "codepush",
-  "appServerRootURL": "http://move1t.com",
-  "codePushKey": "CODE_PUSH_KEY"
+  "appServerRootURL": "http://localhost:3000",
+  "jsScheme": "local"
 }

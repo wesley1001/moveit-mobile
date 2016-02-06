@@ -18,8 +18,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
-
-  NSString *jsScheme = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"JSScheme"];
+  NSString *configPath = [[NSBundle mainBundle] pathForResource:@"appConfig" ofType:@"json"];
+  NSData *configData = [[NSFileManager defaultManager] contentsAtPath:configPath];
+  NSDictionary *appConfig = [NSJSONSerialization JSONObjectWithData:configData options:0 error:nil];
+  NSString *jsScheme = appConfig[@"jsScheme"];
 
   if([jsScheme isEqualToString:@"codepush"]) {
     jsCodeLocation = [CodePush bundleURL];
@@ -27,7 +29,7 @@
     jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
   }
 
-  // jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+//  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"MoveIt"

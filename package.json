@@ -10,5 +10,11 @@
     "react-native": "^0.18.1",
     "react-native-code-push": "^1.6.0-beta",
     "react-native-swipeout": "^2.0.9"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "jsonfile": "^2.2.3",
+    "run-sequence": "^1.1.5",
+    "shelljs": "^0.6.0"
   }
 }

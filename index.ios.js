@@ -27,8 +27,8 @@ class MoveIt extends Component {
   }
 
   renderScene(route, navigator) {
-    var component = ROUTES[route.name];
-    return <component navigator={navigator} {...route.passProps} />;
+    var Component = ROUTES[route.name];
+    return <Component navigator={navigator} {...route.passProps} />;
   }
 
   render() {

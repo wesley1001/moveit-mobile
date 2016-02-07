@@ -1,7 +1,6 @@
 'use strict';
 
 import React, {
-  StyleSheet,
   Component,
   AppRegistry,
   Navigator
@@ -11,6 +10,7 @@ import AddEntryPage from './app/components/addEntry/addEntryPage';
 import MonthlySummaryPage from './app/components/monthlySummary/monthlySummaryPage';
 import MainPage from './app/components/mainPage';
 import CodePush from 'react-native-code-push';
+import AppConfig from './appConfig.json';
 
 const ROUTES = {
   'Login': LoginPage,
@@ -19,20 +19,16 @@ const ROUTES = {
   'Main Page': MainPage
 }
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
-
 class MoveIt extends Component {
   componentDidMount() {
-    CodePush.sync();
+    if(AppConfig.jsScheme === 'codepush') {
+      CodePush.sync({ deploymentKey: AppConfig.codePushKey });
+    }
   }
 
   renderScene(route, navigator) {
-    var Component = ROUTES[route.name];
-    return <Component navigator={navigator} {...route.passProps} />;
+    var component = ROUTES[route.name];
+    return <component navigator={navigator} {...route.passProps} />;
   }
 
   render() {

@@ -38,3 +38,7 @@ gulp.task('reset-app-config', function() {
   }
   jsonfile.writeFileSync('./appConfig.json', config, {spaces: 2})
 });
+
+gulp.task('create-js-bundle', function() {
+  shell.exec('react-native bundle --entry-file index.ios.js --assets-dest ./release --bundle-output ./release/main.jsbundle --dev false --platform ios');
+});

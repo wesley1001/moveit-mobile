@@ -4,14 +4,15 @@ import React, {
   Text,
   TextInput,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  AlertIOS
 } from 'react-native';
 import moment from 'moment';
 import MainPage from '../mainPage';
 var UserAuthenticatedPage = require('../userAuthenticatedPage');
 var NavBar = require('../navBar');
 var Spinner = require('../spinner');
-var DatePicker = require('./datePicker');
+import DatePicker from './datePicker';
 var formStyles = require('../../styles/formStyles');
 import URLBuilder from '../../urlBuilder';
 
@@ -94,7 +95,7 @@ class AddEntryPage extends UserAuthenticatedPage {
           <View style={[formStyles.fieldContainer, {borderBottomWidth: 0}]}>
             <TouchableHighlight
               style={formStyles.button}
-              underlayColor='#99d9f4'
+              underlayColor="#99d9f4"
               onPress={this.submitForm.bind(this)}
               >
               <Text style={formStyles.buttonText}>Add</Text>
@@ -141,6 +142,8 @@ class AddEntryPage extends UserAuthenticatedPage {
   }
 
   submitForm() {
+    this.refs.durationTextInput.blur();
+    this.refs.descriptionTextInput.blur();
     var data = {
       email: this.state.currentUser.email,
       entry: {
@@ -182,6 +185,11 @@ class AddEntryPage extends UserAuthenticatedPage {
       message: ''
     });
     console.log('Response: ' + JSON.stringify(response));
+    AlertIOS.alert(
+      'Congatulations!',
+      `You contributed ₹${response.amount_contributed}`,
+      [{text: 'I Feel Gooood!'}]
+    );
     this.props.navigator.push({
         name: 'Main Page',
         component: MainPage,

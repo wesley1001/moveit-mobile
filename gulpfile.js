@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp');
 var shell = require('shelljs');
 var runSequence = require('run-sequence');

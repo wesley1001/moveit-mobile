@@ -1,15 +1,13 @@
 'use strict';
 
-var React = require('react-native');
-
-var {
+import React, {
   StyleSheet,
   Text,
   View,
   DatePickerIOS,
   Dimensions,
   Component
-} = React;
+} from 'react-native';
 
 var styles = StyleSheet.create({
   datePickerContainer: {
@@ -40,9 +38,9 @@ var styles = StyleSheet.create({
   }
 });
 
-class DatepPicker extends Component {
+export default class DatepPicker extends Component {
   render() {
-    return(
+    return (
       <View
         style={styles.datePickerContainer}>
         <View style={styles.datePickerTopBar}>
@@ -64,5 +62,3 @@ class DatepPicker extends Component {
     );
   }
 }
-
-module.exports = DatepPicker;

@@ -2,10 +2,7 @@
 
 import React, {
   Component,
-  View,
-  TabBarIOS,
-  Text,
-  Image
+  TabBarIOS
 } from 'react-native';
 var TimelinePage = require('./timeline/timelinePage');
 var LeaderboardPage = require('./leaderboard/leaderboardPage');

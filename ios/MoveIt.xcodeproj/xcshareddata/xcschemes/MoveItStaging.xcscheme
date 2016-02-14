@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "MoveIt.app"
-               BlueprintName = "MoveIt"
+               BlueprintIdentifier = "BACDE5401C70803E00B2AEC5"
+               BuildableName = "MoveIt Staging.app"
+               BlueprintName = "MoveIt Staging"
                ReferencedContainer = "container:MoveIt.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "MoveIt.app"
-            BlueprintName = "MoveIt"
+            BlueprintIdentifier = "BACDE5401C70803E00B2AEC5"
+            BuildableName = "MoveIt Staging.app"
+            BlueprintName = "MoveIt Staging"
             ReferencedContainer = "container:MoveIt.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "MoveIt.app"
-            BlueprintName = "MoveIt"
+            BlueprintIdentifier = "BACDE5401C70803E00B2AEC5"
+            BuildableName = "MoveIt Staging.app"
+            BlueprintName = "MoveIt Staging"
             ReferencedContainer = "container:MoveIt.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -70,16 +70,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "MoveIt.app"
-            BlueprintName = "MoveIt"
+            BlueprintIdentifier = "BACDE5401C70803E00B2AEC5"
+            BuildableName = "MoveIt Staging.app"
+            BlueprintName = "MoveIt Staging"
             ReferencedContainer = "container:MoveIt.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Staging">

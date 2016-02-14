@@ -1,4 +1,4 @@
 {
-  "appServerRootURL": "http://localhost:3000",
-  "jsScheme": "local"
+  "jsScheme": "local",
+  "appServerRootURL": "http://localhost:3000"
 }

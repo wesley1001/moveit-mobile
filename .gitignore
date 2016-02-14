@@ -36,4 +36,4 @@ npm-debug.log
 # custom
 *.stash
 release
-env.json
+*env.json

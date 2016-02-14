@@ -26,12 +26,30 @@ npm install
 jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 ```
 
-## Generate the production ipa file
-1.Create an `env.json` file similar to the `env.json.example` and set the appropriate values.
+## Generate the staging / production ipa file
+1.Create a `staging.env.json` or `production.env.json` file similar to the `env.json.example` and set the appropriate values.
 
 2.Run the gulp task
 ``` bash
-gulp ios:build
+# For staging
+gulp staging:build
+# For production
+gulp production:build
+```
+
+This generates `MoveIt.ipa` in the same directory.
+
+Follow the above instructions if you wish to use the command line to generate the production ipa. For all dev and testing purposes use XCode.
+
+## Create the JS bundle for CodePush
+1.Create an environment config file as mentioned in the previos section.
+
+2.Run the gulp task
+``` bash
+# For staging
+gulp staging:ready-code-push
+# For production
+gulp production:ready-code-push
 ```
 
 This generates `MoveIt.ipa` in the same directory.

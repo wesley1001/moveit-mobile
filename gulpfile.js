@@ -20,7 +20,7 @@ gulp.task('reset-app-config', function() {
   var envConfig = {
     jsScheme: 'local',
     appServerRootURL: 'http://localhost:3000'
-  }
+  };
   _writeToAppConfig(envConfig);
 });
 
@@ -40,7 +40,7 @@ gulp.task('staging:ready-app-config', function() {
 
 gulp.task('staging:create-ipa', function() {
   shell.exec('xcodebuild archive -project ios/MoveIt.xcodeproj -scheme MoveItStaging -archivePath tmp/MoveItStaging');
-  shell.exec('xcodebuild -exportArchive -exportOptionsPlist ios/MoveIt/exportOptions.plist -archivePath tmp/MoveItStaging.xcarchive -exportPath .');
+  shell.exec('xcodebuild -exportArchive -exportOptionsPlist ios/MoveIt/exportOptions.plist -archivePath tmp/MoveItStaging.xcarchive -exportPath ipa/');
 });
 
 gulp.task('staging:ready-code-push', function() {
@@ -50,7 +50,7 @@ gulp.task('staging:ready-code-push', function() {
 
 gulp.task('production:create-ipa', function() {
   shell.exec('xcodebuild archive -project ios/MoveIt.xcodeproj -scheme MoveIt -archivePath tmp/MoveIt');
-  shell.exec('xcodebuild -exportArchive -exportOptionsPlist ios/MoveIt/exportOptions.plist -archivePath tmp/MoveIt.xcarchive -exportPath .');
+  shell.exec('xcodebuild -exportArchive -exportOptionsPlist ios/MoveIt/exportOptions.plist -archivePath tmp/MoveIt.xcarchive -exportPath ipa/');
 });
 
 gulp.task('production:build', function() {

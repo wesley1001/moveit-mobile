@@ -1,10 +1,6 @@
 rootProject.name = 'MoveIt'
 
-include ':reactdate', ':app'
-project(':reactdate').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-date')
-
-include 'rn-geolocation',':app'
-project(':rn-geolocation').projectDir = new File(rootProject.projectDir, '../node_modules/rn-geolocation/android')
+include ':app'
 
 include ':RNMaterialKit'
 project(':RNMaterialKit').projectDir = file('../node_modules/react-native-material-kit/android')
@@ -12,14 +8,8 @@ project(':RNMaterialKit').projectDir = file('../node_modules/react-native-materi
 include ':react-native-splashscreen'
 project(':react-native-splashscreen').projectDir = new File(rootProject.projectDir, '../node_modules/@remobile/react-native-splashscreen/android')
 
-include ':react-native-google-signin', ':app'
-project(':react-native-google-signin').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-google-signin/android')
-
-include ':com.inprogress.ReactOrientationController'
-project(':com.inprogress.ReactOrientationController').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-orientation-controller/android')
-
 include ':ReactNativeVibration', ':app'
 project(':ReactNativeVibration').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vibration/android')
 
-include ':app', ':react-native-code-push'
-project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')
+include ':ReactNativeDropdownAndroid', ':app'
+project(':ReactNativeDropdownAndroid').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-dropdown-android/android')

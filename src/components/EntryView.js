@@ -1,9 +1,8 @@
 import moment from 'moment';
 import Server from '../services/Server';
 import User from '../models/User';
-import React, { AsyncStorage, Component, Text, View, ProgressBarAndroid, NativeModules, StyleSheet, ToastAndroid } from 'react-native';
+import React, { AsyncStorage, DatePickerAndroid, Component, Text, TextInput, View, ProgressBarAndroid, StyleSheet, ToastAndroid, TouchableWithoutFeedback } from 'react-native';
 import MK, {  MKButton, MKTextField } from 'react-native-material-kit';
-import rnGeolocation from 'rn-geolocation';
 
 export default class EntryView extends Component {
   constructor(props) {
@@ -53,12 +52,6 @@ export default class EntryView extends Component {
       });
   }
 
-  componentDidMount() {
-    rnGeolocation.getCurrentPosition((location) => {
-        this.setState({ location: { longitude: location.coords.longitude, latitude: location.coords.latitude }});
-    },() => {}, { timeout: 5000, enableHighAccuracy: true, maximumAge: 10000 });
-  }
-
   isFormValid() {
     return this.state.date && this.state.user && this.state.duration;
   }
@@ -72,13 +65,17 @@ export default class EntryView extends Component {
     }
   }
 
-  handleDateClick() {
-    var self = this;
-    NativeModules.DateAndroid.showDatepicker(function() {}, function(year,month,day) {
-      month += 1;
-      let newdate = year + '-' + month + '-' +day;
-      self.setState({ date: newdate });
-    });
+  async showDatePicker(stateKey, options) {
+    try {
+      var newState = {};
+      const {action, year, month, day} = await DatePickerAndroid.open(options);
+        var date = new Date(year, month, day);
+        newState[stateKey + 'Text'] = moment(date).format('YYYY-MM-DD');
+        newState[stateKey + 'Date'] = date;
+      this.setState({date: newState.simpleText});
+    } catch ({code, message}) {
+      console.warn(`Error in example '${stateKey}': `, message);
+    }
   }
 
   render() {
@@ -91,29 +88,29 @@ export default class EntryView extends Component {
       } else {
         return (
           <View style={styles.container}>
-              <Text onPress={(event) => this.handleDateClick()}>
+            <TouchableWithoutFeedback
+              onPress={this.showDatePicker.bind(this, 'simple', {date: new Date()})}>
+              <Text style={styles.text}>
                 Date: {this.state.date}
               </Text>
-            <MKTextField
-              highlightColor="#fdc300"
-              floatingLabelEnabled={true}
+            </TouchableWithoutFeedback>
+            <TextInput
+              underlineColorAndroid="#fdc300"
               keyboardType='numeric'
               onChangeText={(duration) => this.setState({duration})}
               placeholder='Duration of workout in minutes'
               value={this.state.duration}
               style={styles.textfieldWithFloatingLabel}
-            />
-            <MKTextField
-              highlightColor="#fdc300"
-              floatingLabelEnabled={true}
+              />
+            <TextInput
+              underlineColorAndroid="#fdc300"
               multiline={true}
               keyboardType='default'
               onChangeText={(description) => this.setState({description})}
               placeholder='Brief description:'
               value={this.state.description}
-              style={[styles.textfieldWithFloatingLabel, {height: 70}]}
+              numberOfLines={4}
             />
-
             <MKButton
               backgroundColor={'#43ca01'}
               style={styles.saveButton}
@@ -136,8 +133,8 @@ let styles = StyleSheet.create({
     margin: 10,
     marginTop: 15
   },
-  textfieldWithFloatingLabel: {
-    height: 50,
+  textfield: {
+    height: 30,
     marginTop: 10,
   },
   progressBar: {

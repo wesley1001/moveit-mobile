@@ -1,66 +1,64 @@
 {
-	"name": "MoveIt",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "react-native start",
-		"test": "jest --verbose --testRunner='<rootDir>/node_modules/jest-cli/src/testRunners/jasmine/jasmine2.js'"
-	},
-	"bugs": "https://github.com/multunus/moveit-react-native/issues",
-	"contributors": [{
-		"name": "Muraleekrishna Gopinthan",
-		"email": "muraleekrishnagc@gmail.com"
-	}, {
-		"name": "Peter Lazar",
-		"email": "peterlazar1993@gmail.com"
-	}],
-	"dependencies": {
-		"@remobile/react-native-splashscreen": "^1.0.1",
-		"gravatar-api": "^1.2.5",
-		"moment": "^2.10.6",
-		"react-native": "^0.14.2",
-		"react-native-action-button": "github:peterlazar1993/react-native-action-button",
-		"react-native-code-push": "^1.5.0-beta",
-		"react-native-date": "^1.0.2",
-		"react-native-google-signin": "^0.2.3",
-		"react-native-material-kit": "^0.2.3",
-		"react-native-modalbox": "^1.2.4",
-		"react-native-orientation-controller": "^0.1.0",
-		"react-native-vibration": "^0.1.1",
-		"rn-geolocation": "0.0.5",
-		"react-timer-mixin": "^0.13.3",
-		"superagent": "^1.4.0",
-		"superagent-jsonapify": "^1.4.0"
-	},
-	"jest": {
-		"scriptPreprocessor": "jestSupport/scriptPreprocess.js",
-		"setupEnvScriptFile": "./node_modules/react-native/jestSupport/env.js",
-		"testPathIgnorePatterns": [
-			"/node_modules/",
-			"packager/react-packager/src/Activity/"
-		],
-		"testFileExtensions": [
-			"spec.js"
-		],
-		"unmockedModulePathPatterns": [
-			"moment",
-			"react",
-			"fbjs",
-			"promise",
-			"source-map"
-		],
-		"verbose": true
-	},
-	"devDependencies": {
-		"babel-core": "^5.8.25",
-		"indent": "0.0.1",
-		"inspect-react-element": "^1.0.1",
-		"jest-cli": "0.8.2",
-		"object-matches": "^1.0.0",
-		"react": "^0.14.6",
-		"react-shallow-renderer-helpers": "^1.2.0",
-		"react-shallow-testutils": "^0.5.0",
-		"babel-jest": "^6.0.1",
-		"babel-preset-react": "^6.3.13"
-	}
+  "name": "MoveIt",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start",
+    "test": "jest --verbose --testRunner='<rootDir>/node_modules/jest-cli/src/testRunners/jasmine/jasmine2.js'"
+  },
+  "bugs": "https://github.com/multunus/moveit-react-native/issues",
+  "contributors": [
+    {
+      "name": "Muraleekrishna Gopinthan",
+      "email": "muraleekrishnagc@gmail.com"
+    },
+    {
+      "name": "Peter Lazar",
+      "email": "peterlazar1993@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "@remobile/react-native-splashscreen": "^1.0.3",
+    "gravatar-api": "^1.2.5",
+    "moment": "^2.10.6",
+    "react-native": "^0.20.0",
+    "react-native-action-button": "^1.1.2",
+    "react-native-dropdown-android": "0.0.11",
+    "react-native-google-signin": "^0.2.3",
+    "react-native-material-kit": "^0.3.0",
+    "react-native-vibration": "^0.2.0",
+    "react-timer-mixin": "^0.13.3",
+    "superagent": "^1.7.2",
+    "superagent-jsonapify": "^1.4.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "jestSupport/scriptPreprocess.js",
+    "setupEnvScriptFile": "./node_modules/react-native/jestSupport/env.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "packager/react-packager/src/Activity/"
+    ],
+    "testFileExtensions": [
+      "spec.js"
+    ],
+    "unmockedModulePathPatterns": [
+      "moment",
+      "react",
+      "fbjs",
+      "promise",
+      "source-map"
+    ],
+    "verbose": true
+  },
+  "devDependencies": {
+    "indent": "0.0.2",
+    "inspect-react-element": "^1.0.1",
+    "jest-cli": "0.8.2",
+    "object-matches": "^1.0.0",
+    "react": "^0.14.6",
+    "react-shallow-renderer-helpers": "^2.0.2",
+    "react-shallow-testutils": "^1.0.0",
+    "babel-jest": "^6.0.1",
+    "babel-preset-react": "^6.3.13"
+  }
 }

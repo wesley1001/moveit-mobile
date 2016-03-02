@@ -1,4 +1,4 @@
-import React, { ToastAndroid, Image, Component, Text, View, TouchableHighlight, ProgressBarAndroid, StyleSheet, AsyncStorage, ScrollView, ListView } from 'react-native';
+import React, { ToastAndroid, Image, Component, Text, View, ProgressBarAndroid, StyleSheet, AsyncStorage, ScrollView, ListView } from 'react-native';
 import ActionButton from 'react-native-action-button';
 
 import Server from '../../services/Server';

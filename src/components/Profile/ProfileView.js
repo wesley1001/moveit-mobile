@@ -1,16 +1,17 @@
 import Server from '../../services/Server';
 import User from '../../models/User';
 
+import Dropdown from 'react-native-dropdown-android';
 import moment from 'moment';
-import ActionButton from 'react-native-action-button';
 import ProfileEntryView from './ProfileEntryView.js';
-import React, {  ToastAndroid, AsyncStorage, Component, ScrollView, ListView, View, ProgressBarAndroid, StyleSheet, Image, Text } from 'react-native';
+import React, {  Picker, ToastAndroid, AsyncStorage, Component, ScrollView, ListView, View, ProgressBarAndroid, StyleSheet, Image, Text } from 'react-native';
 
 export default class ProfileView extends Component {
   constructor(props) {
     super(props);
     let currentMonth = moment().endOf('month').format('MMMM YYYY');
     this.state = {
+      selected: 0,
       isLoading: false,
 			month: moment().format("MMMM YYYY"),
 			entries: [],
@@ -24,26 +25,25 @@ export default class ProfileView extends Component {
     this.props.navigator.replace({name: "Add Entry"});
   }
 
-  getData() {
-    let data = {
+  getData(data) {
+    this.setState({ isLoading: true, month: data.value, selected: data.selected });
+    let params = {
       email: this.state.user.email,
-      month: this.state.month
+      month: data.month || this.state.month
     };
-
-    this.setState({ isLoading: true });
-    Server.get('/monthly_summary.json', data).then((data) => {
-        let monthlySummary = data.user.monthly_summary;
-				let totalDuration = monthlySummary.reduce((prev, curr, index) => { return { duration: prev.duration + curr.duration }} ).duration
-				let totalAmount = monthlySummary.reduce((prev, curr, index) => { return { amount_contributed: prev.amount_contributed + curr.amount_contributed }} ).amount_contributed
-        this.setState({ isLoading: false,
-                      totalDuration: totalDuration,
-                      totalAmount: totalAmount,
-											entries: monthlySummary
-                    });
-        }).catch((err) => {
-          this.setState({ isLoading: false });
-          ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);
-        });
+      Server.get('/monthly_summary.json', params).then((data) => {
+          let monthlySummary = data.user.monthly_summary;
+  				let totalDuration = monthlySummary.reduce((prev, curr, index) => { return { duration: prev.duration + curr.duration }} ).duration
+  				let totalAmount = monthlySummary.reduce((prev, curr, index) => { return { amount_contributed: prev.amount_contributed + curr.amount_contributed }} ).amount_contributed
+          this.setState({ isLoading: false,
+                        totalDuration: totalDuration,
+                        totalAmount: totalAmount,
+  											entries: monthlySummary
+                      });
+          }).catch((err) => {
+            this.setState({ isLoading: false });
+            ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);
+          });
   }
 
 
@@ -54,7 +54,7 @@ export default class ProfileView extends Component {
         let appUser = new User(JSON.parse(userData));
         let user =  globalState && globalState.userProfile ? this.props.globalState.userProfile : appUser;
         this.setState({ user: user });
-				this.getData();
+			  this.getData({data: {value: moment().format("MMMM YYYY"), selected: 0}});
       })
       .catch(() => {
         this.props.navigator.replace({ name: 'Login' });
@@ -73,6 +73,18 @@ export default class ProfileView extends Component {
     return ds.cloneWithRows(this.state.entries);
   }
 
+  renderMonthList() {
+    const startingDate = moment([2015, 3]);
+    const date = startingDate;
+    const endingDate = moment();
+    const options = [];
+    while (date.isBefore(endingDate)) {
+      options.unshift(date.format("MMM YY"));
+      startingDate.add(1, 'months')
+    }
+    return options;
+  }
+
   render() {
       if(this.state.isLoading) {
         return (
@@ -87,7 +99,6 @@ export default class ProfileView extends Component {
               <Image  style={styles.thumb} source={{ uri: this.state.user.gravatar + '&s=250&d=mm'}} />
               <View style={styles.userDetails}>
                 <Text style={styles.name}>{this.state.user.name}</Text>
-                <Text style={styles.email}>{this.state.user.email}</Text>
               </View>
             </Image>
             <View style={styles.header}>
@@ -108,16 +119,19 @@ export default class ProfileView extends Component {
                 </Text>
               </View>
             </View>
+            <View style={{alignItems: 'center'}}>
+              <Dropdown
+                style={{ height: 20, width: 120 }}
+                values={this.renderMonthList()}
+                selected={this.state.selected} onChange={(data) => { this.getData(data); }} />
+            </View>
+
 						<ScrollView>
 	            <ListView
 	              dataSource={this.entryList()}
 	              renderRow={this.showRow}
 	              />
 	          </ScrollView>
-	          <ActionButton
-	            buttonColor="rgb(253, 195, 0)"
-	            onPress={() => this.onPressNewEntry()}
-	          />
           </View>
         );
       }
@@ -136,7 +150,7 @@ export default class ProfileView extends Component {
     },
 		background: {
       flexDirection: 'column',
-      height: 200,
+      height: 150,
 			justifyContent: 'flex-start',
 			alignItems: 'center'
 		},
@@ -158,9 +172,6 @@ export default class ProfileView extends Component {
 			fontWeight: 'bold',
 			color: '#54503F',
 			fontSize: 21
-		},
-		email: {
-			color: '#54503F'
 		},
     month: {
       color: '#000',
@@ -216,5 +227,8 @@ export default class ProfileView extends Component {
       fontSize: 20,
       height: 22,
       color: 'white',
-    }
+    },
+    picker: {
+      width: 100,
+    },
   });

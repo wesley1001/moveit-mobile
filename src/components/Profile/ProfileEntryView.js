@@ -14,10 +14,10 @@ export default class ProfileEntryView extends Component {
   }
 
   render() {
-    console.log(this);
-    const description = this.state.showDescription ? (<Text style={styles.description}>{this.props.entry.description}</Text>) : null;
+    const description = this.state.showDescription ? (<View style={{ padding: 5,  }}><Text style={styles.description}>{this.props.entry.description}</Text></View>) : null;
     return (
-      <TouchableNativeFeedback onPress={() => this.handleTouch()}>
+      <TouchableNativeFeedback onPress={() => this.handleTouch()}
+        background={TouchableNativeFeedback.SelectableBackground()}>
         <View style={styles.rowContainer}>
           <View style={styles.row}>
             <Text style={styles.entryColumn}>{moment(this.props.entry.date).format('MMMM D')}</Text>
@@ -59,8 +59,8 @@ export default class ProfileEntryView extends Component {
       color: '#424242',
       justifyContent: 'flex-end',
       textAlign: 'justify',
-      marginLeft: 15,
-      marginRight: 15,
+      marginLeft: 10,
+      marginRight: 10,
       flexWrap: 'wrap',
       textAlign: 'auto',
     }

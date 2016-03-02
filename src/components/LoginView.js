@@ -2,7 +2,6 @@ import Server from '../services/Server';
 import User from '../models/User';
 import React, { DeviceEventEmitter, Component, View, ProgressBarAndroid, StyleSheet, ToastAndroid, Text, AsyncStorage } from 'react-native';
 import MK, { MKButton, MKTextField } from 'react-native-material-kit';
-import GoogleSignin from 'react-native-google-signin';
 
 export default class LoginView extends Component {
   constructor(props) {
@@ -29,9 +28,11 @@ export default class LoginView extends Component {
     this.setState({ isLoading: true });
     Server.post('/users/register.json', data)
       .then((res) => {
+        console.log(res);
           this.successFullyLoggedIn(res.user);
       })
       .catch((err) => {
+        console.log(err);
         this.setState({ isLoading: false });
         ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);
       });
@@ -53,21 +54,6 @@ export default class LoginView extends Component {
     } else {
       ToastAndroid.show('Name and email id is required', ToastAndroid.SHORT, 2000);
     }
-  }
-
-  componentDidMount() {
-    GoogleSignin.init();
-  }
-
-  onGoogleSignIn() {
-    DeviceEventEmitter.addListener('googleSignIn', (user) => {
-      this.setState({ user: user });
-      this.sendData();
-    });
-    DeviceEventEmitter.addListener('googleSignInError', (error) => {
-      ToastAndroid.show('Login using google failed', ToastAndroid.SHORT, 2000);
-    });
-    GoogleSignin.signIn();
   }
 
   render() {
@@ -105,19 +91,6 @@ export default class LoginView extends Component {
               REGISTER
             </Text>
           </MKButton>
-
-          <View style={styles.seperator}></View>
-
-          <MKButton
-            backgroundColor={'#D7564A'}
-            style={styles.googleSignIn}
-            onPress={() => this.onGoogleSignIn()}
-            >
-            <Text pointerEvents="none"
-              style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>
-              Sign in with Google
-            </Text>
-          </MKButton>
         </View>
       );
     }
@@ -145,13 +118,6 @@ let styles = StyleSheet.create({
     height: 38,
     padding: 10,
     margin: 10
-  },
-  seperator: {
-    flex : 0.8,
-    margin: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#C4C4C4',
-    alignItems: 'center'
   },
   progressBar: {
     flex: 1,

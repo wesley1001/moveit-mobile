@@ -54,12 +54,6 @@ export default class NavigationView extends Component {
               Profile
             </Text>
           </TouchableHighlight>
-
-          <TouchableHighlight onPress={() => this.onSelect("Settings")} style={styles.item} underlayColor="#DDD">
-            <Text style={styles.text}>
-              Settings
-            </Text>
-          </TouchableHighlight>
         </View>
       </View>
     );

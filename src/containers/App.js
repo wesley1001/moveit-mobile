@@ -1,4 +1,4 @@
-import React, { Component, DrawerLayoutAndroid, ToolbarAndroid, StyleSheet, Navigator } from 'react-native';
+import React, { BackAndroid, Component, DrawerLayoutAndroid, ToolbarAndroid, StyleSheet, Navigator } from 'react-native';
 
 import EntryView from './../components/EntryView.js';
 import LeaderboardView from './../components/LeaderboardView.js';
@@ -18,9 +18,20 @@ const ROUTES = {
 };
 
 export default class MoveIt extends Component {
+  constructor(props) {
+    super(props);
+    this.navigator = {};
+  }
 
   componentDidMount() {
     SplashScreen.hide();
+    BackAndroid.addEventListener('hardwareBackPress', () => {
+    if (this.navigator.getCurrentRoutes().length === 1  ) {
+       return false;
+     }
+      this.navigator.pop();
+      return true;
+    });
   }
 
   setGlobalState(state) {

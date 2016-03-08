@@ -13,7 +13,7 @@ export default class NavigationView extends Component {
 
   onSelect(item) {
     this.props.parent.drawer.closeDrawer();
-    this.props.navigator.replace({ name: item });
+    this.props.navigator.push({ name: item });
   }
 
   componentDidMount() {

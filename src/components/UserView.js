@@ -8,7 +8,7 @@ export default class UserView extends Component {
 
   showProfile() {
     this.props.setGlobalState({ userProfile: this.props.user })
-    this.props.navigator.replace({ name: 'Profile' });
+    this.props.navigator.push({ name: 'Profile' });
   }
 
   render() {

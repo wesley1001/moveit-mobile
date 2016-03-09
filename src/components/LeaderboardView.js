@@ -5,13 +5,16 @@ import User from '../models/User';
 import ActionButton from 'react-native-action-button';
 import Vibration from 'react-native-vibration';
 import { MKButton } from 'react-native-material-kit';
-import React, { TouchableWithoutFeedback, ToastAndroid, AsyncStorage, Component, ScrollView, ListView, View, ProgressBarAndroid, StyleSheet, Image,Text } from 'react-native';
+import React, { TouchableWithoutFeedback, TouchableOpacity, ToastAndroid, AsyncStorage, Component, ScrollView, ListView, View, ProgressBarAndroid, StyleSheet, Image,Text } from 'react-native';
+import Modal from 'react-native-simple-modal';
+import CountDown from './counter';
 
 export default class LeaderboardView extends Component {
   constructor(props) {
     super(props);
     let currentMonth = moment().endOf('month').format('MMMM YYYY');
     this.state = {
+      open: false,
       isLoading: false,
       user: {
         email: null
@@ -65,8 +68,18 @@ export default class LeaderboardView extends Component {
                       monthly_total_amount: data.monthly_total_amount,
                       monthly_goal: data.monthly_goal
                     });
+        setTimeout(() => {
+          if(this.props.amountContributed) {
+            this.setState({open: true})
+            };
+          }, 500);
         }).catch((err) => {
           this.setState({ isLoading: false });
+          setTimeout(() => {
+            if(this.props.amountContributed) {
+              this.setState({open: true})
+              };
+            }, 500);
           ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);
         });
   }
@@ -149,10 +162,8 @@ export default class LeaderboardView extends Component {
 
 
   render() {
-
     var christmasTime = moment().isBetween(moment("Dec 23 2015"), moment("Jan 2 2016"));
-    let logoimage = christmasTime ? require('../img/christmas.png') : require('../img/logo.png')
-
+    let logoimage = christmasTime ? require('../img/christmas.png') : require('../img/logo.png');
       if(this.state.isLoading) {
         return (
           <View style={styles.progressBar}>
@@ -172,16 +183,45 @@ export default class LeaderboardView extends Component {
                 </View>
               </View>
             </View>
-            <ScrollView>
+            <Modal
+               open={this.state.open}
+               modalDidOpen={() => console.log('modal did open')}
+               modalDidClose={() => this.setState({open: false})}
+               style={{alignItems: 'stretch', height: 370, padding: 0}}>
+                <View style={{backgroundColor: '#FEE66C', height: 70, alignItems: 'center', justifyContent: 'center'}}>
+                  <Text style={{color: 'rgba(0, 0, 0, 0.66)', fontWeight: 'bold', fontSize: 20}}>Congratulations!</Text>
+                </View>
+                <View style={{marginTop: 30, marginBottom: 5, alignItems: 'center', justifyContent: 'center'}}>
+                  <Text style={{color: 'rgba(0, 0, 0, 0.66)' ,fontWeight: '400', fontSize: 80}}>₹<CountDown
+                    time={this.props.amountContributed - 30} //default 60
+                    endTime={this.props.amountContributed}
+                  /></Text>
+                </View>
+                <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                  <Text style={{color: '#9e9e9e',fontWeight: 'normal', fontSize: 40}}>contributed</Text>
+                </View>
+                <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                  <TouchableOpacity onPress={() => this.setState({open: false})}
+                    style={{alignItems: 'center', justifyContent: 'center', marginTop: 20, backgroundColor:'#43ca01', width: 300, height: 50}}
+                  >
+                    <Text style={{color: 'white'}}>I FEEL GOOOOOD!</Text>
+                  </TouchableOpacity>
+                </View>
+            </Modal>
+            {
+              this.state.open ? null :
               <ListView
                 dataSource={this.userList()}
                 renderRow={this.showRow.bind(this)}
-                />
-            </ScrollView>
-            <ActionButton
-              buttonColor="rgb(253, 195, 0)"
-              onPress={() => this.onPressNewEntry()}
-            />
+              />
+            }
+            {
+              this.state.open ? null :
+              <ActionButton
+                buttonColor="rgb(253, 195, 0)"
+                onPress={() => this.onPressNewEntry()}
+              />
+            }
           </View>
         );
       }

@@ -40,7 +40,6 @@ export default class MoveIt extends Component {
 
   renderScene(route, navigator) {
     let Component = ROUTES[route.name];
-
     return (
       <DrawerLayoutAndroid
         drawerPosition={DrawerLayoutAndroid.positions.Left}
@@ -55,7 +54,7 @@ export default class MoveIt extends Component {
           onIconClicked={() => this.drawer.openDrawer()}
           title={route.name}
         />
-      <Component navigator={navigator} globalState={this.state} setGlobalState={this.setGlobalState.bind(this)}/>
+      <Component navigator={navigator} amountContributed={route.amountContributed} globalState={this.state} setGlobalState={this.setGlobalState.bind(this)}/>
       </DrawerLayoutAndroid>
     );
   }

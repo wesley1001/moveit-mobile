@@ -42,9 +42,9 @@ export default class EntryView extends Component {
       }
     };
     Server.post('/entries.json', data)
-      .then(() => {
+      .then((res) => {
          this.setState({ isLoading: false });
-         this.props.navigator.replace({name: 'Leaderboard'});
+         this.props.navigator.replace({name: 'Leaderboard', amountContributed: res.amount_contributed});
       })
       .catch((err) => {
         this.setState({ isLoading: false });

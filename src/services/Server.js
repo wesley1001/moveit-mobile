@@ -49,4 +49,4 @@ class Server {
   }
 }
 
-export default new Server('http://move1t.herokuapp.com');
+export default new Server('http://staging-move1t.herokuapp.com');

@@ -1,5 +1,4 @@
 import request from 'superagent';
-import superagentJsonapify from 'superagent-jsonapify';
 import Settings from '../config/Settings';
 import Timer from 'react-timer-mixin';
 
@@ -12,7 +11,7 @@ class Server {
 
   post(endPoint, data) {
     let promise = new Promise((resolve, reject) => {
-      Timer.setTimeout(() => { reject("Timed out") }, 7000);
+      Timer.setTimeout(() => { reject('Timed out'); }, 7000);
       request
         .post(this.baseUrl + endPoint)
         .send(data)
@@ -20,12 +19,12 @@ class Server {
         .end((err, res) => {
           if(res && (res.statusCode === 200 || res.statusCode === 201 || res.statusCode === 304)) {
             let response = JSON.parse(res.text);
-              resolve(response);
+            resolve(response);
           } else {
             reject(err);
           }
         });
-      });
+    });
     return promise;
   }
 
@@ -33,7 +32,7 @@ class Server {
 
     let url = this.baseUrl + endPoint;
     let promise = new Promise((resolve, reject) => {
-      Timer.setTimeout(() => { reject("Timed out") }, 7000);
+      Timer.setTimeout(() => { reject('Timed out'); }, 7000);
       request
       .get(url)
       .query(query)

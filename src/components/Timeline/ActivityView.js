@@ -1,6 +1,4 @@
-import moment from 'moment';
-
-import React, { Component, View, StyleSheet, Image, Text } from 'react-native';
+import React, { Component, View, StyleSheet, Image, Text, PropTypes } from 'react-native';
 
 export default class ActivityView extends Component {
   constructor(props) {
@@ -12,7 +10,9 @@ export default class ActivityView extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Image  style={styles.thumb} source={{ uri: activity.byUser.gravatar + '&s=200&d=mm'}} />
+          <Image source={{ uri: `${activity.byUser.gravatar}&s=200&d=mm` }}
+            style={styles.thumb}
+          />
           <View style={styles.summary}>
             <View style={styles.movedIt}>
               <Text style={styles.name}>
@@ -35,44 +35,48 @@ export default class ActivityView extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+ActivityView.propTypes ={
+  activity: PropTypes.object,
+};
+
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   header: {
     flex: 0.9,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   summary: {
     flex: 0.8,
     justifyContent: 'flex-start',
     alignSelf: 'flex-start',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   thumb: {
     flex: 0.2,
     resizeMode: 'contain',
     borderRadius: 1000,
     height: 45,
-    width: 45
+    width: 45,
   },
   contributionAndDuration: {
     color: '#b7b7b7',
     fontSize: 14,
-    flexWrap: 'nowrap'
+    flexWrap: 'nowrap',
   },
   movedIt: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   timeSince: {
-    color: '#797979'
+    color: '#797979',
   },
   name: {
     color: '#191919',
-    marginRight: 5
+    marginRight: 5,
   },
   description: {
     flex: 0.1,
@@ -83,5 +87,5 @@ var styles = StyleSheet.create({
     marginRight: 15,
     flexWrap: 'wrap',
     textAlign: 'auto',
-  }
+  },
 });

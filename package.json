@@ -5,6 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "test": "jest --verbose --testRunner='<rootDir>/node_modules/jest-cli/src/testRunners/jasmine/jasmine2.js'"
+    "lint": "eslint .",
   },
   "bugs": "https://github.com/multunus/moveit-react-native/issues",
   "contributors": [
@@ -21,7 +22,6 @@
     "@remobile/react-native-splashscreen": "^1.0.3",
     "gravatar-api": "^1.2.5",
     "moment": "^2.10.6",
-    "react-native": "^0.21.0",
     "react": "^0.14.7",
     "react-native": "^0.22.0-rc",
     "react-native-action-button": "^1.1.2",
@@ -54,6 +54,10 @@
     "verbose": true
   },
   "devDependencies": {
+    "babel-eslint": "^5.0.0",
+    "eslint": "2.2.0",
+    "eslint-plugin-react": "^4.2.1",
+    "eslint-plugin-react-native": "^1.0.0",
     "indent": "0.0.2",
     "inspect-react-element": "^1.0.1",
     "jest-cli": "0.8.2",

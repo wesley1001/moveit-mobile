@@ -1,4 +1,4 @@
-import React, { ToastAndroid, Image, Component, Text, View, ProgressBarAndroid, StyleSheet, AsyncStorage, ScrollView, ListView } from 'react-native';
+import React, { ToastAndroid, Component, View, ProgressBarAndroid, StyleSheet, AsyncStorage, ListView, PropTypes } from 'react-native';
 import ActionButton from 'react-native-action-button';
 
 import Server from '../../services/Server';
@@ -14,7 +14,7 @@ export default class TimelineView extends Component {
   componentDidMount() {
     AsyncStorage.getItem('UserDetails').then((userData) => {
       let email = JSON.parse(userData).email;
-      this.setState({ email: email });
+      this.setState({ email });
       this.getData();
     }).catch(() => {
       this.props.navigator.replace({ name: 'Login' });
@@ -22,7 +22,7 @@ export default class TimelineView extends Component {
   }
 
   onPressNewEntry() {
-    this.props.navigator.replace({name: "Add Entry"});
+    this.props.navigator.replace({ name: 'Add Entry' });
   }
 
   getStoredTimeline() {
@@ -37,36 +37,36 @@ export default class TimelineView extends Component {
     let data = { email : this.state.email };
     this.getStoredTimeline().then((storeTimelineData) => {
       let timelineData = JSON.parse(storeTimelineData);
-      let activityList = timelineData.map((activity) => new Activity(activity));
-      console.log(activityList);
-      this.setState({ activities: activities });
+      let activities = timelineData.map((activity) => new Activity(activity));
+      this.setState({ activities });
     });
     this.setState({ isLoading: true });
     Server.get('/timeline_feed.json', data)
       .then((data) => {
         let timelineActivities = data.timeline_activities;
         let activities = timelineActivities.map((activity) => new Activity(activity));
-        this.storeData(activities);
-        this.setState({ activities: activities, isLoading: false });
-        })
-      .catch((err) => {
-          this.setState({ isLoading: false });
-          ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);
+        this.setState({ activities, isLoading: false });
+      })
+      .catch(() => {
+        this.setState({ isLoading: false });
+        ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);
       });
   }
 
   activityList() {
-    ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return ds.cloneWithRows(this.state.activities);
   }
 
   showRow(activity, sectionID, rowID) {
 
     return (
-      <View style={styles.row} key={rowID}>
+      <View key={rowID}
+        style={styles.row}
+      >
         <ActivityView activity={activity}/>
       </View>
-    )
+    );
   }
 
   render() {
@@ -79,12 +79,10 @@ export default class TimelineView extends Component {
     } else {
       return (
         <View style={styles.container}>
-          <ScrollView>
-            <ListView
-              dataSource={this.activityList()}
-              renderRow={this.showRow}
-              />
-          </ScrollView>
+          <ListView
+            dataSource={this.activityList()}
+            renderRow={this.showRow}
+          />
           <ActionButton
             buttonColor="rgb(253, 195, 0)"
             onPress={() => this.onPressNewEntry()}
@@ -95,15 +93,19 @@ export default class TimelineView extends Component {
   }
 }
 
-let styles = StyleSheet.create({
+TimelineView.propTypes = {
+  navigator: PropTypes.object,
+};
+
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   progressBar: {
     flex: 1,
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   row: {
     backgroundColor: '#FAFAFA',
@@ -116,11 +118,11 @@ let styles = StyleSheet.create({
     margin: 5,
     marginLeft: 10,
     marginRight: 10,
-    borderBottomColor: '#E0E0E0'
+    borderBottomColor: '#E0E0E0',
   },
   actionButtonIcon: {
     fontSize: 20,
     height: 22,
     color: 'white',
-  }
+  },
 });

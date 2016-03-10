@@ -1,36 +1,40 @@
-import React, {
-    Text,
-} from 'react-native';
-var TimerMixin = require('react-timer-mixin');
+import React, { Text, PropTypes } from 'react-native';
+import TimerMixin from 'react-timer-mixin';
 
-var CountDown = React.createClass({
+const CountDown = React.createClass({
+  propTypes: {
+    endTime: PropTypes.number,
+    textStyle: PropTypes.object,
+    time: PropTypes.number,
+  },
   mixins: [TimerMixin],
-  getInitialState: function () {
+  getInitialState() {
     return {
       time: this.props.time ? this.props.time : 0,
     };
   },
-  componentDidMount(){
+  componentDidMount() {
     this._countdown();
   },
-  render(){
-    return (
-      <Text style={this.props.textStyle}>{this.props.text}{this.state.time}</Text>
-    );
-  },
 
-  _countdown(){
-    var timer = function () {
-      var time = this.state.time + 1;
-      this.setState({time: time});
+  _countdown() {
+    const timer = function () {
+      const time = this.state.time + 1;
+      this.setState({ time });
       if (time >= 0 && time < this.props.endTime) {
         this.setTimeout(timer, 1);
       } else {
-        this.setState({disabled: false});
+        this.setState({ disabled: false });
       }
     };
     this.setTimeout(timer, 1);
-  }
+  },
+
+  render() {
+    return (
+      <Text style={this.props.textStyle}>{this.state.time}</Text>
+    );
+  },
 });
 
-module.exports = CountDown;
+export default CountDown;

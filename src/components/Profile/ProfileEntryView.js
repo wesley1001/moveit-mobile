@@ -1,11 +1,11 @@
 import moment from 'moment';
-import React, { Component, View, StyleSheet, Text, TouchableNativeFeedback } from 'react-native';
+import React, { Component, View, StyleSheet, Text, TouchableNativeFeedback, PropTypes } from 'react-native';
 
 export default class ProfileEntryView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-			showDescription: false,
+      showDescription: false,
     };
   }
 
@@ -14,10 +14,11 @@ export default class ProfileEntryView extends Component {
   }
 
   render() {
-    const description = this.state.showDescription ? (<View style={{ padding: 5,  }}><Text style={styles.description}>{this.props.entry.description}</Text></View>) : null;
+    const description = this.state.showDescription ? (<View style={{ padding: 5 }}><Text style={styles.description}>{this.props.entry.description}</Text></View>) : null;
     return (
-      <TouchableNativeFeedback onPress={() => this.handleTouch()}
-        background={TouchableNativeFeedback.SelectableBackground()}>
+      <TouchableNativeFeedback background={TouchableNativeFeedback.SelectableBackground()}
+        onPress={() => this.handleTouch()}
+      >
         <View style={styles.rowContainer}>
           <View style={styles.row}>
             <Text style={styles.entryColumn}>{moment(this.props.entry.date).format('MMMM D')}</Text>
@@ -27,41 +28,44 @@ export default class ProfileEntryView extends Component {
           {description}
         </View>
       </TouchableNativeFeedback>
-    )
+    );
   }
 }
 
-  var styles = StyleSheet.create({
-    rowContainer: {
-      flex: 1,
-      backgroundColor: '#FAFAFA',
-      borderWidth: 1,
-	    borderColor: '#F6F6F6',
-	    borderBottomWidth: 2,
-	    borderRadius: 2,
-      padding: 10,
-	    margin: 10,
-	    marginLeft: 15,
-	    marginRight: 15,
-      borderBottomColor: '#E0E0E0',
-    },
-    row: {
-	    flexDirection: 'row',
-	    padding: 10,
-			justifyContent: 'space-between',
-			flex: 1
-    },
-		entryColumn: {
-			alignItems: 'stretch'
-		},
-    description: {
-      flex: 0.1,
-      color: '#424242',
-      justifyContent: 'flex-end',
-      textAlign: 'justify',
-      marginLeft: 10,
-      marginRight: 10,
-      flexWrap: 'wrap',
-      textAlign: 'auto',
-    }
-  });
+ProfileEntryView.propTypes  = {
+  entry: PropTypes.object,
+};
+
+const styles = StyleSheet.create({
+  rowContainer: {
+    flex: 1,
+    backgroundColor: '#FAFAFA',
+    borderWidth: 1,
+    borderColor: '#F6F6F6',
+    borderBottomWidth: 2,
+    borderRadius: 2,
+    padding: 10,
+    margin: 10,
+    marginLeft: 15,
+    marginRight: 15,
+    borderBottomColor: '#E0E0E0',
+  },
+  row: {
+    flexDirection: 'row',
+    padding: 10,
+    justifyContent: 'space-between',
+    flex: 1,
+  },
+  entryColumn: {
+    alignItems: 'stretch',
+  },
+  description: {
+    flex: 0.1,
+    color: '#424242',
+    justifyContent: 'flex-end',
+    textAlign: 'justify',
+    marginLeft: 10,
+    marginRight: 10,
+    flexWrap: 'wrap',
+  },
+});

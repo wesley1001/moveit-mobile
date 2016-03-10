@@ -1,7 +1,7 @@
 import Server from '../services/Server';
 import User from '../models/User';
-import React, { DeviceEventEmitter, Component, View, ProgressBarAndroid, StyleSheet, ToastAndroid, Text, AsyncStorage } from 'react-native';
-import MK, { MKButton, MKTextField } from 'react-native-material-kit';
+import React, { Component, View, ProgressBarAndroid, StyleSheet, ToastAndroid, Text, AsyncStorage, PropTypes } from 'react-native';
+import { MKButton, MKTextField } from 'react-native-material-kit';
 
 export default class LoginView extends Component {
   constructor(props) {
@@ -10,8 +10,8 @@ export default class LoginView extends Component {
       isLoading: false,
       user: {
         email: null,
-        name: null
-      }
+        name: null,
+      },
     };
   }
 
@@ -28,11 +28,9 @@ export default class LoginView extends Component {
     this.setState({ isLoading: true });
     Server.post('/users/register.json', data)
       .then((res) => {
-        console.log(res);
-          this.successFullyLoggedIn(res.user);
+        this.successFullyLoggedIn(res.user);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         this.setState({ isLoading: false });
         ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);
       });
@@ -67,27 +65,31 @@ export default class LoginView extends Component {
       return (
         <View>
           <MKTextField
-            floatingLabelEnabled={true}
-            highlightColor="#fdc300"
+            floatingLabelEnabled
             floatingLabelFont={{ fontSize: 15, fontWeight: '100' }}
-            keyboardType='default'
-            onChangeText={(name) => this.setState({ name: name })}
-            placeholder='Name'
+            highlightColor="#fdc300"
+            keyboardType="default"
+            onChangeText={(name) => this.setState({ name })}
+            placeholder="Name"
             style={styles.textfieldWithFloatingLabel}
           />
           <MKTextField
-            floatingLabelEnabled={true}
-            highlightColor="#fdc300"
+            floatingLabelEnabled
             floatingLabelFont={{ fontSize: 15, fontWeight: '100' }}
-            keyboardType='email-address'
-            onChangeText={(email) => this.setState({ email: email })}
-            placeholder='Email'
+            highlightColor="#fdc300"
+            keyboardType="email-address"
+            onChangeText={(email) => this.setState({ email })}
+            placeholder="Email"
             style={styles.textfieldWithFloatingLabel}
           />
 
-          <MKButton backgroundColor={'#43ca01'} style={styles.register} onPress={() => this.onRegister()} >
+          <MKButton backgroundColor={'#43ca01'}
+            onPress={() => this.onRegister()}
+            style={styles.register}
+          >
             <Text pointerEvents="none"
-              style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>
+              style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}
+            >
               REGISTER
             </Text>
           </MKButton>
@@ -97,31 +99,30 @@ export default class LoginView extends Component {
   }
 }
 
-let styles = StyleSheet.create({
+LoginView.propTypes = {
+  navigator: PropTypes.object,
+};
+
+const styles = StyleSheet.create({
   textfieldWithFloatingLabel: {
     height: 50,
     margin: 10,
-    marginTop: 15
+    marginTop: 15,
   },
   progressBar: {
     flex: 1,
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   googleSignIn: {
     height: 38,
     padding: 10,
     margin: 10,
-    marginTop: 20
+    marginTop: 20,
   },
   register: {
     height: 38,
     padding: 10,
-    margin: 10
+    margin: 10,
   },
-  progressBar: {
-    flex: 1,
-    justifyContent: 'space-around',
-    alignItems: 'center'
-  }
 });

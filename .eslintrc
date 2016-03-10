@@ -87,6 +87,7 @@
     "process": false,
     "expect": false,
     "global": false,
+    "setTimeout": false,
     "require": false
   },
   "extends": "eslint:recommended"

@@ -5,13 +5,13 @@ export default class User {
     this.id = params.id;
     this.email = params.email;
     this.name = params.name;
-    this.gravatar = gravatar.imageUrl({ email: params.email, parameters: { 'size': '250', 'd': 'mm' }});
+    this.gravatar = gravatar.imageUrl({ email: params.email, parameters: { 'size': '250', 'd': 'mm' } });
     this.status = params.activity_status;
     this.slackUserName = params.slack_user_name;
     this.interactable = params.interactable;
     this.activities = {
       duration: params.duration,
-      amount: params.amount
+      amount: params.amount,
     };
   }
 }

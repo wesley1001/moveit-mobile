@@ -46,32 +46,39 @@ export default class MoveIt extends Component {
         drawerWidth={DRAWER_WIDTH}
         keyboardDismissMode="on-drag"
         ref={(drawer) => { this.drawer = drawer; }}
-        renderNavigationView={() => {return <NavigationView navigator={navigator} parent={this}/>;}}
+        renderNavigationView={() => {
+          return (
+          <NavigationView navigator={navigator}
+            parent={this}
+          />);
+        }}
       >
-        <ToolbarAndroid
-          style={styles.toolbar}
-          navIcon={require('./../img/ic_menu_black_24dp.png')}
+        <ToolbarAndroid navIcon={require('./../img/ic_menu_black_24dp.png')}
           onIconClicked={() => this.drawer.openDrawer()}
+          style={styles.toolbar}
           title={route.name}
         />
-      <Component navigator={navigator} amountContributed={route.amountContributed} globalState={this.state} setGlobalState={this.setGlobalState.bind(this)}/>
+      <Component amountContributed={route.amountContributed}
+        globalState={this.state}
+        navigator={navigator}
+        setGlobalState={this.setGlobalState.bind(this)}
+      />
       </DrawerLayoutAndroid>
     );
   }
 
   render() {
     return (
-      <Navigator
-        style={styles.container}
+      <Navigator initialRoute={{ name: 'Add Entry' }}
         ref={(navigator) => { this.navigator = navigator; }}
-        initialRoute={{ name: 'Add Entry' }}
         renderScene={this.renderScene.bind(this)}
+        style={styles.container}
       />
     );
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
   },

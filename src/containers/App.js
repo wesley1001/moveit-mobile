@@ -14,7 +14,7 @@ const ROUTES = {
   'Leaderboard': LeaderboardView,
   'Login': LoginView,
   'Timeline': TimelineView,
-  'Profile': ProfileView
+  'Profile': ProfileView,
 };
 
 export default class MoveIt extends Component {
@@ -26,9 +26,9 @@ export default class MoveIt extends Component {
   componentDidMount() {
     SplashScreen.hide();
     BackAndroid.addEventListener('hardwareBackPress', () => {
-    if (this.navigator.getCurrentRoutes().length === 1  ) {
-       return false;
-     }
+      if (this.navigator.getCurrentRoutes().length === 1  ) {
+        return false;
+      }
       this.navigator.pop();
       return true;
     });

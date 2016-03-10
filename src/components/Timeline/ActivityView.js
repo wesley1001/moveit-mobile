@@ -1,5 +1,4 @@
 import moment from 'moment';
-import Modal from 'react-native-modalbox';
 
 import React, { Component, View, StyleSheet, Image, Text } from 'react-native';
 

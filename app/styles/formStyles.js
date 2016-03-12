@@ -26,7 +26,7 @@ module.exports = StyleSheet.create({
   button: {
     height: 36,
     flex: 1,
-    backgroundColor: '43CA01',
+    backgroundColor: '#43CA01',
     borderRadius: 8,
     alignSelf: 'stretch',
     justifyContent: 'center',

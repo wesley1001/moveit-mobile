@@ -24,6 +24,7 @@ project.xcworkspace
 
 # Android/IJ
 #
+*.apk
 .idea
 .gradle
 local.properties
@@ -38,3 +39,10 @@ npm-debug.log
 release
 *env.json
 ipa/
+
+#keystores
+*.keystore
+*.jks
+
+#api-keys
+google-services.json

@@ -3,16 +3,75 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start"
+    "start": "react-native start",
+    "test": "jest --verbose --testRunner='<rootDir>/node_modules/jest-cli/src/testRunners/jasmine/jasmine2.js'",
+    "lint": "eslint ."
   },
+  "bugs": "https://github.com/multunus/moveit-mobile/issues",
+  "contributors": [
+    {
+      "name": "Muraleekrishna Gopinthan",
+      "email": "muraleekrishnagc@gmail.com"
+    },
+    {
+      "name": "Peter Lazar",
+      "email": "peterlazar1993@gmail.com"
+    },
+    {
+      "name": "Akshay S Murthy",
+      "email": "akshay.s@multunus.com"
+    }
+  ],
   "dependencies": {
+    "@remobile/react-native-splashscreen": "^1.0.3",
+    "gravatar-api": "^1.2.5",
     "moment": "^2.10.6",
     "react": "^0.14.7",
     "react-native": "^0.22.0-rc",
+    "react-native-action-button": "^1.1.2",
+    "react-native-dropdown-android": "0.0.11",
+    "react-native-google-signin": "^0.2.3",
+    "react-native-material-kit": "^0.3.0",
+    "react-native-simple-modal": "^3.0.2",
+    "react-native-vibration": "^0.2.0",
+    "react-timer-mixin": "^0.13.3",
+    "superagent": "^1.7.2",
+    "superagent-jsonapify": "^1.4.0",
     "react-native-code-push": "^1.7.0-beta",
     "react-native-swipeout": "^2.0.9"
   },
+  "jest": {
+    "scriptPreprocessor": "jestSupport/scriptPreprocess.js",
+    "setupEnvScriptFile": "./node_modules/react-native/jestSupport/env.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "packager/react-packager/src/Activity/"
+    ],
+    "testFileExtensions": [
+      "spec.js"
+    ],
+    "unmockedModulePathPatterns": [
+      "moment",
+      "react",
+      "fbjs",
+      "promise",
+      "source-map"
+    ],
+    "verbose": true
+  },
   "devDependencies": {
+    "babel-eslint": "^5.0.0",
+    "eslint": "2.2.0",
+    "eslint-plugin-react": "^4.2.1",
+    "eslint-plugin-react-native": "^1.0.0",
+    "indent": "0.0.2",
+    "inspect-react-element": "^1.0.1",
+    "jest-cli": "0.8.2",
+    "object-matches": "^1.0.0",
+    "react-shallow-renderer-helpers": "^2.0.2",
+    "react-shallow-testutils": "^1.0.0",
+    "babel-jest": "^6.0.1",
+    "babel-preset-react": "^6.3.13",
     "gulp": "^3.9.0",
     "jsonfile": "^2.2.3",
     "run-sequence": "^1.1.5",

@@ -28,7 +28,7 @@ Make sure the tests pass:
 
     $ npm test
 
-Make your change, with new passing tests. Follow this [style guide][style].
+Make your change. Follow this [style guide][style].
 
   [style]: https://github.com/thoughtbot/guides/tree/master/style
 

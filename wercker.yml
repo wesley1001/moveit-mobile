@@ -1,0 +1,45 @@
+box: peterlazar1993/react-native-android
+
+# Build definition
+build:
+  # The steps that will be executed on build
+  steps:
+    - script:
+        name: Update Android SDK
+        code: echo y | android update sdk --no-ui --all --filter "build-tools-23.0.1,extra-android-m2repository,extra-google-m2repository"
+    #npm install step
+    - npm-install
+    # A step that executes `gradle build` command
+    - script:
+        name: copy google services.json
+        code: openssl enc -in android/app/google-services.json.enc -out android/app/google-services.json -d -aes256 -k $D_KEY
+    - script:
+        name: copy debug key
+        code: openssl enc -in android/app/debug-key.keystore.enc -out android/app/debug-key.keystore -d -aes256 -k $D_KEY
+    - script:
+        name: copy production key
+        code: openssl enc -in android/app/moveit.jks.enc -out android/app/moveit.jks -d -aes256 -k $D_KEY
+    - script:
+        name: setup splash screen
+        code: ./setup.sh
+    - script:
+        name: run gradle
+        code: cd android && ./gradlew assembleRelease --stacktrace --project-cache-dir=$WERCKER_CACHE_DIR
+  after-steps:
+        - wantedly/pretty-slack-notify:
+            webhook_url: $SLACK_WEBHOOK_URL
+            channel: moveit-react
+            branches: ^master$
+deploy:
+  steps:
+    - script:
+        name: setup awscli
+        code: pip install awscli
+    - script:
+        name: Upload to S3
+        code: ./publish.sh
+  after-steps:
+        - wantedly/pretty-slack-notify:
+            webhook_url: $SLACK_WEBHOOK_URL
+            channel: moveit-react
+            branches: ^master$

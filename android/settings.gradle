@@ -1,0 +1,15 @@
+rootProject.name = 'MoveIt'
+
+include ':app'
+
+include ':RNMaterialKit'
+project(':RNMaterialKit').projectDir = file('../node_modules/react-native-material-kit/android')
+
+include ':react-native-splashscreen'
+project(':react-native-splashscreen').projectDir = new File(rootProject.projectDir, '../node_modules/@remobile/react-native-splashscreen/android')
+
+include ':ReactNativeVibration', ':app'
+project(':ReactNativeVibration').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vibration/android')
+
+include ':ReactNativeDropdownAndroid', ':app'
+project(':ReactNativeDropdownAndroid').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-dropdown-android/android')

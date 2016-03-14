@@ -3,10 +3,12 @@ import Server from '../services/Server';
 import UserView from './UserView';
 import User from '../models/User';
 import ActionButton from 'react-native-action-button';
-import Vibration from 'react-native-vibration';
-import React, { TouchableWithoutFeedback, TouchableOpacity, ToastAndroid, AsyncStorage, Component, PropTypes, ListView, View, ProgressBarAndroid, StyleSheet, Image, Text } from 'react-native';
+import React, { TouchableOpacity, ToastAndroid, AsyncStorage, Dimensions, Component, PropTypes, ListView, View, ProgressBarAndroid, StyleSheet, Image, Text } from 'react-native';
 import Modal from 'react-native-simple-modal';
 import CountDown from './counter';
+import Swipe from './swipe';
+
+const ScreenWidth = Dimensions.get('window').width;
 
 export default class LeaderboardView extends Component {
   constructor(props) {
@@ -102,15 +104,6 @@ export default class LeaderboardView extends Component {
     this.getData();
   }
 
-  processDoubleTap(userData) {
-    let now = new Date().getTime();
-    if (now - this.lastPress < 500) {
-      this.performInteraction(userData);
-      userData.interactable = 'none';
-    }
-    this.lastPress = now;
-  }
-
   performInteraction(userData) {
     if(userData.interactable === 'bump' || userData.interactable === 'nudge') {
       let data = {
@@ -118,11 +111,9 @@ export default class LeaderboardView extends Component {
         to_email_id: userData.email,
         interaction_type: userData.interactable,
       };
-      Vibration.vibrate(200);
       Server.post('/interaction.json', data)
         .then(() => {
           this.forceUpdate();
-          userData.interactable = null;
           let toast = (userData.status === 'active' ? 'You Bump\'d ' : 'You Nudg\'d ') + userData.name;
           ToastAndroid.show(toast, ToastAndroid.SHORT, 500);
         })
@@ -144,18 +135,51 @@ export default class LeaderboardView extends Component {
     }
   }
 
-  showRow(userData, sectionID, rowID) {
+  backgroundStyle(interactable) {
+    if (interactable === 'bump') {
+      return { backgroundColor: '#43ca01' };
+    } else if (interactable === 'nudge') {
+      return { backgroundColor: '#fdc300' };
+    }
+  }
+
+  renderUnderlay(style, content) {
     return (
-      <TouchableWithoutFeedback
-        onPress={() => this.processDoubleTap(userData)}
+      <View style={style}>
+        <Text style={{ color: 'white', fontSize: 20 }}>{content}</Text>
+      </View>
+    );
+  }
+
+  isSwipeable(userData) {
+    if (userData.email === this.state.user.email || userData.interactable === 'none') {
+      return true;
+    }
+    return false;
+  }
+
+  showRow(userData, sectionID, rowID) {
+    const underlayStyle = [styles.underlay, this.backgroundStyle(userData.interactable), { position: 'absolute' }];
+    let content = (userData.status === 'active' ? 'Bumping ' : 'Nudging ') + userData.name;
+    return (
+      <Swipe disabled={this.isSwipeable(userData)}
+        onSwipe={() => this.performInteraction(userData)}
+        overlayStyle={[styles.row, userData.email === this.state.user.email ? null: this.borderStyle(userData.interactable)]}
+        renderUnderlay={() => this.renderUnderlay(underlayStyle, content)}
       >
+      <UserView rank={parseInt(rowID) + 1}
+        user={userData}
+        {...this.props}
+      />
+      </Swipe>
+       /*
         <View style={[styles.row, userData.email !== this.state.user.email ? this.borderStyle(userData.interactable) : null ]}>
-          <UserView rank={parseInt(rowID) + 1}
-            user={userData}
-            {...this.props}
-          />
-        </View>
-      </TouchableWithoutFeedback>
+        <UserView rank={parseInt(rowID) + 1}
+          user={userData}
+          {...this.props}
+        />
+      </View>
+    */
     );
   }
 
@@ -293,10 +317,19 @@ const styles = StyleSheet.create({
     borderColor: '#F6F6F6',
     borderBottomWidth: 2,
     flex: 100,
+    backgroundColor: 'white',
   },
   actionButtonIcon: {
     fontSize: 20,
     height: 22,
     color: 'white',
+  },
+  underlay: {
+    padding: 10,
+    height: 72,
+    width: ScreenWidth,
+    position: 'absolute',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
 });

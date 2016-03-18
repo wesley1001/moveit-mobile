@@ -58,7 +58,7 @@ export default class Swipe extends Component {
 }
 
 Swipe.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.array.isRequired,
   disabled: PropTypes.bool,
   gestureStartPosition: PropTypes.number,
   onSwipe: PropTypes.func.isRequired,

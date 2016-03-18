@@ -164,22 +164,15 @@ export default class LeaderboardView extends Component {
     return (
       <Swipe disabled={this.isSwipeable(userData)}
         onSwipe={() => this.performInteraction(userData)}
-        overlayStyle={[styles.row, userData.email === this.state.user.email ? null: this.borderStyle(userData.interactable)]}
+        overlayStyle={styles.row}
         renderUnderlay={() => this.renderUnderlay(underlayStyle, content)}
       >
+      <View style={[styles.triangle, userData.email === this.state.user.email ? null: this.borderStyle(userData.interactable)]} />
       <UserView rank={parseInt(rowID) + 1}
         user={userData}
         {...this.props}
       />
       </Swipe>
-       /*
-        <View style={[styles.row, userData.email !== this.state.user.email ? this.borderStyle(userData.interactable) : null ]}>
-        <UserView rank={parseInt(rowID) + 1}
-          user={userData}
-          {...this.props}
-        />
-      </View>
-    */
     );
   }
 
@@ -311,9 +304,10 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   row: {
-    borderLeftWidth: 5,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingRight: 10,
     flexDirection: 'row',
-    padding: 10,
     borderColor: '#F6F6F6',
     borderBottomWidth: 2,
     flex: 100,
@@ -331,5 +325,17 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'flex-start',
     justifyContent: 'center',
+  },
+  triangle: {
+    paddingRight: 5,
+    borderStyle: 'solid',
+    overflow: 'hidden',
+    borderTopWidth: 25,
+    borderBottomWidth: 25,
+    borderLeftWidth: 10,
+    borderTopColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: 'transparent',
+    borderLeftColor: 'white',
   },
 });

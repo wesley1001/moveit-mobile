@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     flex: 0.1,
     color: '#424242',
     justifyContent: 'flex-end',
-    textAlign: 'justify',
+    textAlign: 'auto',
     marginLeft: 10,
     marginRight: 10,
     flexWrap: 'wrap',

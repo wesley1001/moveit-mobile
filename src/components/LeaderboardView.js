@@ -113,7 +113,13 @@ export default class LeaderboardView extends Component {
       };
       Server.post('/interaction.json', data)
         .then(() => {
-          this.forceUpdate();
+          const newState = this.state.users;
+          newState.forEach((user, index, array) => {
+            if(user.name === userData['name']) {
+              array[index].interactable = null;
+            }
+          });
+          this.setState({ users: newState });
           let toast = (userData.status === 'active' ? 'You Bump\'d ' : 'You Nudg\'d ') + userData.name;
           ToastAndroid.show(toast, ToastAndroid.SHORT, 500);
         })
@@ -152,7 +158,7 @@ export default class LeaderboardView extends Component {
   }
 
   isSwipeable(userData) {
-    if (userData.email === this.state.user.email || userData.interactable === 'none') {
+    if (userData.email === this.state.user.email || userData.interactable === 'none' || userData.interactable === null) {
       return true;
     }
     return false;

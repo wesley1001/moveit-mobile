@@ -84,6 +84,22 @@ Follow the above instructions if you wish to use the command line to generate th
 
 ## Contributing
 
+### Commit message template
+```
+Platform[Android/iOS] | Commit excerpt in not more than 70 characters in present tense
++Pair | https://trello.com/path/to/relevant/card
+
+# Why this change was needed. This can be
+
+# Changes made in this commit in less than 20 words. If required use bullets here
+
+# Side effects of the changes in less than 20 words. If required use bullets here
+
+# Add Platform / Pair only when necessary
+# Never use the -m <msg> / --message=<msg> flag to git commit.
+# Read  https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
+```
+
 See the [CONTRIBUTING] document.
 Thank you, [contributors]!
 

@@ -44,6 +44,15 @@ export default class NavigationView extends Component {
             </Text>
           </TouchableHighlight>
 
+          <TouchableHighlight onPress={() => this.onSelect('CharityView')}
+            style={styles.item}
+            underlayColor="#DDD"
+          >
+            <Text style={styles.text}>
+              Charity
+            </Text>
+          </TouchableHighlight>
+
           <TouchableHighlight onPress={() => this.onSelect('Leaderboard')}
             style={styles.item}
             underlayColor="#DDD"

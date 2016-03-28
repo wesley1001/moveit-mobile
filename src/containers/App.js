@@ -7,6 +7,7 @@ import LoginView from './../components/LoginView.js';
 import TimelineView from './../components/Timeline/TimelineView.js';
 import ProfileView from './../components/Profile/ProfileView.js';
 import SplashScreen from '@remobile/react-native-splashscreen';
+import CharityView from './../components/Charity/CharityView.js'
 
 let DRAWER_WIDTH = 250;
 const ROUTES = {
@@ -15,6 +16,7 @@ const ROUTES = {
   'Login': LoginView,
   'Timeline': TimelineView,
   'Profile': ProfileView,
+  'CharityView': CharityView
 };
 
 export default class MoveIt extends Component {

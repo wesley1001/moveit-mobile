@@ -223,7 +223,7 @@ export default class LeaderboardView extends Component {
               <Text style={{ color: 'rgba(0, 0, 0, 0.66)', fontWeight: '400', fontSize: 80 }}>
                 ₹
                 <CountDown endTime={this.props.amountContributed}
-                  time={this.props.amountContributed - 30}
+                  time={this.props.amountContributed > 30 ? this.props.amountContributed - 25 : 0}
                 />
               </Text>
             </View>

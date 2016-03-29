@@ -120,8 +120,6 @@ export default class LeaderboardView extends Component {
             }
           });
           this.setState({ users: newState });
-          let toast = (userData.status === 'active' ? 'You Bump\'d ' : 'You Nudg\'d ') + userData.name;
-          ToastAndroid.show(toast, ToastAndroid.SHORT, 500);
         })
         .catch(() => {
           ToastAndroid.show('Sorry, we couldn\'t connect to the server', ToastAndroid.SHORT, 2000);

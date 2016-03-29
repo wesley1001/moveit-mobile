@@ -33,7 +33,6 @@
     "react-native-google-signin": "^0.2.3",
     "react-native-material-kit": "^0.3.0",
     "react-native-simple-modal": "^3.0.2",
-    "react-native-vibration": "^0.2.0",
     "react-timer-mixin": "^0.13.3",
     "superagent": "^1.7.2",
     "superagent-jsonapify": "^1.4.0",

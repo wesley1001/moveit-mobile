@@ -4,7 +4,6 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
-import com.eguma.vibration.Vibration;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import com.remobile.splashscreen.*;
 import com.chymtt.reactnativedropdown.DropdownPackage;
@@ -41,7 +40,6 @@ public class MainActivity extends ReactActivity {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
         new ReactMaterialKitPackage(),
-        new Vibration(),
         new DropdownPackage(),
         new RCTSplashScreenPackage(this)
       );

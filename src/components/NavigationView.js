@@ -23,6 +23,19 @@ export default class NavigationView extends Component {
     this.props.navigator.push({ name: item });
   }
 
+  showCharityRoute() {
+    return process.env.NODE_ENV === 'development' ? (
+      <TouchableHighlight onPress={() => this.onSelect('CharityView')}
+        style={styles.item}
+        underlayColor="#DDD"
+      >
+        <Text style={styles.text}>
+          Charity
+        </Text>
+      </TouchableHighlight>
+    ) : null;
+  }
+
   render() {
     let christmasTime = moment().isBetween(moment('Dec 23 2015'), moment('Dec 26 2015'));
     return (
@@ -44,14 +57,7 @@ export default class NavigationView extends Component {
             </Text>
           </TouchableHighlight>
 
-          <TouchableHighlight onPress={() => this.onSelect('CharityView')}
-            style={styles.item}
-            underlayColor="#DDD"
-          >
-            <Text style={styles.text}>
-              Charity
-            </Text>
-          </TouchableHighlight>
+          {this.showCharityRoute()}
 
           <TouchableHighlight onPress={() => this.onSelect('Leaderboard')}
             style={styles.item}

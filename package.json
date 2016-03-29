@@ -36,7 +36,7 @@
     "react-native-simple-modal": "^3.0.2",
     "react-native-swipeout": "^2.0.9",
     "react-timer-mixin": "^0.13.3",
-    "superagent": "^1.7.2",
+    "superagent": "^1.7.2"
   },
   "jest": {
     "scriptPreprocessor": "jestSupport/scriptPreprocess.js",

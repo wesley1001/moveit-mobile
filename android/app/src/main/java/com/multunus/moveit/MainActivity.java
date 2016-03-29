@@ -46,7 +46,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
-        new CodePush("deployment-key-here", this, BuildConfig.DEBUG)
+        new CodePush(BuildConfig.CODEPUSH_KEY, this, BuildConfig.DEBUG)
         new ReactMaterialKitPackage(),
         new DropdownPackage(),
         new ReactNativeConfigPackage(),

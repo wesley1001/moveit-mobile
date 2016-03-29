@@ -7,6 +7,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import com.remobile.splashscreen.*;
 import com.chymtt.reactnativedropdown.DropdownPackage;
+import com.microsoft.codepush.react.CodePush;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +21,11 @@ public class MainActivity extends ReactActivity {
     @Override
     protected String getMainComponentName() {
         return "MoveIt";
+    }
+
+    @Override
+    protected String getJSBundleFile() {
+        return CodePush.getBundleUrl();
     }
 
     /**
@@ -39,6 +45,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+        new CodePush("deployment-key-here", this, BuildConfig.DEBUG)
         new ReactMaterialKitPackage(),
         new DropdownPackage(),
         new RCTSplashScreenPackage(this)

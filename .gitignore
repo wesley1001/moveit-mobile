@@ -46,3 +46,6 @@ ipa/
 
 #api-keys
 google-services.json
+.env
+.env.staging
+.env.development

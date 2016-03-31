@@ -1,4 +1,5 @@
 import React, { BackAndroid, Component, DrawerLayoutAndroid, ToolbarAndroid, StyleSheet, Navigator } from 'react-native';
+import codePush from "react-native-code-push";
 
 import EntryView from './../components/EntryView.js';
 import LeaderboardView from './../components/LeaderboardView.js';
@@ -27,6 +28,7 @@ export default class MoveIt extends Component {
 
   componentDidMount() {
     SplashScreen.hide();
+    codePush.sync();
     BackAndroid.addEventListener('hardwareBackPress', () => {
       if (this.navigator.getCurrentRoutes().length === 1  ) {
         return false;

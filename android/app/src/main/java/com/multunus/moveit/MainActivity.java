@@ -8,6 +8,7 @@ import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import com.remobile.splashscreen.*;
 import com.chymtt.reactnativedropdown.DropdownPackage;
+import com.microsoft.codepush.react.CodePush;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +22,11 @@ public class MainActivity extends ReactActivity {
     @Override
     protected String getMainComponentName() {
         return "MoveIt";
+    }
+
+    @Override
+    protected String getJSBundleFile() {
+        return CodePush.getBundleUrl();
     }
 
     /**
@@ -40,6 +46,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+        new CodePush(BuildConfig.CODEPUSH_KEY, this, BuildConfig.DEBUG),
         new ReactMaterialKitPackage(),
         new DropdownPackage(),
         new ReactNativeConfigPackage(),

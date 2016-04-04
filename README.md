@@ -12,18 +12,27 @@ Clone the repo and run this from inside the directory:
 ```
 npm install
 ```
-That's it - you're done.
+Make sure you have the certificates for signing the builds in `android/app`. That's it - you're done.
+
+## Configuration
+Rename `config.json.example` to `config.json` and change the appropriate parameters.
 
 ## Build
-The simplest one is ```react-native run-android```.
+
+There are 3 different flavors of the app:
+- Development
+- Staging
+- Production
+
+The easiest way to get started is ```react-native run-android --flavor=<flavor>Debug```.
 
 Run the following command to generate a debug APK:
 ```
-cd android && ./gradlew assembleDebug
+cd android && ./gradlew assemble<Flavor>Debug
 ```
 Run the following command after connecting to device to install directly on device:
 ```
-cd android && ./gradlew installRelease
+cd android && ./gradlew install<Flavor>Release
 ```
 For more details, follow this link: [Running on device](https://facebook.github.io/react-native/docs/running-on-device-android.html).
 

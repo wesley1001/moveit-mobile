@@ -1,0 +1,14 @@
+{
+  "DEVELOPMENT": {
+    "API_URL": "http://localhost:3000",
+    "CODEPUSH_KEY": "codepush-key"
+  },
+  "DEVELOPMENT": {
+    "API_URL": "http://stagingURL",
+    "CODEPUSH_KEY": "CodePush Staging Key"
+    },
+  "DEVELOPMENT": {
+    "API_URL": "http://productionURL",
+    "CODEPUSH_KEY": "CodePush Production Key"
+  }
+}

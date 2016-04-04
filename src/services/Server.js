@@ -3,6 +3,9 @@ import Settings from '../config/Settings';
 import Timer from 'react-timer-mixin';
 import Config from 'react-native-config';
 
+const env = require("../../config.json");
+const API_URL = env[Config.ENVIRONMENT].API_URL;
+
 class Server {
   constructor(baseUrl) {
     this.baseUrl = baseUrl || Settings.getBaseUrlFor('test');
@@ -47,4 +50,4 @@ class Server {
   }
 }
 
-export default new Server(Config.API_URL);
+export default new Server(API_URL);

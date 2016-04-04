@@ -30,7 +30,7 @@
     "react-native": "^0.23.0-rc",
     "react-native-action-button": "^1.1.2",
     "react-native-code-push": "^1.10.0-beta",
-    "react-native-config": "github:luggg/react-native-config",
+    "react-native-config": "github:peterlazar1993/react-native-config",
     "react-native-dropdown-android": "0.0.11",
     "react-native-material-kit": "^0.3.0",
     "react-native-simple-modal": "^3.0.2",

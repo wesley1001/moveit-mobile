@@ -1,5 +1,4 @@
 apply plugin: "com.android.application"
-apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
 
@@ -78,12 +77,14 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+def final yourApplicationId = "com.multunus.moveit"
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.multunus.moveit"
+        applicationId yourApplicationId
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 10222
@@ -98,6 +99,21 @@ android {
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
             include "armeabi-v7a", "x86"
+        }
+    }
+
+    productFlavors {
+        development {
+            applicationId yourApplicationId + ".development"
+            buildConfigField 'String', 'ENVIRONMENT', '"DEVELOPMENT"'
+        }
+        staging {
+            applicationId yourApplicationId + ".staging"
+            buildConfigField 'String', 'ENVIRONMENT', '"STAGING"'
+        }
+        production {
+            applicationId yourApplicationId
+            buildConfigField 'String', 'ENVIRONMENT', '"PRODUCTION"'
         }
     }
 

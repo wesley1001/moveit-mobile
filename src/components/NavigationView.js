@@ -25,7 +25,7 @@ export default class NavigationView extends Component {
 
   showCharityRoute() {
     return process.env.NODE_ENV === 'development' ? (
-      <TouchableHighlight onPress={() => this.onSelect('CharityView')}
+      <TouchableHighlight onPress={() => this.onSelect('Charity')}
         style={styles.item}
         underlayColor="#DDD"
       >

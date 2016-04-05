@@ -13,6 +13,10 @@ gulp.task('default', function() {
   console.log('NO DEFAULT TASK');
 });
 
+gulp.task('android:dev:build', function () {
+  shell.exec('ENVFILE=.env.development react-native run-android');
+});
+
 gulp.task('cleanup', function() {
   shell.exec('xcodebuild clean -project ios/MoveIt.xcodeproj -alltargets',{silent:true});
   shell.rm('-rf', 'tmp/*');

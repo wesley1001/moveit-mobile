@@ -1,8 +1,10 @@
 import request from 'superagent';
 import Settings from '../config/Settings';
 import Timer from 'react-timer-mixin';
+import Config from 'react-native-config';
 
-
+const env = require('../../config.json');
+const API_URL = env[Config.ENVIRONMENT].API_URL;
 
 class Server {
   constructor(baseUrl) {
@@ -48,4 +50,4 @@ class Server {
   }
 }
 
-export default new Server('http://staging-move1t.herokuapp.com');
+export default new Server(API_URL);

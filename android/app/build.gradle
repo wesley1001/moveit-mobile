@@ -1,6 +1,5 @@
 apply plugin: "com.android.application"
 
-
 import com.android.build.OutputFile
 
 /**
@@ -61,6 +60,7 @@ import com.android.build.OutputFile
  */
 
 apply from: "react.gradle"
+apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -77,12 +77,14 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+def final yourApplicationId = "com.multunus.moveit"
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.multunus.moveit"
+        applicationId yourApplicationId
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 10222
@@ -97,6 +99,21 @@ android {
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
             include "armeabi-v7a", "x86"
+        }
+    }
+
+    productFlavors {
+        development {
+            applicationId yourApplicationId + ".development"
+            buildConfigField 'String', 'ENVIRONMENT', '"DEVELOPMENT"'
+        }
+        staging {
+            applicationId yourApplicationId + ".staging"
+            buildConfigField 'String', 'ENVIRONMENT', '"STAGING"'
+        }
+        production {
+            applicationId yourApplicationId
+            buildConfigField 'String', 'ENVIRONMENT', '"PRODUCTION"'
         }
     }
 
@@ -154,8 +171,9 @@ android {
 dependencies {
     compile project(':RNMaterialKit')
     compile project(':react-native-splashscreen')
-    compile project(':ReactNativeVibration')
     compile project(':ReactNativeDropdownAndroid')
+    compile project(':react-native-config')
+    compile project(':react-native-code-push')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules

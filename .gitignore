@@ -46,3 +46,4 @@ ipa/
 
 #api-keys
 google-services.json
+config.json

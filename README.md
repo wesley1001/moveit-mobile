@@ -7,12 +7,12 @@ For more details of our MoveIt app, [head here](https://github.com/multunus/move
 # Android app
 
 ## Usage
-Follow the instructions here to [setup Android environment](https://facebook.github.io/react-native/docs/android-setup.html).
+Follow the instructions here to [setup React Native](https://facebook.github.io/react-native/docs/getting-started.html).
 Clone the repo and run this from inside the directory:
 ```
 npm install
 ```
-Make sure you have the certificates for signing the builds in `android/app`. That's it - you're done.
+Make sure you have the [certificates for signing](https://trello.com/c/Kx1O4MB0/42-apk-signing) the builds in `android/app`. That's it - you're done.
 
 ## Configuration
 Rename `config.json.example` to `config.json` and change the appropriate parameters.

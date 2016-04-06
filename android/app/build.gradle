@@ -129,18 +129,35 @@ android {
             storePassword System.getenv("MOVEIT_APP_RELEASE_STORE_PASSWORD")
             keyAlias System.getenv("MOVEIT_APP_RELEASE_KEY_ALIAS")
             keyPassword System.getenv("MOVEIT_APP_RELEASE_KEY_PASSWORD")
-            applicationVariants.all { variant ->
-                variant.outputs.each { output ->
-                    def buildTypeName = ""
-                    if(variant.buildType.name == "debug"){
-                        buildTypeName = "-debug"
-                    }
-                    output.outputFile = new File(
-                            output.outputFile.parent,
-                            "MoveIt${buildTypeName}-v${variant.versionName}.apk")
-                }
-            }
       }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+          def buildTypeName = ""
+
+          if(variant.name == "productionRelease"){
+            buildTypeName = "production"
+          } else if(variant.name == "stagingRelease"){
+            buildTypeName = "staging"
+          } else {
+            buildTypeName = "dev"
+          }
+
+            output.outputFile = new File(
+                    output.outputFile.parent,
+                    "MoveIt-${buildTypeName}-v${variant.versionName}.apk")
+        }
+    }
+
+    variantFilter { variant ->
+        def names = variant.flavors*.name
+
+        if((names.contains("production") || names.contains("staging")) && variant.buildType.name == "debug") {
+            variant.ignore = true
+        } else if(names.contains("development") && variant.buildType.name == "release") {
+            variant.ignore = true
+        }
     }
 
     buildTypes {

@@ -22,7 +22,7 @@
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
+            buildForRunning = "NO"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "YES">
@@ -56,9 +56,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-            BuildableName = "MoveItTests.xctest"
-            BlueprintName = "MoveItTests"
+            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+            BuildableName = "MoveIt.app"
+            BlueprintName = "MoveIt"
             ReferencedContainer = "container:MoveIt.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -94,6 +94,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+            BuildableName = "MoveIt.app"
+            BlueprintName = "MoveIt"
+            ReferencedContainer = "container:MoveIt.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Development">

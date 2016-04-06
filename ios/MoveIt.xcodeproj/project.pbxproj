@@ -21,8 +21,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		BA34B2441CB42B4200D2604A /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA34B2431CB42B1600D2604A /* libCodePush.a */; };
 		BA3F99AB1C6765F4002D5F33 /* appConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = BA3F99AA1C6765F4002D5F33 /* appConfig.json */; };
-		BA62AD7F1C5C74A40002EDDA /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA62AD741C5C74700002EDDA /* libCodePush.a */; };
 		BA62AD811C5C74F00002EDDA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BA62AD801C5C74F00002EDDA /* libz.tbd */; };
 /* End PBXBuildFile section */
 
@@ -104,9 +104,9 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		BA62AD731C5C74700002EDDA /* PBXContainerItemProxy */ = {
+		BA34B2421CB42B1600D2604A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BA62AD6F1C5C74700002EDDA /* CodePush.xcodeproj */;
+			containerPortal = BA34B23E1CB42B1600D2604A /* CodePush.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = CodePush;
@@ -134,8 +134,8 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		BA34B23E1CB42B1600D2604A /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		BA3F99AA1C6765F4002D5F33 /* appConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = appConfig.json; path = ../appConfig.json; sourceTree = "<group>"; };
-		BA62AD6F1C5C74700002EDDA /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		BA62AD801C5C74F00002EDDA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -152,7 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA62AD811C5C74F00002EDDA /* libz.tbd in Frameworks */,
-				BA62AD7F1C5C74A40002EDDA /* libCodePush.a in Frameworks */,
+				BA34B2441CB42B4200D2604A /* libCodePush.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -274,7 +274,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				BA62AD6F1C5C74700002EDDA /* CodePush.xcodeproj */,
+				BA34B23E1CB42B1600D2604A /* CodePush.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -320,10 +320,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BA62AD701C5C74700002EDDA /* Products */ = {
+		BA34B23F1CB42B1600D2604A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BA62AD741C5C74700002EDDA /* libCodePush.a */,
+				BA34B2431CB42B1600D2604A /* libCodePush.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -398,8 +398,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = BA62AD701C5C74700002EDDA /* Products */;
-					ProjectRef = BA62AD6F1C5C74700002EDDA /* CodePush.xcodeproj */;
+					ProductGroup = BA34B23F1CB42B1600D2604A /* Products */;
+					ProjectRef = BA34B23E1CB42B1600D2604A /* CodePush.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -521,11 +521,11 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BA62AD741C5C74700002EDDA /* libCodePush.a */ = {
+		BA34B2431CB42B1600D2604A /* libCodePush.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libCodePush.a;
-			remoteRef = BA62AD731C5C74700002EDDA /* PBXContainerItemProxy */;
+			remoteRef = BA34B2421CB42B1600D2604A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

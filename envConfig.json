@@ -1,0 +1,14 @@
+{
+  "development": {
+		"codePushKey": "",
+		"appServerRootURL": "http://localhost:3000"
+	},
+	"staging": {
+		"codePushKey": "STAGING CODE PUSH KEY",
+		"appServerRootURL": "STAGING ROOT URL"
+	},
+	"production": {
+		"codePushKey": "PRODUCTION CODE PUSH KEY",
+		"appServerRootURL": "PRODUCTION ROOT URL"
+	}
+}

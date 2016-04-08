@@ -1,4 +1,4 @@
-import AppConfig from '../appConfig.json';
+import AppConfig from '../appConfig.js';
 
 const Paths = {
   leaderboard: '/leaderboard',

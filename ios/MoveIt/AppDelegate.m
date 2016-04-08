@@ -17,16 +17,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  NSString* buildEnvironment = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"BuildEnvironment"];
   NSURL *jsCodeLocation;
-  NSString *configPath = [[NSBundle mainBundle] pathForResource:@"appConfig" ofType:@"json"];
-  NSData *configData = [[NSFileManager defaultManager] contentsAtPath:configPath];
-  NSDictionary *appConfig = [NSJSONSerialization JSONObjectWithData:configData options:0 error:nil];
-  NSString *jsScheme = appConfig[@"jsScheme"];
 
-  if([jsScheme isEqualToString:@"codepush"]) {
-    jsCodeLocation = [CodePush bundleURL];
-  } else {
+  if([buildEnvironment isEqualToString:@"development"]) {
     jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
+  } else {
+    jsCodeLocation = [CodePush bundleURL];
   }
 
 //  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];

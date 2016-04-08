@@ -4,23 +4,21 @@ import React from 'react-native';
 import { RNConfig } from 'NativeModules';
 import EnvConfig from './envConfig.json';
 
-var getEnvironment = function() {
-  return RNConfig.buildEnvironment;
+let environment = RNConfig.buildEnvironment;
+
+let getAppServerRootURL = function() {
+  return EnvConfig[environment].appServerRootURL;
 }
 
-var getAppServerRootURL = function() {
-  return EnvConfig[getEnvironment()].appServerRootURL;
-}
-
-var getCodePushKey = function() {
-  return EnvConfig[getEnvironment()].codePushKey;
+let getCodePushKey = function() {
+  return EnvConfig[environment].codePushKey;
 }
 
 export default {
-  environment: getEnvironment(),
+  environment: environment,
   appServerRootURL: getAppServerRootURL(),
   codePushKey: getCodePushKey(),
   isDevelopment: function() {
-    return getEnvironment() === 'development';
+    return environment === 'development';
   }
 };

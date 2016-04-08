@@ -11,7 +11,7 @@ import AddEntryPage from './app/components/addEntry/addEntryPage';
 import MonthlySummaryPage from './app/components/monthlySummary/monthlySummaryPage';
 import MainPage from './app/components/mainPage';
 import CodePush from 'react-native-code-push';
-import AppConfig from './appConfig.json';
+import AppConfig from './appConfig.js';
 
 const RoutableComponents = {
   'Login': LoginPage,
@@ -22,7 +22,7 @@ const RoutableComponents = {
 
 class MoveIt extends Component {
   componentDidMount() {
-    if(AppConfig.jsScheme === 'codepush') {
+    if(!AppConfig.isDevelopment()) {
       CodePush.sync({
         deploymentKey: AppConfig.codePushKey,
         updateDialog: {

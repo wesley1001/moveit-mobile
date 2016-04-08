@@ -23,7 +23,6 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		BA34B2441CB42B4200D2604A /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA34B2431CB42B1600D2604A /* libCodePush.a */; };
 		BA3EC3B91CB5269400B8D61C /* RNConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3EC3B71CB5269400B8D61C /* RNConfig.m */; };
-		BA3F99AB1C6765F4002D5F33 /* appConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = BA3F99AA1C6765F4002D5F33 /* appConfig.json */; };
 		BA62AD811C5C74F00002EDDA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BA62AD801C5C74F00002EDDA /* libz.tbd */; };
 /* End PBXBuildFile section */
 
@@ -122,7 +121,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 		BA3EC3B01CB5249C00B8D61C /* RNConfig.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNConfig.xcodeproj; path = ../../RNConfig/RNConfig.xcodeproj; sourceTree = "<group>"; };
 		BA3EC3B71CB5269400B8D61C /* RNConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNConfig.m; path = MoveIt/RNConfig.m; sourceTree = "<group>"; };
 		BA3EC3B81CB5269400B8D61C /* RNConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNConfig.h; path = MoveIt/RNConfig.h; sourceTree = "<group>"; };
-		BA3F99AA1C6765F4002D5F33 /* appConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = appConfig.json; path = ../appConfig.json; sourceTree = "<group>"; };
 		BA62AD801C5C74F00002EDDA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -256,7 +253,6 @@
 		13B07FAE1A68108700A75B9A /* MoveIt */ = {
 			isa = PBXGroup;
 			children = (
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				BA3EC3B71CB5269400B8D61C /* RNConfig.m */,
@@ -314,7 +310,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				BA3F99AA1C6765F4002D5F33 /* appConfig.json */,
 				BA62AD801C5C74F00002EDDA /* libz.tbd */,
 				13B07FAE1A68108700A75B9A /* MoveIt */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -576,7 +571,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				BA3F99AB1C6765F4002D5F33 /* appConfig.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

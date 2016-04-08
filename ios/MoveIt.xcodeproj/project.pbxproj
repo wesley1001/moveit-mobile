@@ -629,7 +629,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Development */ = {
+		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -647,9 +647,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoveIt.app/MoveIt";
 			};
-			name = Development;
+			name = Debug;
 		};
-		00E356F71AD99517003FC87E /* Production */ = {
+		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -664,9 +664,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoveIt.app/MoveIt";
 			};
-			name = Production;
+			name = Release;
 		};
-		13B07F941A680F5B00A75B9A /* Development */ = {
+		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -684,9 +684,9 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "MoveIt Dev";
 			};
-			name = Development;
+			name = Debug;
 		};
-		13B07F951A680F5B00A75B9A /* Production */ = {
+		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -704,9 +704,9 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MoveIt;
 			};
-			name = Production;
+			name = Release;
 		};
-		83CBBA201A601CBA00E9B192 /* Development */ = {
+		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -753,9 +753,9 @@
 				PRODUCT_NAME = "MoveIt Dev";
 				SDKROOT = iphoneos;
 			};
-			name = Development;
+			name = Debug;
 		};
-		83CBBA211A601CBA00E9B192 /* Production */ = {
+		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -796,7 +796,7 @@
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Production;
+			name = Release;
 		};
 		BA36B3A81C6A55F800A92C51 /* Staging */ = {
 			isa = XCBuildConfiguration;
@@ -884,32 +884,32 @@
 		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MoveItTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Development */,
-				00E356F71AD99517003FC87E /* Production */,
+				00E356F61AD99517003FC87E /* Debug */,
+				00E356F71AD99517003FC87E /* Release */,
 				BA36B3AA1C6A55F800A92C51 /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Production;
+			defaultConfigurationName = Release;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MoveIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				13B07F941A680F5B00A75B9A /* Development */,
-				13B07F951A680F5B00A75B9A /* Production */,
+				13B07F941A680F5B00A75B9A /* Debug */,
+				13B07F951A680F5B00A75B9A /* Release */,
 				BA36B3A91C6A55F800A92C51 /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Production;
+			defaultConfigurationName = Release;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "MoveIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83CBBA201A601CBA00E9B192 /* Development */,
-				83CBBA211A601CBA00E9B192 /* Production */,
+				83CBBA201A601CBA00E9B192 /* Debug */,
+				83CBBA211A601CBA00E9B192 /* Release */,
 				BA36B3A81C6A55F800A92C51 /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Production;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -4,7 +4,7 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
-import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
+import com.lugg.RNConfig.RNConfigPackage;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import com.remobile.splashscreen.*;
 import com.chymtt.reactnativedropdown.DropdownPackage;
@@ -49,7 +49,7 @@ public class MainActivity extends ReactActivity {
         new CodePush("", this, BuildConfig.DEBUG),
         new ReactMaterialKitPackage(),
         new DropdownPackage(),
-        new ReactNativeConfigPackage("com.multunus.moveit"),
+        new RNConfigPackage("com.multunus.moveit"),
         new RCTSplashScreenPackage(this)
       );
     }

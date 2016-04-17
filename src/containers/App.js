@@ -1,7 +1,7 @@
 import React, { BackAndroid, Component, DrawerLayoutAndroid, ToolbarAndroid, StyleSheet, Navigator } from 'react-native';
 import codePush from 'react-native-code-push';
-import Config from 'react-native-config';
 
+import AppConfig from '../../appConfig.js';
 import EntryView from './../components/EntryView.js';
 import LeaderboardView from './../components/LeaderboardView.js';
 import NavigationView from './../components/NavigationView.js';
@@ -11,10 +11,8 @@ import ProfileView from './../components/Profile/ProfileView.js';
 import SplashScreen from '@remobile/react-native-splashscreen';
 import CharityView from './../components/Charity/CharityView.js';
 
-const env = require('../../config.json');
-
 const codePushOptions = {
-  deploymentKey: env[Config.ENVIRONMENT].CODEPUSH_KEY,
+  deploymentKey: AppConfig.codePushKey,
 };
 
 let DRAWER_WIDTH = 250;
@@ -35,7 +33,7 @@ export default class MoveIt extends Component {
 
   componentDidMount() {
     SplashScreen.hide();
-    if(Config.ENVIRONMENT !== 'DEVELOPMENT') {
+    if(!AppConfig.isDevelopment()) {
       codePush.sync(codePushOptions);
     }
     BackAndroid.addEventListener('hardwareBackPress', () => {

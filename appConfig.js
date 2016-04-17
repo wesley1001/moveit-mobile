@@ -1,6 +1,5 @@
 'use strict';
 
-import React from 'react-native';
 import { RNConfig } from 'NativeModules';
 import EnvConfig from './envConfig.json';
 

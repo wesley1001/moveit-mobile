@@ -105,15 +105,15 @@ android {
     productFlavors {
         development {
             applicationId yourApplicationId + ".development"
-            buildConfigField 'String', 'ENVIRONMENT', '"DEVELOPMENT"'
+            buildConfigField 'String', 'buildEnvironment', '"development"'
         }
         staging {
             applicationId yourApplicationId + ".staging"
-            buildConfigField 'String', 'ENVIRONMENT', '"STAGING"'
+            buildConfigField 'String', 'buildEnvironment', '"staging"'
         }
         production {
             applicationId yourApplicationId
-            buildConfigField 'String', 'ENVIRONMENT', '"PRODUCTION"'
+            buildConfigField 'String', 'buildEnvironment', '"production"'
         }
     }
 

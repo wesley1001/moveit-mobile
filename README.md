@@ -15,7 +15,7 @@ npm install
 Make sure you have the [certificates for signing](https://trello.com/c/Kx1O4MB0/42-apk-signing) the builds in `android/app`. That's it - you're done.
 
 ## Configuration
-Rename `config.json.example` to `config.json` and change the appropriate parameters.
+Change the appropriate parameters in `envConfig.json`.
 
 ## Build
 

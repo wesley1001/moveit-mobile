@@ -13,10 +13,15 @@ let getCodePushKey = function() {
   return EnvConfig[environment].codePushKey;
 }
 
+let getCharitySpreadSheetUrl = function() {
+  return EnvConfig[environment].charitySpreadSheetUrl;
+}
+
 export default {
   environment: environment,
   appServerRootURL: getAppServerRootURL(),
   codePushKey: getCodePushKey(),
+  charitySpreadSheetUrl: getCharitySpreadSheetUrl(),
   isDevelopment: function() {
     return environment === 'development';
   }

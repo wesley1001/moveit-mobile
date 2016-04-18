@@ -1,14 +1,17 @@
 {
   "development": {
 		"codePushKey": "",
-		"appServerRootURL": "http://localhost:3000"
+		"appServerRootURL": "http://localhost:3000",
+    "charitySpreadSheetUrl": "https://spreadsheets.google.com/feeds/list/1f1tFr7y62QS7IRWOC2nNR5HWsTO99Bna3d0Xv1PTPiY/od6/public/values?alt=json"
 	},
 	"staging": {
 		"codePushKey": "STAGING CODE PUSH KEY",
-		"appServerRootURL": "STAGING ROOT URL"
+		"appServerRootURL": "STAGING ROOT URL",
+    "charitySpreadSheetUrl": "https://spreadsheets.google.com/feeds/list/1f1tFr7y62QS7IRWOC2nNR5HWsTO99Bna3d0Xv1PTPiY/od6/public/values?alt=json"
 	},
 	"production": {
 		"codePushKey": "PRODUCTION CODE PUSH KEY",
-		"appServerRootURL": "PRODUCTION ROOT URL"
+		"appServerRootURL": "PRODUCTION ROOT URL",
+    "charitySpreadSheetUrl": "https://spreadsheets.google.com/feeds/list/1f1tFr7y62QS7IRWOC2nNR5HWsTO99Bna3d0Xv1PTPiY/od6/public/values?alt=json"
 	}
 }

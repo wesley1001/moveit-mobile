@@ -22,7 +22,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		BA34B2441CB42B4200D2604A /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA34B2431CB42B1600D2604A /* libCodePush.a */; };
-		BA3F99AB1C6765F4002D5F33 /* appConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = BA3F99AA1C6765F4002D5F33 /* appConfig.json */; };
+		BA3EC3B91CB5269400B8D61C /* RNConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3EC3B71CB5269400B8D61C /* RNConfig.m */; };
 		BA62AD811C5C74F00002EDDA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BA62AD801C5C74F00002EDDA /* libz.tbd */; };
 /* End PBXBuildFile section */
 
@@ -111,10 +111,16 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = CodePush;
 		};
+		BA3EC3B41CB5249C00B8D61C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA3EC3B01CB5249C00B8D61C /* RNConfig.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BA3EC3A41CB523C500B8D61C;
+			remoteInfo = RNConfig;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
@@ -135,7 +141,9 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		BA34B23E1CB42B1600D2604A /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
-		BA3F99AA1C6765F4002D5F33 /* appConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = appConfig.json; path = ../appConfig.json; sourceTree = "<group>"; };
+		BA3EC3B01CB5249C00B8D61C /* RNConfig.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNConfig.xcodeproj; path = ../../RNConfig/RNConfig.xcodeproj; sourceTree = "<group>"; };
+		BA3EC3B71CB5269400B8D61C /* RNConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RNConfig.m; path = MoveIt/RNConfig.m; sourceTree = "<group>"; };
+		BA3EC3B81CB5269400B8D61C /* RNConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNConfig.h; path = MoveIt/RNConfig.h; sourceTree = "<group>"; };
 		BA62AD801C5C74F00002EDDA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -245,9 +253,10 @@
 		13B07FAE1A68108700A75B9A /* MoveIt */ = {
 			isa = PBXGroup;
 			children = (
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				BA3EC3B71CB5269400B8D61C /* RNConfig.m */,
+				BA3EC3B81CB5269400B8D61C /* RNConfig.h */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -274,6 +283,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BA3EC3B01CB5249C00B8D61C /* RNConfig.xcodeproj */,
 				BA34B23E1CB42B1600D2604A /* CodePush.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -300,7 +310,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				BA3F99AA1C6765F4002D5F33 /* appConfig.json */,
 				BA62AD801C5C74F00002EDDA /* libz.tbd */,
 				13B07FAE1A68108700A75B9A /* MoveIt */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -324,6 +333,14 @@
 			isa = PBXGroup;
 			children = (
 				BA34B2431CB42B1600D2604A /* libCodePush.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA3EC3B11CB5249C00B8D61C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA3EC3B51CB5249C00B8D61C /* libRNConfig.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -441,6 +458,10 @@
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
+				{
+					ProductGroup = BA3EC3B11CB5249C00B8D61C /* Products */;
+					ProjectRef = BA3EC3B01CB5249C00B8D61C /* RNConfig.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -528,6 +549,13 @@
 			remoteRef = BA34B2421CB42B1600D2604A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		BA3EC3B51CB5249C00B8D61C /* libRNConfig.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNConfig.a;
+			remoteRef = BA3EC3B41CB5249C00B8D61C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -543,7 +571,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				BA3F99AB1C6765F4002D5F33 /* appConfig.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +606,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA3EC3B91CB5269400B8D61C /* RNConfig.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -595,7 +623,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Development */ = {
+		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -613,9 +641,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoveIt.app/MoveIt";
 			};
-			name = Development;
+			name = Debug;
 		};
-		00E356F71AD99517003FC87E /* Production */ = {
+		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -630,9 +658,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoveIt.app/MoveIt";
 			};
-			name = Production;
+			name = Release;
 		};
-		13B07F941A680F5B00A75B9A /* Development */ = {
+		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -650,9 +678,9 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "MoveIt Dev";
 			};
-			name = Development;
+			name = Debug;
 		};
-		13B07F951A680F5B00A75B9A /* Production */ = {
+		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -670,12 +698,13 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MoveIt;
 			};
-			name = Production;
+			name = Release;
 		};
-		83CBBA201A601CBA00E9B192 /* Development */ = {
+		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_ENV = development;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -718,12 +747,13 @@
 				PRODUCT_NAME = "MoveIt Dev";
 				SDKROOT = iphoneos;
 			};
-			name = Development;
+			name = Debug;
 		};
-		83CBBA211A601CBA00E9B192 /* Production */ = {
+		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_ENV = production;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -760,12 +790,13 @@
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Production;
+			name = Release;
 		};
 		BA36B3A81C6A55F800A92C51 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_ENV = staging;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -847,32 +878,32 @@
 		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MoveItTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Development */,
-				00E356F71AD99517003FC87E /* Production */,
+				00E356F61AD99517003FC87E /* Debug */,
+				00E356F71AD99517003FC87E /* Release */,
 				BA36B3AA1C6A55F800A92C51 /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Production;
+			defaultConfigurationName = Release;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MoveIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				13B07F941A680F5B00A75B9A /* Development */,
-				13B07F951A680F5B00A75B9A /* Production */,
+				13B07F941A680F5B00A75B9A /* Debug */,
+				13B07F951A680F5B00A75B9A /* Release */,
 				BA36B3A91C6A55F800A92C51 /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Production;
+			defaultConfigurationName = Release;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "MoveIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83CBBA201A601CBA00E9B192 /* Development */,
-				83CBBA211A601CBA00E9B192 /* Production */,
+				83CBBA201A601CBA00E9B192 /* Debug */,
+				83CBBA211A601CBA00E9B192 /* Release */,
 				BA36B3A81C6A55F800A92C51 /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Production;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

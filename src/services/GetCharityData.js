@@ -1,8 +1,9 @@
+import AppConfig from '../../appConfig.js';
+
 class GetCharityData {
   getData(){
     var CHARITY_DATA_ARRAY = [];
-    var spreadsheetID = "1f1tFr7y62QS7IRWOC2nNR5HWsTO99Bna3d0Xv1PTPiY";
-    var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
+    var url = AppConfig.charitySpreadSheetUrl;
     fetch(url).then((response) => response.json())
       .then((responseText) => {
         entry = responseText.feed.entry;

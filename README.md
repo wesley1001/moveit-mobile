@@ -15,7 +15,7 @@ npm install
 Make sure you have the [certificates for signing](https://trello.com/c/Kx1O4MB0/42-apk-signing) the builds in `android/app`. That's it - you're done.
 
 ## Configuration
-Rename `config.json.example` to `config.json` and change the appropriate parameters.
+Change the appropriate parameters in `envConfig.json`.
 
 ## Build
 
@@ -41,55 +41,36 @@ For more details, follow this link: [Running on device](https://facebook.github.
 ## Dev Setup
 1.Clone the repo and install node packages:
 ``` bash
-git clone git@github.com:multunus/moveit-ios.git
-cd moveit-ios
+git clone git@github.com:multunus/moveit-mobile.git
+cd moveit-mobile
 npm install
 ```
-2.Change the app server url to a local server in `appConfig.js` if required
+2.Change the app server url to a local server in `envConfig.json` if required
 
-## Create and use a local JS bundle
+3.Import the XCode project from the `ios/` directory.
+
+4.Use the **MoveItDev** scheme for dev builds
+
+## Building
+
+There are different configurations and a scheme for each of them:
+- Debug - MoveItDev
+- Staging - MoveItStaging
+- Release - MoveIt
+
+For building the app make sure to set the appropriate values in `envConfig.json` and use one of the above schemes.
+## Create and use a local JS bundle in development
 1.Run script to bundle the JS code to a local file
 ``` bash
-.install/bundle_js.sh
+react-native bundle --entry-file index.ios.js --assets-dest ./release --bundle-output ./release/main.jsbundle --dev false --platform ios'
 ```
 
-2.Comment the `if else` block `AppDelegate.m` which sets the `jsCodeLocation`
+2.Comment the `if else` block in `AppDelegate.m` which sets the `jsCodeLocation`
 
 3.Uncomment this line in `AppDelegate.m` -
 ```
 jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 ```
-
-## Generate the staging / production ipa file
-1.Create a `staging.env.json` or `production.env.json` file similar to the `env.json.example` and set the appropriate values.
-
-2.Run the gulp task
-``` bash
-# For staging
-gulp staging:build
-# For production
-gulp production:build
-```
-
-This generates `MoveIt.ipa` in the same directory.
-
-Follow the above instructions if you wish to use the command line to generate the production ipa. For all dev and testing purposes use XCode.
-
-## Create the JS bundle for CodePush
-1.Create an environment config file as mentioned in the previos section.
-
-2.Run the gulp task
-``` bash
-# For staging
-gulp staging:ready-code-push
-# For production
-gulp production:ready-code-push
-```
-
-This generates `MoveIt.ipa` in the same directory.
-
-Follow the above instructions if you wish to use the command line to generate the production ipa. For all dev and testing purposes use XCode.
-
 
 ## Contributing
 
